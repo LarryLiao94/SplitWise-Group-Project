@@ -4,6 +4,12 @@ from flask_login import UserMixin
 
 
 class User(db.Model, UserMixin):
+    """
+            Relationships:
+            One to Many: friends
+            Many to Many: expenses
+            One to Many: comments
+    """
     __tablename__ = 'users'
 
     if environment == "production":
@@ -11,8 +17,14 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
+    firstName = db.Column(db.String(20), nullable=False)
+    lastName = db.Column(db.String(20), nullable=False)
+    phoneNumber = db.Column(db.Integer) 
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    balance = db.Column(db.Float, default=0)
+
+    friends = db.relationship('Friend', back_populates='users')
 
     @property
     def password(self):
@@ -28,6 +40,10 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
+            'firstName': self.firstName,
+            'lastName': self.lastName,
+            'phoneNumber': self.phoneNumber,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'balance': self.balance
         }
