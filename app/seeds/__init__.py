@@ -1,6 +1,5 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
-from .friends import seed_friends, undo_friends
 
 from app.models.db import db, environment, SCHEMA
 
@@ -19,7 +18,6 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_users()
     seed_users()
-    seed_friends()
     # Add other seed functions here
 
 
