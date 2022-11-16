@@ -3,7 +3,7 @@
 }
 
 .main {
-  border: 5px solid red;
+  /* border: 5px solid red; */
   display: flex;
   flex-direction: column;
   background-image: url('https://assets.splitwise.com/assets/core/facets.png');
@@ -345,6 +345,16 @@
 .pro-image {
   padding-top: 15px;
   width: 275px;
+}
+
+.nine-yards-img {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-image {
+  width: 100%;
 }
 
 .review-grid {

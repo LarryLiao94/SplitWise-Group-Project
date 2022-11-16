@@ -1,0 +1,48 @@
+.dash-navbar {
+  display: flex;
+  justify-content: space-between;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0 20px;
+  width: 100%;
+  background-color:#1CC29F;
+  margin: 0 0;
+}
+
+.dash-logo-div {
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.dash-logo {
+  height: 30px;
+  width: 100px;
+}
+
+.dash-logo-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  margin-left: 5px;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  margin: 5px;
+}
+
+.profileButton-div {
+  display: flex;
+  align-items: center;
+}
+
+.profileButton-div:hover {
+  background-color: rgb(161, 158, 158);
+}
+
+.user-name {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+}
