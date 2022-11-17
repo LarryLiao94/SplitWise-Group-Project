@@ -1,4 +1,5 @@
-from app.models import db, Friend, environment, SCHEMA
+from app.models import db, environment, SCHEMA
+from app.models import Friend, Transaction
 
 def seed_friends():
     friend1 = Friend(
@@ -28,6 +29,15 @@ def seed_friends():
     friend9 = Friend(
         friendER=3, friendEE=5
     )
+    transaction1 = Transaction(userId=1,description='added friend 2', transactionableType='friend')
+    transaction2 = Transaction(userId=1,description='added friend 3', transactionableType='friend')
+    transaction3 = Transaction(userId=1,description='added friend 4', transactionableType='friend')
+    transaction4 = Transaction(userId=1,description='added friend 5', transactionableType='friend')
+    transaction5 = Transaction(userId=2,description='added friend 3', transactionableType='friend')
+    transaction6 = Transaction(userId=2,description='added friend 4', transactionableType='friend')
+    transaction7 = Transaction(userId=2,description='added friend 5', transactionableType='friend')
+    transaction8 = Transaction(userId=3,description='added friend 4', transactionableType='friend')
+    transaction9 = Transaction(userId=3,description='added friend 5', transactionableType='friend')
 
     db.session.add(friend1)
     db.session.add(friend2)
@@ -38,6 +48,17 @@ def seed_friends():
     db.session.add(friend7)
     db.session.add(friend8)
     db.session.add(friend9)
+    db.session.add(transaction1)
+    db.session.add(transaction2)
+    db.session.add(transaction3)
+    db.session.add(transaction4)
+    db.session.add(transaction5)
+    db.session.add(transaction6)
+    db.session.add(transaction7)
+    db.session.add(transaction8)
+    db.session.add(transaction9)
+
+    # db.session.add_all()
     db.session.commit()
 
 def undo_friends():

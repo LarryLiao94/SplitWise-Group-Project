@@ -1,5 +1,6 @@
-from app.models import db, Expense, environment, SCHEMA
+from app.models import db, environment, SCHEMA
 from datetime import datetime
+from app.models import Expense, Transaction
 
 # Adds a demo user, you can add other users here if you want
 def seed_expenses():
@@ -8,11 +9,14 @@ def seed_expenses():
     test2 = Expense(
         ownerId=2, userId=3, title='test2', timestamp=datetime.now(), balance=1000, isSettled=False)
 
-
+    transaction1 = Transaction(description='Your balance has been paid', transactionableType='expense')
+    transaction2 = Transaction(description='Your balance has not been paid', transactionableType='expense')
 
     db.session.add(test1)
     db.session.add(test2)
-
+    db.session.add(transaction1)
+    db.session.add(transaction2)
+    # db.session.add_all()
     db.session.commit()
 
 
