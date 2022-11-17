@@ -1,9 +1,16 @@
 import './LandingPage.css'
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import splitwiseFooter from '../../images/splitwise-footer-img.png'
+import nineYards from '../../images/nine-yards.png'
 
 function LandingPage(){
+    const history = useHistory();
+    const dispatch = useDispatch();
+  
+    const loggedSession = useSelector((state) => (state.session.user));
+
     return(
         <>
         <body className='body'>
@@ -148,7 +155,7 @@ function LandingPage(){
                 </div>
 
                 <div>
-                    <img className='nine-yards-img' src='react-app/public/nine-yards.png' alt='image' />
+                    <img className='nine-yards-img' src={nineYards} alt='image' />
                 </div>
 
 
@@ -260,7 +267,7 @@ function LandingPage(){
                         </a>
                     </div>
                 </div>
-                <img src='../../public/splitwise-footer-img.png' alt='footer-image'/>
+                <img className='footer-image' src={splitwiseFooter} alt='footer-image'/>
                 
             </footer>
         </body>

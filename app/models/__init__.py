@@ -1,4 +1,7 @@
 from .db import db
-from .user import User
 from .db import environment, SCHEMA
-from .friend import Friend
+from .user import User
+# from .friend import Friend
+# from .expense import Expense
+from .transaction import Transaction, Friend, Expense
+# from .comment import Comment
