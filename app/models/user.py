@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     firstName = db.Column(db.String(20), nullable=False)
     lastName = db.Column(db.String(20), nullable=False)
-    phoneNumber = db.Column(db.Integer) 
+    phoneNumber = db.Column(db.Integer)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     balance = db.Column(db.Float, default=0)
@@ -27,6 +27,8 @@ class User(db.Model, UserMixin):
     friends = db.relationship('Friend', primaryjoin="(User.id==Friend.friendER)" , back_populates='users')
     expenses = db.relationship('Expense', primaryjoin="(User.id==Expense.ownerId)", back_populates='users')
     transactions = db.relationship('Transaction', primaryjoin="(User.id==Transaction.userId)", back_populates='users')
+    comments = db.relationship('Comment',back_populates='users')
+
 
     @property
     def password(self):
