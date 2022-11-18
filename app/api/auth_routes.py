@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, session, request
+from flask import Blueprint, jsonify, session, request, redirect
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
@@ -64,11 +64,15 @@ def sign_up():
     if form.validate_on_submit():
         user = User(
             username=form.data['username'],
+            firstName=form.data['firstName'],
+            lastName=form.data['lastName'],
+            phoneNumber=form.data['phoneNumber'],
             email=form.data['email'],
             password=form.data['password']
         )
         db.session.add(user)
         db.session.commit()
+        db.session.redirect('/dashboard')
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
