@@ -5,17 +5,17 @@ from app.models import Expense, Transaction
 # Adds a demo user, you can add other users here if you want
 def seed_expenses():
     test1 = Expense(
-        ownerId=1, userId=2, title='test1', timestamp=datetime.now(), balance=100, isSettled=False)
+        ownerId=1, userId=2, title='test1', timestamp=datetime.now(), description='Your balance has been paid',balance=100, isSettled=False)
     test2 = Expense(
-        ownerId=2, userId=3, title='test2', timestamp=datetime.now(), balance=1000, isSettled=False)
+        ownerId=2, userId=3, title='test2', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
 
-    transaction1 = Transaction(description='Your balance has been paid', transactionableType='expense')
-    transaction2 = Transaction(description='Your balance has not been paid', transactionableType='expense')
+    # transaction1 = Transaction(userId=2,description='Your balance has been paid', transactionableType='expense')
+    # transaction2 = Transaction(userId=3,description='Your balance has not been paid', transactionableType='expense')
 
     db.session.add(test1)
     db.session.add(test2)
-    db.session.add(transaction1)
-    db.session.add(transaction2)
+    # db.session.add(transaction1)
+    # db.session.add(transaction2)
     # db.session.add_all()
     db.session.commit()
 
