@@ -19,9 +19,9 @@ class Transaction(db.Model):
 
     # friends = db.relationship('Friend', back_populates='transactions')
     # expenses = db.relationship('Expense', back_populates='transactions')
-    
+
     users = db.relationship('User', back_populates='transactions')
-    
+
     def to_dict(self):
         return {
             'id' : self.id,
@@ -64,6 +64,7 @@ class Expense(Transaction):
   __mapper_args__ = {
       'polymorphic_identity' : 'expenses'
   }
+  comments = db.relationship("Comment",back_populates='expenses')
 
   # comments = db.relationship("Comment", back_populates="comments")
   # users = db.relationship("User", back_populates="expenses")

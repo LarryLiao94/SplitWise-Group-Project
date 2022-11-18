@@ -4,4 +4,4 @@ from .user import User
 # from .friend import Friend
 # from .expense import Expense
 from .transaction import Transaction, Friend, Expense
-# from .comment import Comment
+from .comment import Comment

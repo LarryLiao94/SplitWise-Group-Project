@@ -37,20 +37,20 @@ function Profile({ user }) {
     <div className='profile'>
       <div className='profileButton' onClick={openMenu}>
         <div className='user-name'>
-          { user.firstName + user.lastName }
+          { user.firstName + "  " + user.lastName }
+        <i className="fa-solid fa-caret-down"></i>
         </div>
       </div>
       { showMenu && (
         <div className='dropDownMenu'>
           <div className='user-account'>
-          <Link to={'/account/settings'} className='links'> 
-            Your account
-          </Link>
-          </div>
+            <Link to={'/account/settings'} className='dropdown-links'> 
+              Your account
+            </Link>
 
-          <div className='logOutButton userInfo' onClick={logOut}>
-          Log Out  
-          <i className="fa-solid fa-right-from-bracket"></i>
+            <div className='dropdown-links' onClick={logOut}>
+            Log out  
+            </div>
           </div>
         </div>
       )}
