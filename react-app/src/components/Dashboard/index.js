@@ -2,6 +2,7 @@ import './Dashboard.css'
 import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Profile from './ProfileButton';
+import AddFriendModal from '../AddFriendModal';
 
 
 function Dashboard() {
@@ -61,6 +62,7 @@ function Dashboard() {
           </div>
           <Link className='dash-add-link'>
           <i className="fa-sharp fa-solid fa-plus"></i>
+            <AddFriendModal />
             add
           </Link>
         </div>
