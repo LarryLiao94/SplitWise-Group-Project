@@ -5,13 +5,14 @@
   padding: 0 20px;
   width: 100%;
   background-color:#1CC29F;
-  margin: 0 0;
+  margin: 0;
 }
 
 .dash-logo-div {
   display: flex;
   align-items: center;
   color: white;
+  /* padding-left: 50px; */
 }
 
 .dash-logo {
@@ -35,10 +36,39 @@
 .profileButton-div {
   display: flex;
   align-items: center;
+  margin-right: 50px;
 }
 
 .profileButton-div:hover {
-  background-color: rgb(161, 158, 158);
+  background-color: rgba(161, 158, 158, .3);
+  color: white;
+  cursor: pointer;
+}
+
+.fa-caret-down {
+  color: #CCCCCC;
+  margin: 5px;
+}
+
+.fa-caret-down:hover {
+  color: white;
+}
+
+.dropDownMenu {
+  color: black;
+  position: absolute;
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  background-color: white;
+  z-index: 100;
+  padding: 5px;
+}
+
+.dropdown-links {
+  text-decoration: none;
+  color: black;
+  margin: 10px 5px;
 }
 
 .user-name {
@@ -46,3 +76,307 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
 }
+
+.column {
+  float: left;
+}
+
+.dash-left-side {
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.dash-left-side-tabs {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
+  text-decoration: none;
+  color: #999999
+}
+
+.dash-groups {
+  display: flex;
+  justify-content: space-between;
+  background-color: #EEEEEE;
+  padding: 5px;
+  color: #CCCCCC;
+  margin: 5px 0;
+}
+
+.dash-groups-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+}
+
+.fa-plus{
+  margin-left: 5px;
+}
+
+.dash-add-link {
+  text-decoration: none;
+  color: #CCCCCC;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  width: 50px;
+}
+
+.dash-add-link:hover {
+  cursor: pointer;
+}
+
+.dash-friends {
+  display: flex;
+  justify-content: space-between;
+  background-color: #EEEEEE;
+  color: #CCCCCC;
+  padding: 5px;
+  margin: 5px 0;
+}
+
+.dash-friends-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+ }
+
+.invite-friends-div {
+  border: 1px solid #999999;
+  margin: 15px 0;
+}
+
+.invite-friends {
+  background-color: #5BC5A7;
+  color: white;
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.invite-friends-input {
+  margin: 5px;
+  width: auto;
+}
+
+.send-invite {
+  margin: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.send-invite:hover {
+  cursor: pointer;
+}
+
+
+.dashboard-div {
+  display: table;
+  border: 1px solid yellow;
+  width: 100%;
+}
+
+.dash-main {
+  width: 65%;
+  box-shadow: 3px 0 8px -4px #999999, -3px 0 8px -4px #999999;
+}
+
+.dash-main-header {
+  background-color:#EEEEEE;
+}
+
+.dash-main-header-upper {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #d3cece;
+  height: 50px;
+  padding: 5px 10px;
+}
+
+.dashboard-title {
+  display: flex;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.dashboard-title-img {
+  width: 14px;
+  height: 14px;
+  padding: 0 5px;
+}
+
+.fa-sharp {
+  width: 14px;
+  height: 14px;
+  padding: 0 5px;
+}
+
+.fa-sharp fa-solid fa-flag{
+  width: 14px;
+  height: 14px;
+  padding: 0 5px;
+}
+
+.fa-magnifying-glass {
+  color: #999999;
+  background-color: #EEEEEE;
+  height: 20px;
+  width: 20px;
+}
+
+.dash-search-bar {
+  border: 1px solid #999999;
+  border-radius: 3px;
+  width: 165px;
+  margin-left: 8px;
+  margin-top: 5px;
+}
+
+.dash-search-bar input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: hidden;
+  height: 18px;
+  width: 125px;
+}
+
+.fa-list {
+  margin: 5px;
+}
+
+.dash-all-expenses {
+  margin: 5px 7px;
+  color: #999999;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.dash-buttons {
+  display: flex;
+  width: 260px;
+  padding: 5px;
+  justify-content: space-between;
+}
+
+
+.dash-add-expense-button {
+  background-color: #FF652F;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  width: 150px;
+}
+
+.dash-add-expense-button:hover{
+  cursor: pointer;
+}
+
+.dash-settle-up-button {
+  background-color: #5BC5A7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+}
+
+.dash-settle-up-button:hover {
+  cursor: pointer;
+}
+
+.dash-main-header-balances {
+  display: flex;
+  justify-content: space-evenly;
+  border: 1px solid #d3cece;
+  height: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  padding: 5px 0;
+  color:rgb(161, 158, 158)
+}
+
+.dash-you-owe {
+  display: flex;
+  justify-content: center;
+  border-left: 1px solid #d3cece;
+  border-right: 1px solid #d3cece;
+  width: 25%;
+}
+
+.dash-main-body {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.dash-owe {
+  display: flex;
+  width: 100%;
+  padding: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+  justify-content: space-between;
+}
+
+.dash-main-left {
+  font-size: 14px;
+  font-weight: bold;
+  color: #999999
+}
+
+.dash-main-right {
+  font-size: 14px;
+  font-weight: bold;
+  color: #999999;
+}
+
+
+.dash-right-side {
+  width: 15%;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  margin-left: 10px;
+}
+
+.dash-right-split-text {
+  font-size: 12px;
+  color: #999999;
+  margin: 5px;
+}
+
+.knife-fork {
+  height: 100px;
+  width: 100px;
+  margin: 5px;
+}
+
+.plates-download-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  text-align: left;
+  margin: 5px 0;
+}
+
+.plates-download-button {
+  background-color: #FF652F;
+  border: none;
+  color: white;
+  font-size: 15px;
+  border-radius: 5px;
+  height: 40px;
+  width: 150px;
+  margin: 10px 0;
+}
+
+.plates-download-button:hover {
+  cursor: pointer;
+}
+
