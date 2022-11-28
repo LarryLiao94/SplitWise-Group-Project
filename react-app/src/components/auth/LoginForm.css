@@ -1,0 +1,82 @@
+.login-form {
+  background-image: url('https://assets.splitwise.com/assets/core/facets.png');
+}
+
+.login-form-header {
+  display: flex;
+  justify-content: space-between;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  padding: 0px 60px;
+  height: 100%;
+  background-color: white;
+}
+
+.login-form-header-img {
+  height: 50px;
+  width: 50px;
+}
+
+.login-form-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form-main {
+  /* border: 1px solid #999999; */
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column; 
+  box-shadow: 0px 4px 8px rgb(0 0 0 / 12%);
+  height: 400px;
+  width: 500px;
+  margin: 50px;
+  padding: 40px ;
+  background-color: white;
+}
+
+.login-title {  
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 28px;
+}
+
+.email-address-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.password-label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.password-input {
+  width: 98%;
+  height: 30px;
+  border: .5px solid #373B3F;
+}
+
+.email-input {
+  width: 98%;
+  height: 30px;
+  margin-bottom: 20px;
+  border: .5px solid #373B3F;
+
+}
+
+.submit-button {
+  border: none;
+  border-radius: 5px;
+  background-color: #18A582;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  height: 50px;
+  margin: 30px 0;
+  width: 100%;
+}
