@@ -9,6 +9,15 @@ class Comment(db.Model):
   expenseId = db.Column(db.Integer, db.ForeignKey('expenses.id'))
   comment = db.Column(db.Text)
 
-  #joined inheritance
+
   users = db.relationship('User', back_populates='comments')
   expenses = db.relationship("Expense", back_populates="comments")
+
+
+  def to_dict(self):
+    return {
+        'id': self.id,
+        'userId': self.userId,
+        'expenseId': self.expenseId,
+        'comment': self.comment,
+    }
