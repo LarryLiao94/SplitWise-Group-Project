@@ -1,0 +1,86 @@
+.signup-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.introduce-text {
+  color: #999999;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 15px 20px;
+}
+
+.signup-name-input {
+  height: 40px;
+  width: 300px;
+  margin: 5px 20px;
+}
+
+.signup-name-input:focus {
+  outline: none;
+  box-shadow: 0px 4px 8px #0088CC, -.5px 0 1px #0088CC;
+}
+
+.signup-email-div {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  margin: 0 20px;
+}
+
+.signup-email-input {
+  height: 40px;
+  width: 300px;
+  margin: 5px 0;
+}
+
+.signup-email-input:focus {
+  outline: none;
+  box-shadow: 0px 4px 8px #0088CC, -.5px 0 1px #0088CC;
+}
+
+.signup-name-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin: 0 20px;
+}
+
+
+.signup-password-div {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  margin: 0 20px;
+}
+
+.signup-password-input {
+  height: 40px;
+  width: 300px;
+  margin: 5px 0;
+}
+
+.signup-password-input:focus {
+  outline: none;
+  box-shadow: 0px 4px 8px #0088CC, -.5px 0 1px #0088CC;
+}
+
+.signup-submit-button {
+  background-color: #FF652F;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  display: inline-block;
+  width: auto;
+  height: 50px;
+  padding: 11px 15px;
+  margin: 15px 20px;
+}
+
+.signup-tos {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #0088CC;
+  margin: 10px 20px;
+}

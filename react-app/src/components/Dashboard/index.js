@@ -62,8 +62,10 @@ function Dashboard() {
           </div>
           <Link className='dash-add-link'>
           <i className="fa-sharp fa-solid fa-plus"></i>
-            <AddFriendModal />
-            add
+            {/* <div className='dash-add-friend-modal'> */}
+             <AddFriendModal />
+            {/* </div> */}
+            
           </Link>
         </div>
 

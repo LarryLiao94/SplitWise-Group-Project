@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import { login } from "../../store/session";
+import './Signup.css'
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -13,8 +14,23 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [ showSecondary, setShowSecondary ] = useState(false)
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+
+  const revealSecondary = () => {
+    if ( showSecondary ) return;
+    setShowSecondary(true);
+  }
+
+  useEffect(() => {
+    if (!showSecondary) return;
+    const closeSecondary = () => setShowSecondary(false)
+    document.addEventListener('click', closeSecondary)
+
+    return () => 
+    document.removeEventListener('click', closeSecondary)
+  }, [showSecondary])
 
   const reset = () => {
     setEmail("");
@@ -80,13 +96,76 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form className='signup-form' onSubmit={onSignUp}>
+      <img height="200" width="200" className="signup-splitwise-logo" src="https://assets.splitwise.com/assets/core/logo-square-65a6124237868b1d2ce2f5db2ab0b7c777e2348b797626816400534116ae22d7.svg"></img>
+      <div>
+      <h2 className='introduce-text'>
+        INTRODUCE YOURSELF
+      </h2>
+      <div className='signup-name-text'>
+        Hi there! My name is 
+      </div>
+        <div>
+         <input
+          className='signup-name-input'
+          type="text"
+          name="firstName"
+          onChange={updateFirstName}
+          onInput={revealSecondary()}
+          value={firstName}
+          />
+        </div>
+
+      <div className='secondary-fields'>
+      <div className='signup-email-div'>
+         Here's my 
+        <strong>
+          email address:
+        </strong>
+        <br/>
+        <input
+          className='signup-email-input'
+          type="text"
+          name="email"
+          onChange={updateEmail}
+          value={email}
+          />
+      </div>
+      <div className='signup-password-div'>
+          And here's my
+        <strong>
+          password:
+        </strong>
+        <br/>
+        <input
+          className='signup-password-input'
+          type="text"
+          name="password"
+          onChange={updatePassword}
+          value={password}
+          />
+      </div>
+      <input type='hidden' />
+      </div>
+
+      <button className='signup-submit-button' type="submit">Sign me up!</button>
+
+      <div className='signup-tos'>
+        By signing up, you accept the Splitwise Terms of Service.
+      </div>
+      </div>
+   
+
+
+
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
+
+
+      {/* <div>
         <label>User Name</label>
         <input
           type="text"
@@ -149,8 +228,8 @@ const SignUpForm = () => {
           value={repeatPassword}
           required={true}
         />
-      </div>
-      <button type="submit">Sign Up</button>
+      </div> */}
+      {/* <button className='signup-submit-button' type="submit">Sign me up!</button> */}
     </form>
   );
 };

@@ -4,6 +4,17 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import splitwiseFooter from '../../images/splitwise-footer-img.png'
 import nineYards from '../../images/nine-yards.png'
+import planeIcon from './images/plane.png'
+import houseMates from './images/housemates.png'
+import partner from './images/partner.png'
+import wild from './images/wild.png'
+import apple from './images/apple.png'
+import android from './images/android.png'
+import lpPlane from './images/lp-plane.png'
+import lpHouse from './images/lp-house.png'
+import lpHeart from './images/lp-heart.png'
+import lpWild from './images/lp-wild.png'
+import { applyMiddleware } from 'redux';
 
 function LandingPage(){
     const history = useHistory();
@@ -41,45 +52,73 @@ function LandingPage(){
                 </nav>
             </div>
             <main className='main'>
-                {/* <img className='background-img' src='https://assets.splitwise.com/assets/core/facets.png'/> */}
-
-                <h2 className='sharing-expenses'> 
-                    Less stress when sharing expenses
-                </h2>
-                <span className='landing-share-options'>
-                    on trips
-                </span>
-
-                <ul className='text-swap-list'>
-                    <li className='text-swap-option'>
-                        <a>
-                            <svg className='text-swap-house' >
-
-                            </svg>
-                        </a>
+            
+                <h1>
+                    <span className='landing-share-options trips '>
+                        "Less stress when sharing expenses "
+                        <span className='trip-text'>
+                            on trips.
+                        </span>
+                    </span>
+                    <span className='landing-share-options housemates'>
+                        "Less stress when sharing expenses "
+                        <span className='housemates-text'>
+                            with housemates.
+                        </span>
+                    </span>
+                    <span className='landing-share-options partner'>
+                        "Less stress when sharing expenses "
+                        <span className='partner-text'>
+                            with your partner.
+                        </span>
+                    </span>
+                    <span className='landing-share-options anyone'>
+                        "Less stress when sharing expenses "
+                        <span className='anyone-text'>
+                            with anyone.
+                        </span>
+                    </span>
+                </h1>
+                  
+                <ul className='landing-share-list-icons'>
+                    <li className='landing-plane-icon-list'>
+                        <a href='#' className='landing-nav-plane-link'>
+                           <img className='landing-plane-icon' src={planeIcon} alt='plane'/> 
+                        </a> 
                     </li>
-                    <li className='text-swap-option'>
-                        <a>
-                            <svg className='text-swap-heart' >
 
-                            </svg>
-                        </a>
+                    <li className='landing-home-icon-list'>
+                    <a href='#' className='landing-nav-home'>
+                           <img className='landing-home-icon' src={houseMates} alt='home'/>
+                        </a> 
                     </li>
-                    <li className='text-swap-option'>
-                        <a>
-                            <svg className='text-swap-wild-card' >
 
-                            </svg>
-                        </a>
+                    <li className='landing-heart-icon-list'>
+                    <a href='#'  className='landing-nav-heart'>
+                            <img className='landing-heart-icon' src={partner} alt='partner'/>
+                        </a> 
                     </li>
-                    <li className='text-swap-option'>
-                        <a>
-                            <svg className='text-swap-plane' >
 
-                            </svg>
-                        </a>
+                    <li className='landing-wild-icon-list'>
+                    <a href='#'  className='landing-nav-wild'>
+                            <img className='landing-wild-icon' src={wild} alt='wild'/>
+                        </a> 
                     </li>
-                   
+                </ul>
+
+                <ul className='lp-large-icons'>
+                    <li className='lp-icon plane hidden'>
+                        <img src={lpPlane} />
+                    </li>
+                    <li className='lp-icon house hidden'>
+                        <img src={lpHouse} />
+                    </li>
+                    <li className='lp-icon heart hidden'>
+                        <img src={lpHeart} />
+                    </li>
+                    <li className='lp-icon wild hidden'>
+                        <img src={lpWild} />
+                    </li>
                 </ul>
 
                 <div className='download-app-div'>
@@ -95,7 +134,7 @@ function LandingPage(){
                         Keep track of your shared expenses and balances with housemates, trips, groups, friends and family.
                     </p>
                     <p className='landing-page-free'>
-                        Free for iPhone, Android, and web.
+                        Free for <img className='apple' src={apple}/> iPhone, <img className='android' src={android} /> Android, and web.
                     </p>
 
                 <div className='balance-div'>

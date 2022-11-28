@@ -1,0 +1,96 @@
+.add-friend-form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  border: 1px solid #aeaeae;
+  border-radius: 10px;
+  box-shadow: #333333;
+}
+/* 
+.add-friend-modal {
+  background-color: azure;
+} */
+
+.add-friends-header {
+  display: flex;
+  align-items: center;
+}
+
+.add-friend-img {
+  padding-left: 10px;
+}
+
+.close-modal {
+  margin-left: 250px;
+  background-color: white;
+  border: none;
+  color: #999797
+}
+
+.close-modal:hover {
+  cursor: pointer;
+}
+
+.invite-friends-text {
+  padding: 5px 10px 0 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}
+
+.add-friend-credential {
+  display: flex;
+  height: 40px;
+  width: auto;
+  margin: 10px;
+  border: 1px solid #acaaaa;
+  border-radius: 5px;
+}
+
+.add-friend-credential-text {
+  display: flex;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.add-friend-credential-input {
+  height: 20px;
+  width: 90%;
+  margin: 10px 0;
+  border: none;
+}
+
+.add-friend-description {
+  height: 50px;
+  width: 90%;
+  margin: 10px 0;
+  border: none;
+}
+
+.add-friend-description-div {
+  border: 1px solid #acaaaa;
+  border-radius: 5px;
+  width: auto;
+  margin: 10px;
+}
+
+.add-friend-submit-button {
+  height: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #FF652F;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.add-friend-submit-div {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px;
+}
