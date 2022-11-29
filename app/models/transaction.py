@@ -6,7 +6,7 @@ class Transaction(db.Model):
     __tablename__='transactions'
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     description = db.Column(db.String)
     # transactionableId = db.Column(db.Integer)
     transactionableType = db.Column(db.String)
