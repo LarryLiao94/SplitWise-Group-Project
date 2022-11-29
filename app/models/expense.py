@@ -1,4 +1,4 @@
-# from .db import db, environment, SCHEMA
+# from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 # class Expense(db.Model):
 #     """
@@ -7,14 +7,16 @@
 #             Many to Many: users(ownerId)
 #             Many to Many: users
 #     """
-#     __tablename__ = 'expenses'
+    # __tablename__ = 'expenses'
+    # if environment == "production":
+    #     __table_args__ = {'schema': SCHEMA}
 
 #     if environment == "production":
 #         __table_args__ = {'schema': SCHEMA}
 
 #     id = db.Column(db.Integer, primary_key=True)
 #     ownerId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-#     userId = db.Column(db.Integer, nullable=False)
+    # user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 #     title = db.Column(db.String(50), nullable=False)
 #     timestamp = db.Column(db.Date, nullable=False)
 #     balance = db.Column(db.Float, default=0)
