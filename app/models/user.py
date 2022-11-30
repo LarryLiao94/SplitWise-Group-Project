@@ -26,7 +26,7 @@ class User(db.Model, UserMixin):
 
     friends = db.relationship('Friend', primaryjoin="(User.id==Friend.user_id)" , back_populates='users')
     expenses = db.relationship('Expense', primaryjoin="(User.id==Expense.user_id)", back_populates='users')
-    transactions = db.relationship('Transaction', primaryjoin="(User.id==Transaction.user_id)", back_populates='users')
+    transactions = db.relationship('Transaction', primaryjoin="(User.id==Transaction.transaction_user_id)", back_populates='users')
     comments = db.relationship('Comment',back_populates='users')
 
 

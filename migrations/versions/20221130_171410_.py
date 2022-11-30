@@ -1,19 +1,16 @@
 """empty message
 
-Revision ID: 9e6c4c94de61
+Revision ID: 5cee91aba8b7
 Revises: 
-Create Date: 2022-11-30 16:56:30.746478
+Create Date: 2022-11-30 17:14:10.510387
 
 """
 from alembic import op
 import sqlalchemy as sa
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '9e6c4c94de61'
+revision = '5cee91aba8b7'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -36,10 +33,10 @@ def upgrade():
     )
     op.create_table('transactions',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('transaction_user_id', sa.Integer(), nullable=True),
     sa.Column('description', sa.String(), nullable=True),
     sa.Column('transactionableType', sa.String(), nullable=True),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['transaction_user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('expenses',
@@ -51,6 +48,7 @@ def upgrade():
     sa.Column('balance', sa.Float(), nullable=True),
     sa.Column('isSettled', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['id'], ['transactions.id'], ),
+    sa.ForeignKeyConstraint(['recipientId'], ['users.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -73,12 +71,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE friends SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE transactions SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE expenses SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
