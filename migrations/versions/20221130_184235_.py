@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 5cee91aba8b7
+Revision ID: e617ab47dedb
 Revises: 
-Create Date: 2022-11-30 17:14:10.510387
+Create Date: 2022-11-30 18:42:35.063975
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5cee91aba8b7'
+revision = 'e617ab47dedb'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,24 +41,26 @@ def upgrade():
     )
     op.create_table('expenses',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('expense_transaction_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('recipientId', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=50), nullable=False),
     sa.Column('timestamp', sa.Date(), nullable=False),
     sa.Column('balance', sa.Float(), nullable=True),
     sa.Column('isSettled', sa.Boolean(), nullable=True),
-    sa.ForeignKeyConstraint(['id'], ['transactions.id'], ),
+    sa.ForeignKeyConstraint(['expense_transaction_id'], ['transactions.id'], ),
     sa.ForeignKeyConstraint(['recipientId'], ['users.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('friends',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('friend_transaction_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('friendEE', sa.Integer(), nullable=False),
     sa.Column('balance', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['friendEE'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['id'], ['transactions.id'], ),
+    sa.ForeignKeyConstraint(['friend_transaction_id'], ['transactions.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
