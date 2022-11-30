@@ -3,31 +3,31 @@ from app.models import Friend
 
 def seed_friends():
     friend1 = Friend(
-        user_id=1, friendEE=2, description='friend 1 added friend 2'
+        user_id=1, friendEE=2, transaction_user_id=1, description='friend 1 added friend 2'
     )
     friend2 = Friend(
-        user_id=1, friendEE=3, description='friend 1 added friend 3'
+        user_id=1, friendEE=3, transaction_user_id=1, description='friend 1 added friend 3'
     )
     friend3 = Friend(
-        user_id=1, friendEE=4, description='friend 1 added friend 4'
+        user_id=1, friendEE=4, transaction_user_id=1, description='friend 1 added friend 4'
     )
     friend4 = Friend(
-        user_id=1, friendEE=5, description='friend 1 added friend 5'
+        user_id=1, friendEE=5, transaction_user_id=1, description='friend 1 added friend 5'
     )
     friend5 = Friend(
-        user_id=2, friendEE=3, description='friend 2 added friend 3'
+        user_id=2, friendEE=3, transaction_user_id=2, description='friend 2 added friend 3'
     )
     friend6 = Friend(
-        user_id=2, friendEE=4, description='friend 2 added friend 4'
+        user_id=2, friendEE=4, transaction_user_id=2, description='friend 2 added friend 4'
     )
     friend7 = Friend(
-        user_id=2, friendEE=5, description='friend 2 added friend 5'
+        user_id=2, friendEE=5, transaction_user_id=2, description='friend 2 added friend 5'
     )
     friend8 = Friend(
-        user_id=3, friendEE=4, description='friend 3 added friend 4'
+        user_id=3, friendEE=4, transaction_user_id=3, description='friend 3 added friend 4'
     )
     friend9 = Friend(
-        user_id=3, friendEE=5, description='friend 3 added friend 5'
+        user_id=3, friendEE=5, transaction_user_id=3, description='friend 3 added friend 5'
     )
     # transaction1 = Transaction(userId=1,description='added friend 2', transactionableType=friend1)
     # transaction2 = Transaction(userId=1,description='added friend 3', transactionableType='friend')

@@ -5,9 +5,9 @@ from app.models import Expense, Transaction
 # Adds a demo user, you can add other users here if you want
 def seed_expenses():
     test1 = Expense(
-        user_id=1, recipientId=2, title='test1', timestamp=datetime.now(), description='Your balance has been paid',balance=100, isSettled=False)
+        transaction_user_id=1, user_id=1, recipientId=2, title='test1', timestamp=datetime.now(), description='Your balance has been paid',balance=100, isSettled=False)
     test2 = Expense(
-        user_id=2, recipientId=3, title='test2', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+        transaction_user_id=2, user_id=2, recipientId=3, title='test2', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
 
     # transaction1 = Transaction(userId=2,description='Your balance has been paid', transactionableType='expense')
     # transaction2 = Transaction(userId=3,description='Your balance has not been paid', transactionableType='expense')
