@@ -9,7 +9,7 @@ class Comment(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-  expenseId = db.Column(db.Integer, db.ForeignKey('expenses.id'))
+  expenseId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('expenses.id')))
   comment = db.Column(db.Text)
 
 
