@@ -4,15 +4,15 @@ from app.models import db, User, environment, SCHEMA
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', firstName='Demo1', lastName='LastDemo1', phoneNumber=1111111111, email='demo@aa.io', password='password', balance=0)
+        username='Demo', firstName='Demo1', lastName='LastDemo1', phoneNumber='1111111111', email='demo@aa.io', password='password', balance=0)
     marnie = User(
-        username='marnie', firstName='Marnie', lastName='LastMarnie', phoneNumber = 2222222222, email='marnie@aa.io', password='password', balance=0)
+        username='marnie', firstName='Marnie', lastName='LastMarnie', phoneNumber='2222222222', email='marnie@aa.io', password='password', balance=0)
     bobbie = User(
-        username='bobbie', firstName='Bobbie', lastName='LastBobbie', phoneNumber=3333333333, email='bobbie@aa.io', password='password', balance=0)
+        username='bobbie', firstName='Bobbie', lastName='LastBobbie', phoneNumber='3333333333', email='bobbie@aa.io', password='password', balance=0)
     xavier = User(
-        username='xavier', firstName='Xavier', lastName='LastXavier', phoneNumber=4444444444, email='xavier@aa.io', password='password', balance=0)
+        username='xavier', firstName='Xavier', lastName='LastXavier', phoneNumber='4444444444', email='xavier@aa.io', password='password', balance=0)
     khad = User(
-        username='khad', firstName='Khad', lastName='LastKhad', phoneNumber=5555555555, email='khad@aa.io', password='password', balance=0)
+        username='khad', firstName='Khad', lastName='LastKhad', phoneNumber='5555555555', email='khad@aa.io', password='password', balance=0)
     
     
     db.session.add(demo)

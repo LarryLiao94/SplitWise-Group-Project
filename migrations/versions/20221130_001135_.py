@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 006a35b75045
+Revision ID: 7d110609304e
 Revises: 
-Create Date: 2022-11-29 23:41:28.894835
+Create Date: 2022-11-30 00:11:35.248891
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '006a35b75045'
+revision = '7d110609304e'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,7 +27,7 @@ def upgrade():
     sa.Column('username', sa.String(length=40), nullable=False),
     sa.Column('firstName', sa.String(length=20), nullable=False),
     sa.Column('lastName', sa.String(length=20), nullable=False),
-    sa.Column('phoneNumber', sa.Integer(), nullable=True),
+    sa.Column('phoneNumber', sa.String(length=20), nullable=True),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.Column('balance', sa.Float(), nullable=True),
@@ -74,14 +74,13 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    # ### end Alembic commands ###
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE friends SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE transactions SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE expenses SET SCHEMA {SCHEMA};")
-
+    # ### end Alembic commands ###
 
 
 def downgrade():
