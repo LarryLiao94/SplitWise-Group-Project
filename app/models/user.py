@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     firstName = db.Column(db.String(20), nullable=False)
     lastName = db.Column(db.String(20), nullable=False)
-    phoneNumber = db.Column(db.Integer)
+    phoneNumber = db.Column(db.String(20))
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     balance = db.Column(db.Float, default=0)
