@@ -295,14 +295,16 @@ function LandingPage(){
                 <div className='download-button-div'>
 
                     <div className='download-button'>
-                        <a href='https://play.google.com/store/apps/details?id=com.soundcloud.android&hl=us' target="_blank">
-                            <img className='appStore-img' src='https://a-v2.sndcdn.com/assets/images/google_play_badge@en_2x-ad41a4d7.png' to='https://play.google.com/store/apps/details?id=com.soundcloud.android&hl=us'/>
+                        <a href='https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile' target="_blank">
+                            <img className='appStore-img' src='https://a-v2.sndcdn.com/assets/images/google_play_badge@en_2x-ad41a4d7.png' to='https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile'/>
                         </a>
                     </div>
 
                     <div className='download-button'>
-                        <a href='https://apps.apple.com/us/app/soundcloud/id336353151' target="_blank">
-                            <img className='appStore-img' src='https://a-v2.sndcdn.com/assets/images/appstore_badge@en_2x-5a6e21e0.png'/>
+                        <a href='https://apps.apple.com/us/app/splitwise/id458023433' target="_blank">
+                            <img className='appStore-img' src='https://a-v2.sndcdn.com/assets/images/appstore_badge@en_2x-5a6e21e0.png' 
+                            to='https://apps.apple.com/us/app/splitwise/id458023433'
+                            />
                         </a>
                     </div>
                 </div>

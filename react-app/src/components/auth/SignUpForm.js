@@ -8,9 +8,9 @@ import './Signup.css'
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -55,7 +55,7 @@ const SignUpForm = () => {
     e.preventDefault();
     if (password === repeatPassword) {
       const data = await dispatch(
-        signUp(username, firstName, lastName, phoneNumber, email, password)
+        signUp(username, email, password)
       );
       if (data) {
         setErrors(data);
@@ -67,17 +67,17 @@ const SignUpForm = () => {
     setUsername(e.target.value);
   };
 
-  const updateFirstName = (e) => {
-    setFirstName(e.target.value);
-  };
+  // const updateFirstName = (e) => {
+  //   setFirstName(e.target.value);
+  // };
 
-  const updateLastName = (e) => {
-    setLastName(e.target.value);
-  };
+  // const updateLastName = (e) => {
+  //   setLastName(e.target.value);
+  // };
 
-  const updatePhoneNumber = (e) => {
-    setPhoneNumber(e.target.value);
-  };
+  // const updatePhoneNumber = (e) => {
+  //   setPhoneNumber(e.target.value);
+  // };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -109,17 +109,17 @@ const SignUpForm = () => {
          <input
           className='signup-name-input'
           type="text"
-          name="firstName"
-          onChange={updateFirstName}
+          name="userName"
+          onChange={updateUsername}
           onInput={revealSecondary()}
-          value={firstName}
+          value={username}
           />
         </div>
 
       <div className='secondary-fields'>
       <div className='signup-email-div'>
          Here's my 
-        <strong>
+        <strong className='signup-email'>
           email address:
         </strong>
         <br/>
@@ -133,7 +133,7 @@ const SignUpForm = () => {
       </div>
       <div className='signup-password-div'>
           And here's my
-        <strong>
+        <strong className='signup-password'>
           password:
         </strong>
         <br/>

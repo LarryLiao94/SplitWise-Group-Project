@@ -3,6 +3,8 @@ import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Profile from './ProfileButton';
 import AddFriendModal from '../AddFriendModal';
+import AddExpenseModal from '../AddExpenseModal';
+import SettleUpModal from '../SettleUpModal';
 
 
 function Dashboard() {
@@ -90,12 +92,14 @@ function Dashboard() {
               Dashboard
             </div>
             <div className='dash-buttons'>
-              <button className='dash-add-expense-button'>
+              {/* <button className='dash-add-expense-button'>
                 Add an expense
-              </button>
-              <button className='dash-settle-up-button'>
+              </button> */}
+                <AddExpenseModal />
+              {/* <button className='dash-settle-up-button'>
                 Settle up
-              </button>
+              </button> */}
+                <SettleUpModal />
             </div>
           </div>
           <div className='dash-main-header-balances'>

@@ -133,7 +133,7 @@
 }
 
 .landing-app-download {
-  border: 10px solid red;
+  /* border: 10px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
