@@ -1,19 +1,16 @@
 """empty message
 
-Revision ID: 3815addf1369
+Revision ID: 8c94e9adcc6b
 Revises: 
-Create Date: 2022-11-18 17:08:57.579404
+Create Date: 2022-11-29 19:05:32.576403
 
 """
 from alembic import op
 import sqlalchemy as sa
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '3815addf1369'
+revision = '8c94e9adcc6b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -36,46 +33,44 @@ def upgrade():
     )
     op.create_table('transactions',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('userId', sa.Integer(), nullable=True),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('description', sa.String(), nullable=True),
     sa.Column('transactionableType', sa.String(), nullable=True),
-    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('expenses',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('ownerId', sa.Integer(), nullable=False),
-    sa.Column('userId', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('recipientId', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=50), nullable=False),
     sa.Column('timestamp', sa.Date(), nullable=False),
     sa.Column('balance', sa.Float(), nullable=True),
     sa.Column('isSettled', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['id'], ['transactions.id'], ),
-    sa.ForeignKeyConstraint(['ownerId'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('friends',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('friendER', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('friendEE', sa.Integer(), nullable=False),
     sa.Column('balance', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['friendEE'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['friendER'], ['users.id'], ),
     sa.ForeignKeyConstraint(['id'], ['transactions.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('userId', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('expenseId', sa.Integer(), nullable=True),
     sa.Column('comment', sa.Text(), nullable=True),
     sa.ForeignKeyConstraint(['expenseId'], ['expenses.id'], ),
-    sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
-    if environment == "production":
-        op.execute(f"ALTER TABLE <table_name> SET SCHEMA {SCHEMA};")
 
 
 def downgrade():

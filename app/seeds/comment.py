@@ -3,9 +3,9 @@ from app.models import db, Comment, environment, SCHEMA
 
 def seed_comments():
     test1 = Comment(
-        userId = 1, expenseId = 1, comment = 'Payment received')
+        user_id = 1, expenseId = 1, comment = 'Payment received')
     test2 = Comment(
-        userId = 2, expenseId = 2, comment = 'Wheres my money?')
+        user_id = 2, expenseId = 2, comment = 'Wheres my money?')
 
     db.session.add(test1)
     db.session.add(test2)
