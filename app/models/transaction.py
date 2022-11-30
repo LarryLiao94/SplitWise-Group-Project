@@ -25,7 +25,7 @@ class Transaction(db.Model):
     def to_dict(self):
         return {
             'id' : self.id,
-            'userId' : self.userId,
+            'userId' : self.user_id,
             'description' : self.description,
             # 'transactionableId' : self.transactionableId,
             'transactionableType' : self.transactionableType
@@ -35,7 +35,7 @@ class Friend(Transaction):
     __tablename__='friends'
 
     id = db.Column(db.Integer, db.ForeignKey('transactions.id'), primary_key=True)
-    friendER = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     friendEE = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     balance = db.Column(db.Integer, default=0)
 
@@ -54,8 +54,8 @@ class Expense(Transaction):
   __tablename__ = 'expenses'
 
   id = db.Column(db.Integer, db.ForeignKey('transactions.id'), primary_key=True)
-  ownerId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-  userId = db.Column(db.Integer, nullable=False)
+  user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+  recipientId = db.Column(db.Integer, nullable=False)
   title = db.Column(db.String(50), nullable=False)
   timestamp = db.Column(db.Date, nullable=False)
   balance = db.Column(db.Float, default=0)

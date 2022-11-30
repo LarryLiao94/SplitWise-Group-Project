@@ -1,33 +1,33 @@
 from app.models import db, environment, SCHEMA
-from app.models import Friend, Transaction
+from app.models import Friend
 
 def seed_friends():
     friend1 = Friend(
-        friendER=1, friendEE=2, userId=1, description='friend 1 added friend 2'
+        user_id=1, friendEE=2, description='friend 1 added friend 2'
     )
     friend2 = Friend(
-        friendER=1, friendEE=3, userId=1, description='friend 1 added friend 3'
+        user_id=1, friendEE=3, description='friend 1 added friend 3'
     )
     friend3 = Friend(
-        friendER=1, friendEE=4, userId=1, description='friend 1 added friend 4'
+        user_id=1, friendEE=4, description='friend 1 added friend 4'
     )
     friend4 = Friend(
-        friendER=1, friendEE=5, userId=1, description='friend 1 added friend 5'
+        user_id=1, friendEE=5, description='friend 1 added friend 5'
     )
     friend5 = Friend(
-        friendER=2, friendEE=3, userId=2, description='friend 2 added friend 3'
+        user_id=2, friendEE=3, description='friend 2 added friend 3'
     )
     friend6 = Friend(
-        friendER=2, friendEE=4, userId=2, description='friend 2 added friend 4'
+        user_id=2, friendEE=4, description='friend 2 added friend 4'
     )
     friend7 = Friend(
-        friendER=2, friendEE=5, userId=2, description='friend 2 added friend 5'
+        user_id=2, friendEE=5, description='friend 2 added friend 5'
     )
     friend8 = Friend(
-        friendER=3, friendEE=4, userId=3, description='friend 3 added friend 4'
+        user_id=3, friendEE=4, description='friend 3 added friend 4'
     )
     friend9 = Friend(
-        friendER=3, friendEE=5, userId=3, description='friend 3 added friend 5'
+        user_id=3, friendEE=5, description='friend 3 added friend 5'
     )
     # transaction1 = Transaction(userId=1,description='added friend 2', transactionableType=friend1)
     # transaction2 = Transaction(userId=1,description='added friend 3', transactionableType='friend')

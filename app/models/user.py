@@ -24,9 +24,9 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     balance = db.Column(db.Float, default=0)
 
-    friends = db.relationship('Friend', primaryjoin="(User.id==Friend.friendER)" , back_populates='users')
-    expenses = db.relationship('Expense', primaryjoin="(User.id==Expense.ownerId)", back_populates='users')
-    transactions = db.relationship('Transaction', primaryjoin="(User.id==Transaction.userId)", back_populates='users')
+    friends = db.relationship('Friend', primaryjoin="(User.id==Friend.user_id)" , back_populates='users')
+    expenses = db.relationship('Expense', primaryjoin="(User.id==Expense.user_id)", back_populates='users')
+    transactions = db.relationship('Transaction', primaryjoin="(User.id==Transaction.user_id)", back_populates='users')
     comments = db.relationship('Comment',back_populates='users')
 
 

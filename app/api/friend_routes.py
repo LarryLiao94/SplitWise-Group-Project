@@ -13,8 +13,8 @@ def get_all_friends():
     Get all friends
     """
     user = User.query.get(current_user.id)
-    friends = Friend.query.filter(Friend.friendER == user.id).all()
-
+    friends = Friend.query.filter(Friend.user_id == user.id).all()
+    print(friends[0].to_dict())
     return jsonify({'friends': [friend.to_dict() for friend in friends]})
 
 # @friend_routes.route('/<int:id>')
