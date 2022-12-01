@@ -14,6 +14,7 @@ def get_all_friends():
     """
     user = User.query.get(current_user.id)
     friends = Friend.query.filter(Friend.user_id == user.id).all()
+
     return jsonify({'friends': [User.query.get(friend.friendEE).firstName for friend in friends]})
 
 # @friend_routes.route('/<int:id>')
@@ -32,4 +33,3 @@ def get_all_friends():
 #         return friend.to_dict()
 #     else:
 #         return jsonify({'Not found': 'User does not exist or is not part of your friends list'}), 404
-        

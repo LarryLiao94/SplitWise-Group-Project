@@ -10,7 +10,7 @@ expense_routes = Blueprint('expenses', __name__)
 @login_required
 def get_all_expenses():
     userId = current_user.id
-    expenses = Expense.query.filter(Expense.ownerId == userId)
+    expenses = Expense.query.filter(Expense.user_id == userId)
     return jsonify({'expenses': [expense.to_dict() for expense in expenses]})
 
 @expense_routes.route('/<int:expenseId>')
@@ -18,6 +18,17 @@ def get_all_expenses():
 def get_expense(expenseId):
     expense = Expense.query.get(expenseId)
     return expense.to_dict()
+
+@expense_routes.route('/<int:expenseId>', methods=["DELETE"])
+@login_required
+def delete_expense(expenseId):
+    expense = Expense.query.get(expenseId)
+    if (expense.user_id == current_user.id):
+        db.session.delete(expense)
+        db.session.commit()
+        return f'Expense {expenseId} deleted'
+    return 'Unauthorized'
+
 
 @expense_routes.route('/<int:expenseId>', methods=["PUT"])
 @login_required
@@ -28,18 +39,16 @@ def edit_expense(expenseId):
         expense = Expense.query.get(expenseId)
         # transaction = Transaction.query.get(expenseId)
         # print(expense)
-        if expense.ownerId == current_user.id:
+        if expense.user_id == current_user.id:
             print(expense)
-            # expense.title = form.title.data,
-            # expense.description = form.description.data,
-            # expense.timestamp = datetime.now(),
-            # expense.balance = form.balance.data
+            expense.title = form.title.data
+            expense.description = form.description.data
+            expense.timestamp = datetime.now()
+            expense.balance = form.balance.data
             db.session.commit()
             return expense.to_dict()
         return "Unauthorized"
     return "Bad Data"
-
-
 
 
 @expense_routes.route('/', methods=['POST'])
@@ -49,8 +58,9 @@ def create_new_expense():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         new_expense = Expense(
-            ownerId = current_user.id,
-            userId = form.userId.data,
+            user_id = current_user.id,
+            transaction_user_id = current_user.id,
+            recipientId = form.recipientId.data,
             title = form.title.data,
             description = form.description.data,
             timestamp = datetime.now(),
