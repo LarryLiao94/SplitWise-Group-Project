@@ -33,10 +33,8 @@ export const addFriendThunk = (friendEE) => async (dispatch) => {
 
 export const getFriends = () => async (dispatch) => {
     const res = await csrfFetch(`/api/friends/`);
-    console.log('HRERERERERE')
     const { friends } = await res.json()
-    console.log(friends, 'FRIENDS')
-
+    
     if (res.ok) {
         const data = {}
         friends.forEach((friend) =>  
@@ -48,13 +46,14 @@ export const getFriends = () => async (dispatch) => {
 
 const friendsReducer = (state = initialState, action) => {
     let newState = {...state};
+    
     switch(action.type){
         case ADD_FRIEND:
             newState.friends = action.payload
             return newState;
 
         case GET_FRIENDS:
-            return { ...action.friends }
+            return { ...state, ...action.friends }
 
         default:
             return state;

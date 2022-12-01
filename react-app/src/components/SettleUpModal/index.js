@@ -11,7 +11,7 @@ function SettleUpModal() {
           <button className='dash-settle-up-modal' onClick={() => setShowModal(true)}>Settle up</button>
           {showModal && (
               <Modal className='settle-up-modal' onClose={() => setShowModal(false)}>
-                  <SettleUpForm />
+                  <SettleUpForm onClose={() => setShowModal(false)}/>
               </Modal>
           )}
       </>

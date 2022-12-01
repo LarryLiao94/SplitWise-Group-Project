@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import './SettleUp.css'
 import './index'
 
-function SettleUpForm() {
+function SettleUpForm({ onClose }) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState('');
   const [amount, setAmount] = useState(0);
@@ -81,7 +81,7 @@ function SettleUpForm() {
         </div>
 
         <div className='settle-up-footer'>
-          <button className='settle-up-cancel'>
+          <button onClick={onClose}className='settle-up-cancel'>
             Cancel
           </button>
           <button className='settle-up-save' type='submit'>

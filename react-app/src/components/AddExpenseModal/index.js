@@ -11,7 +11,7 @@ function AddExpenseModal() {
             <button className='dash-add-expense-modal' onClick={() => setShowModal(true)}>Add an expense</button>
             {showModal && (
                 <Modal className='add-expense-modal' onClose={() => setShowModal(false)}>
-                    <AddExpenseForm />
+                    <AddExpenseForm onClose={() => setShowModal(false)} />
                 </Modal>
             )}
         </>

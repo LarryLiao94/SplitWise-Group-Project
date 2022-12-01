@@ -9,7 +9,7 @@ const Friends = () => {
   useEffect(() => {
     const myFriends = async () => {
       await dispatch(getFriends())
-      console.log('dispatching')
+      // console.log('dispatching')
     }
     myFriends()
   }, [])
