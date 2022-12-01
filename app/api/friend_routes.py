@@ -14,7 +14,7 @@ def get_all_friends():
     user = User.query.get(current_user.id)
     print(user.friends)
     friends = Friend.query.filter(Friend.user_id == user.id).all()
-    return jsonify({'friends': [User.query.get(friend.friendEE).firstName + " " + User.query.get(friend.friendEE).lastName for friend in friends]})
+    return jsonify({'friends': [User.query.get(friend.friendEE).firstName + " " + User.query.get(friend.friendEE).lastName + " " for friend in friends]})
  
 
 # @friend_routes.route('/<int:id>')
