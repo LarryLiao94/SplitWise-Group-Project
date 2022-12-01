@@ -2,14 +2,22 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 # from .friend import *
 # from .expense import *
 
+class Type(db.Model):
+    __tablename__ = 'types'
+
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(50))
+    transactions = db.relationship('Transaction', backref='type', lazy='dynamic')
+
 class Transaction(db.Model):
     __tablename__='transactions'
 
     id = db.Column(db.Integer, primary_key=True)
-    transaction_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     description = db.Column(db.String)
-    # transactionableId = db.Column(db.Integer)
     transactionableType = db.Column(db.String)
+
+    transaction_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    type_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('types.id')))
 
     __mapper_args__ = {
       'polymorphic_identity' : 'transactions',
@@ -34,8 +42,7 @@ class Transaction(db.Model):
 class Friend(Transaction):
     __tablename__='friends'
 
-    id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod(Transaction.id)), primary_key=True)
-    # friend_transaction_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod(Transaction.id)))
+    id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('transactions.id')), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     friendEE = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     balance = db.Column(db.Integer, default=0)
@@ -54,8 +61,7 @@ class Expense(Transaction):
   """
   __tablename__ = 'expenses'
 
-  id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod(Transaction.id)), primary_key=True)
-#   expense_transaction_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod(Transaction.id)))
+  id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('transactions.id')), primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
   recipientId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
   title = db.Column(db.String(50), nullable=False)
