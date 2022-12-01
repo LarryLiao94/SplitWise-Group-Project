@@ -5,6 +5,10 @@
   padding-top: 100px;
 }
 
+.signup-index:hover {
+  cursor: pointer;
+}
+
 .introduce-text {
   color: #999999;
   font-family: Arial, Helvetica, sans-serif;

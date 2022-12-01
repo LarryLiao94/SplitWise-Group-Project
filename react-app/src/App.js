@@ -8,6 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import Groups from './components/Groups';
+import Friends from './components/Friends'
 import LandingPage from './components/LandingPage';
 import Dashboard from './components/Dashboard';
 import { authenticate } from './store/session';
@@ -46,11 +47,17 @@ function App() {
         <Route path='/groups/new' exact={true}>
           <Groups />
         </Route>
+        {/* <Route path='friends' exact={true}>
+          <
+        </Route> */}
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/friends' exact={true} >
+          <Friends />
         </ProtectedRoute>
         {/* <Route path='/' exact={true} >
           <h1>My Home Page</h1>

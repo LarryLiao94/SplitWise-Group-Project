@@ -1,16 +1,32 @@
 import './Dashboard.css'
-import { NavLink, Link, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { NavLink, Link, useHistory, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import Profile from './ProfileButton';
 import AddFriendModal from '../AddFriendModal';
 import AddExpenseModal from '../AddExpenseModal';
 import SettleUpModal from '../SettleUpModal';
+import { getFriends } from '../../store/friend'
+import { useEffect } from 'react';
+// import * as friendActions from '../../store/friend'
 
 
 function Dashboard() {
+  const dispatch = useDispatch()
+  const { id } = useParams()
+
+  useEffect(() => {
+    const myFriends = async () => {
+      await dispatch(getFriends())
+    }
+    myFriends()
+  }, [])
 
   const loggedSession = useSelector((state) => (state.session.user)); 
 
+  const friendState = useSelector((state) => state.friends);
+  const allFriends = Object.values(friendState);
+  
+ 
   return(
     <>
       <div className='dash-navbar'>
@@ -64,12 +80,18 @@ function Dashboard() {
           </div>
           <Link className='dash-add-link'>
           <i className="fa-sharp fa-solid fa-plus"></i>
-            {/* <div className='dash-add-friend-modal'> */}
+          
              <AddFriendModal />
-            {/* </div> */}
-            
+     
           </Link>
         </div>
+        <div className='dash-friends-list'>
+          {
+            allFriends?.map((friend) => {
+            return (friend)
+            })
+          }
+        </div> 
 
         <div className='invite-friends-div'>
           <div className='invite-friends'>
@@ -92,13 +114,9 @@ function Dashboard() {
               Dashboard
             </div>
             <div className='dash-buttons'>
-              {/* <button className='dash-add-expense-button'>
-                Add an expense
-              </button> */}
+        
                 <AddExpenseModal />
-              {/* <button className='dash-settle-up-button'>
-                Settle up
-              </button> */}
+              
                 <SettleUpModal />
             </div>
           </div>

@@ -97,7 +97,9 @@ const SignUpForm = () => {
 
   return (
     <form className='signup-form' onSubmit={onSignUp}>
+      <a className='signup-index' href='/'>
       <img height="200" width="200" className="signup-splitwise-logo" src="https://assets.splitwise.com/assets/core/logo-square-65a6124237868b1d2ce2f5db2ab0b7c777e2348b797626816400534116ae22d7.svg"></img>
+      </a>
       <div>
       <h2 className='introduce-text'>
         INTRODUCE YOURSELF

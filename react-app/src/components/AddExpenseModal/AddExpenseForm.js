@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import './AddExpense.css';
-import './index'
+import './index';
+// import * as Modal from '../src/context/Modal.js'
 
-function AddExpenseForm() {
+function AddExpenseForm({ onClose }) {
   const dispatch = useDispatch();
   const [credential, setCredential] = useState('');
   const [description, setDescription] = useState('');
@@ -34,6 +35,14 @@ function AddExpenseForm() {
     );
   };
 
+  // const closeModal = (e) => {
+  //   e.preventDefault();
+
+  //   return (
+  //     setShowModal(false)
+  //   )
+  // }
+
   return (
     <form className='add-expense-form' onSubmit={handleSubmit}>
        {/* <ul>
@@ -45,7 +54,11 @@ function AddExpenseForm() {
         <p className='add-expense-title'>
           Add an expense
         </p>
-        <i className="fa-regular fa-x add-friends-x"></i>
+  
+          <div onClick={onClose}>
+           <i className="fa-regular fa-x add-friends-x"></i>
+          </div>
+  
         {/* <button className='close-modal' onClick={() => setShowModal(false)}>
         </button> */}
       </div>
