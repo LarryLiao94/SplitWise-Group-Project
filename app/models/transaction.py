@@ -5,12 +5,18 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 class Type(db.Model):
     __tablename__ = 'types'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(50))
     transactions = db.relationship('Transaction', backref='type', lazy='dynamic')
 
 class Transaction(db.Model):
     __tablename__='transactions'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String)
@@ -42,6 +48,9 @@ class Transaction(db.Model):
 class Friend(Transaction):
     __tablename__='friends'
 
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('transactions.id')), primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     friendEE = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
@@ -60,6 +69,9 @@ class Expense(Transaction):
           Many to Many: users
   """
   __tablename__ = 'expenses'
+
+  if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
   id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('transactions.id')), primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
