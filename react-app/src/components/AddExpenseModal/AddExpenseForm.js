@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
+import CalendarModal from "../CalendarModal";
+
 import "./AddExpense.css";
 import "./index";
+import { useEffect } from "react";
 // import * as Modal from '../src/context/Modal.js'
 
 function AddExpenseForm({ onClose }) {
@@ -14,7 +17,7 @@ function AddExpenseForm({ onClose }) {
   const [group, setGroup] = useState("");
   const [errors, setErrors] = useState([]);
 
-  const [showModal, setShowModal] = useState(true);
+  // const [ showModal, setShowModal ] = useState(false);
 
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -38,10 +41,16 @@ function AddExpenseForm({ onClose }) {
   // const closeModal = (e) => {
   //   e.preventDefault();
 
-  //   return (
-  //     setShowModal(false)
-  //   )
+  //   setShowModal(false)
+  //   console.log('click')
   // }
+
+  useEffect(() => {
+    const closeModal = async () => {
+      console.log(onClose);
+    };
+    closeModal();
+  }, []);
 
   return (
     <form className="add-expense-form" onSubmit={handleSubmit}>
@@ -54,7 +63,7 @@ function AddExpenseForm({ onClose }) {
         <p className="add-expense-title">Add an expense</p>
 
         <div onClick={onClose}>
-          <i className="fa-regular fa-x add-friends-x"></i>
+          <i onClick={onClose} className="fa-regular fa-x add-friends-x"></i>
         </div>
 
         {/* <button className='close-modal' onClick={() => setShowModal(false)}>
@@ -112,14 +121,18 @@ function AddExpenseForm({ onClose }) {
         </div>
 
         <div className="add-expense-buttons">
-          <button className="add-expense-date">November 28, 2022</button>
+          <button className="add-expense-date">
+            <CalendarModal />
+          </button>
           <button className="add-expense-image">Add image/notes</button>
           <button className="add-expense-group">No group</button>
         </div>
       </div>
 
       <div className="add-expense-footer">
-        <button className="add-expense-cancel">Cancel</button>
+        <button onClick={onClose} className="add-expense-cancel">
+          Cancel
+        </button>
         <button className="add-expense-save" type="submit">
           Save
         </button>

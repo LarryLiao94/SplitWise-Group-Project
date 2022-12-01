@@ -86,11 +86,13 @@ function Dashboard() {
           </Link>
         </div>
         <div className='dash-friends-list'>
-          {
-            allFriends?.map((friend) => {
-            return (friend)
-            })
-          }
+        {
+      allFriends?.map((friend) => {
+        <li className='friends' key={friend.id}>
+          {friend}
+        </li>
+      })
+    }
         </div> 
 
         <div className='invite-friends-div'>
