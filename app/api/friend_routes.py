@@ -5,17 +5,17 @@ from flask_login import current_user, login_required
 friend_routes = Blueprint('friends', __name__)
 
 
-
 @friend_routes.route('/')
-@login_required
+# @login_required
 def get_all_friends():
     """
     Get all friends
     """
     user = User.query.get(current_user.id)
+    print(user.friends)
     friends = Friend.query.filter(Friend.user_id == user.id).all()
-
-    return jsonify({'friends': [User.query.get(friend.friendEE).firstName for friend in friends]})
+    return jsonify({'friends': [User.query.get(friend.friendEE).firstName + " " + User.query.get(friend.friendEE).lastName + " " for friend in friends]})
+ 
 
 # @friend_routes.route('/<int:id>')
 # @login_required

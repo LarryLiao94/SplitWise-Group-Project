@@ -5,7 +5,7 @@ import friendsReducer from './friend';
 
 const rootReducer = combineReducers({
   session,
-  friendsReducer,
+  friends: friendsReducer,
 });
 
 
