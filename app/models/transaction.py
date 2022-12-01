@@ -2,14 +2,22 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 # from .friend import *
 # from .expense import *
 
+class Type(db.Model):
+    __tablename__ = 'types'
+
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String(50))
+    transactions = db.relationship('Transaction', backref='type', lazy='dynamic')
+
 class Transaction(db.Model):
     __tablename__='transactions'
 
     id = db.Column(db.Integer, primary_key=True)
-    transaction_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     description = db.Column(db.String)
-    # transactionableId = db.Column(db.Integer)
     transactionableType = db.Column(db.String)
+
+    transaction_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    type_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('types.id')))
 
     __mapper_args__ = {
       'polymorphic_identity' : 'transactions',
