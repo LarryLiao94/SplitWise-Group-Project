@@ -1,29 +1,16 @@
 """empty message
 
-<<<<<<<< HEAD:migrations/versions/20221130_181707_.py
-Revision ID: 7d5c5c25818f
+Revision ID: e9de9dc10d02
 Revises: 
-Create Date: 2022-11-30 18:17:07.893235
-========
-Revision ID: 7db0e14e0bf9
-Revises: 
-Create Date: 2022-11-30 19:56:45.740633
->>>>>>>> 1336f8f7109c7f8efbdf309d6a6e5d42a67b6be7:migrations/versions/20221130_195645_.py
+Create Date: 2022-11-30 21:34:28.935440
 
 """
 from alembic import op
 import sqlalchemy as sa
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-<<<<<<<< HEAD:migrations/versions/20221130_181707_.py
-revision = '7d5c5c25818f'
-========
-revision = '7db0e14e0bf9'
->>>>>>>> 1336f8f7109c7f8efbdf309d6a6e5d42a67b6be7:migrations/versions/20221130_195645_.py
+revision = 'e9de9dc10d02'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -51,10 +38,10 @@ def upgrade():
     )
     op.create_table('transactions',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('transaction_user_id', sa.Integer(), nullable=True),
     sa.Column('description', sa.String(), nullable=True),
-    sa.Column('type_id', sa.Integer(), nullable=True),
     sa.Column('transactionableType', sa.String(), nullable=True),
+    sa.Column('transaction_user_id', sa.Integer(), nullable=True),
+    sa.Column('type_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['transaction_user_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['type_id'], ['types.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -91,12 +78,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE friends SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE transactions SET SCHEMA {SCHEMA};") 
-        op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE expenses SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 
