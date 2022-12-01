@@ -34,8 +34,8 @@ class Transaction(db.Model):
 class Friend(Transaction):
     __tablename__='friends'
 
-    id = db.Column(db.Integer, primary_key=True)
-    friend_transaction_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('transactions.id')))
+    id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod(Transaction.id)), primary_key=True)
+    # friend_transaction_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod(Transaction.id)))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     friendEE = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     balance = db.Column(db.Integer, default=0)
@@ -54,8 +54,8 @@ class Expense(Transaction):
   """
   __tablename__ = 'expenses'
 
-  id = db.Column(db.Integer, primary_key=True)
-  expense_transaction_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('transactions.id')))
+  id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod(Transaction.id)), primary_key=True)
+#   expense_transaction_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod(Transaction.id)))
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
   recipientId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
   title = db.Column(db.String(50), nullable=False)
