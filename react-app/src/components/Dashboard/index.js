@@ -88,9 +88,9 @@ function Dashboard() {
         <div className='dash-friends-list'>
         {
       allFriends?.map((friend) => {
-        <li className='friends' key={friend.id}>
+       return(<li className='friends' key={friend.id}>
           {friend}
-        </li>
+        </li>)
       })
     }
         </div> 
