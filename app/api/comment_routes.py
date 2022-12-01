@@ -33,7 +33,7 @@ def comment(id):
 @login_required
 def delete_comment(id):
     comment_to_delete = Comment.query.get(id)
-    if (comment_to_delete.userId == current_user.id):
+    if (comment_to_delete.user_id == current_user.id):
         db.session.delete(comment_to_delete)
         db.session.commit()
         return f'Comment number {id} deleted'
@@ -46,7 +46,7 @@ def edit_comment(id):
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         comment_to_edit = Comment.query.get(id)
-        if comment_to_edit.userId == current_user.id:
+        if comment_to_edit.user_id == current_user.id:
             comment_to_edit.comment = form.comment.data
             db.session.commit()
             return comment_to_edit.to_dict()

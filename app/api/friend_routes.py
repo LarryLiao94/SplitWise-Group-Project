@@ -33,4 +33,3 @@ def get_all_friends():
 #         return friend.to_dict()
 #     else:
 #         return jsonify({'Not found': 'User does not exist or is not part of your friends list'}), 404
-        

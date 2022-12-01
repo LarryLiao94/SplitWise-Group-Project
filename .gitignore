@@ -5,6 +5,4 @@ __pycache__/
 .DS_Store
 .vscode/
 
-dev.db/
-
-
+*Db.*

@@ -2,11 +2,11 @@
 
 <<<<<<<< HEAD:migrations/versions/20221130_181707_.py
 Revision ID: 7d5c5c25818f
-Revises: 
+Revises:
 Create Date: 2022-11-30 18:17:07.893235
 ========
 Revision ID: 7db0e14e0bf9
-Revises: 
+Revises:
 Create Date: 2022-11-30 19:56:45.740633
 >>>>>>>> 1336f8f7109c7f8efbdf309d6a6e5d42a67b6be7:migrations/versions/20221130_195645_.py
 
@@ -94,7 +94,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE friends SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE transactions SET SCHEMA {SCHEMA};") 
+        op.execute(f"ALTER TABLE transactions SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE expenses SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
