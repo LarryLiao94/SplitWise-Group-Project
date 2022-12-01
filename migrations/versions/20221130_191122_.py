@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: e617ab47dedb
+Revision ID: 1a3ccbe6d6c0
 Revises: 
-Create Date: 2022-11-30 18:42:35.063975
+Create Date: 2022-11-30 19:11:22.806159
 
 """
 from alembic import op
@@ -13,7 +13,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'e617ab47dedb'
+revision = '1a3ccbe6d6c0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -44,26 +44,24 @@ def upgrade():
     )
     op.create_table('expenses',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('expense_transaction_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('recipientId', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=50), nullable=False),
     sa.Column('timestamp', sa.Date(), nullable=False),
     sa.Column('balance', sa.Float(), nullable=True),
     sa.Column('isSettled', sa.Boolean(), nullable=True),
-    sa.ForeignKeyConstraint(['expense_transaction_id'], ['transactions.id'], ),
+    sa.ForeignKeyConstraint(['id'], ['transactions.id'], ),
     sa.ForeignKeyConstraint(['recipientId'], ['users.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('friends',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('friend_transaction_id', sa.Integer(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('friendEE', sa.Integer(), nullable=False),
     sa.Column('balance', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['friendEE'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['friend_transaction_id'], ['transactions.id'], ),
+    sa.ForeignKeyConstraint(('id'), ('transactions.id'), ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
