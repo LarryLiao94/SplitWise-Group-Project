@@ -76,7 +76,7 @@ class Expense(Transaction):
   id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('transactions.id')), primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
   recipientId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-  title = db.Column(db.String(50), nullable=False)
+  title = db.Column(db.String(50), nullable=True)
   timestamp = db.Column(db.Date, nullable=False)
   balance = db.Column(db.Float, default=0)
   isSettled = db.Column(db.Boolean, default=False)

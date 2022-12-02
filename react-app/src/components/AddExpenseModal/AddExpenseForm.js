@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
+import { addExpenseThunk } from "../../store/expense";
 
 import "./AddExpense.css";
 import "./index";
@@ -28,11 +29,15 @@ function AddExpenseForm({ onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    let payload = {
+      recipientId: credential,
+      description,
+      balance: amount,
+    };
+
     setErrors([]);
 
-    return dispatch(
-      sessionActions.login({ credential, description, amount, image, group })
-    ).catch(async (res) => {
+    return dispatch(addExpenseThunk(payload)).catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);
     });
