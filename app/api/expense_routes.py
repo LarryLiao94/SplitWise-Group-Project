@@ -41,7 +41,7 @@ def edit_expense(expenseId):
         # print(expense)
         if expense.user_id == current_user.id:
             print(expense)
-            expense.title = form.title.data
+            expense.title = form.description.data
             expense.description = form.description.data
             expense.timestamp = datetime.now()
             expense.balance = form.balance.data
@@ -61,7 +61,7 @@ def create_new_expense():
             user_id = current_user.id,
             transaction_user_id = current_user.id,
             recipientId = form.recipientId.data,
-            title = form.title.data,
+            title = form.description.data,
             description = form.description.data,
             timestamp = datetime.now(),
             balance = form.balance.data,
