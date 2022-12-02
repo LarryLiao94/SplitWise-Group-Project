@@ -11,7 +11,7 @@ import { useEffect } from "react";
 
 function AddExpenseForm({ onClose }) {
   const dispatch = useDispatch();
-  const [credential, setCredential] = useState("");
+  const [credential, setCredential] = useState(0);
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(0);
   const [image, setImage] = useState("");
@@ -106,6 +106,9 @@ function AddExpenseForm({ onClose }) {
             <input
               className="add-expense-description"
               placeholder="Enter a description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
             />
             <div className="add-expense-amount-div">
               <p className="add-expense-dollar">$</p>
