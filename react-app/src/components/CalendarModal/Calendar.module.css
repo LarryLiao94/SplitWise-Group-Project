@@ -40,3 +40,8 @@
   background: none;
   padding: 0;
 }
+
+.calendarMonthYearDiv {
+  border: 1px solid red;
+  display: flex;
+}
