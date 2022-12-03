@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import session from "./session";
 import friendsReducer from "./friend";
 import expensesReducer from "./expense";
+import balanceReducer from "./balance";
 
 const rootReducer = combineReducers({
   session,
   friends: friendsReducer,
   expenses: expensesReducer,
+  balances: balanceReducer,
 });
 
 let enhancer;
