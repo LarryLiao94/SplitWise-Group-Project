@@ -337,9 +337,26 @@
   color:rgb(161, 158, 158)
 }
 
-.dash-you-owe {
+.dash-total-balance {
+  color: #FF652F;
   display: flex;
   justify-content: center;
+}
+
+.dash-you-owe {
+  color: #FF652F;
+  display: flex;
+  justify-content: center;
+}
+
+.dash-you-are-owed {
+  color: #FF652F;
+  display: flex;
+  justify-content: center;
+}
+
+.dash-you-owe-div {
+  text-align: center;
   border-left: 1px solid #d3cece;
   border-right: 1px solid #d3cece;
   width: 25%;
