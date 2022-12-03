@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import User
+from app.models import User, Transaction, Friend, Expense
 
 user_routes = Blueprint('users', __name__)
 
@@ -29,3 +29,20 @@ def user(id):
 def get_me():
     user = User.query.get(current_user.get_id())
     return user.to_dict()
+
+@user_routes.route('/balance')
+@login_required
+def get_balance():
+    user = User.query.get(current_user.id)
+    transactions = Transaction.query.filter(Transaction.transaction_user_id == current_user.id)
+    expense_transactions = [Expense.query.get(transaction.id) for transaction in transactions if transaction.transactionableType == "expenses"]
+    # expense_query = [Expense.query.get(transaction.id) for transaction in transactions]
+
+    # owner of expense
+    balances = [expense.balance for expense in user.expenses]
+    positive_balance = 0
+    for balance in balances:
+        positive_balance += balance / 2
+    user.balance += positive_balance
+
+    return jsonify({'balance': user.balance})
