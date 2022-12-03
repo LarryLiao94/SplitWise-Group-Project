@@ -14,9 +14,7 @@ import { useEffect } from "react";
 
 function AddExpenseForm({ onClose }) {
   const dispatch = useDispatch();
-  // const history = useHistory();
-  // const [recipientId, setRecipientId] = useState(0)
-  const [credential, setCredential] = useState("");
+  const [credential, setCredential] = useState(0);
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(0);
   const [image, setImage] = useState("");

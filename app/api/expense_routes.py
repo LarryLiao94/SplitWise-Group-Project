@@ -58,6 +58,7 @@ def create_new_expense():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         fullName = form.recipientName.data.split(" ")
+        print(fullName)
         firstName = fullName[0]
         lastName = fullName[1]
         recipient = User.query.filter(User.firstName == firstName and User.lastName == lastName)
