@@ -10,6 +10,8 @@ import "./index";
 import { useEffect } from "react";
 // import * as Modal from '../src/context/Modal.js'
 
+//larry push
+
 function AddExpenseForm({ onClose }) {
   const dispatch = useDispatch();
   // const history = useHistory();
@@ -63,7 +65,7 @@ function AddExpenseForm({ onClose }) {
     // try {
     //   await dispatch(addExpenseThunk(payload))
     //   history.push('/dashboard')
-      
+
 
     // } catch (res) {
     //   setErrors([]);
@@ -100,10 +102,10 @@ function AddExpenseForm({ onClose }) {
         <p className="add-expense-title">Add an expense</p>
 
         <div onClick={onClose}>
-          <i onClick={onClose} className="fa-regular fa-x add-friends-x"></i> 
+          <i onClick={onClose} className="fa-regular fa-x add-friends-x"></i>
         </div>
 
-    
+
       </div>
 
       <div className="add-expense-credential-div">
@@ -112,7 +114,7 @@ function AddExpenseForm({ onClose }) {
         <div className="and-text">and:</div>
 
         <div className="add-expense-search">
-          {/* <input 
+          {/* <input
           className='add-expense-credential-input'
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
@@ -135,10 +137,10 @@ function AddExpenseForm({ onClose }) {
                 <tr>
                   <td>{friend}</td>
                 </tr>
-              </div> 
+              </div>
             })}
           </table> */}
-          
+
 
           <select
           value={credential}
