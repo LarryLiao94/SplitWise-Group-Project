@@ -3,6 +3,6 @@ from wtforms import (TextAreaField, IntegerField, StringField, SubmitField)
 from wtforms.validators import DataRequired
 
 class ExpenseForm(FlaskForm):
-    recipientId = IntegerField('User ID') 
+    recipientName = StringField('Name')
     description = StringField("Description", validators=[DataRequired()])
     balance = IntegerField("Balance")
