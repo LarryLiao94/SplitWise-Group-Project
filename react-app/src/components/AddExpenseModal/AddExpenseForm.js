@@ -100,7 +100,7 @@ function AddExpenseForm({ onClose }) {
         <p className="add-expense-title">Add an expense</p>
 
         <div onClick={onClose}>
-          <i onClick={onClose} className="fa-regular fa-x add-friends-x"></i>
+          <i onClick={onClose} className="fa-regular fa-x add-friends-x"></i> 
         </div>
 
     
