@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import Calendar from './Calendar';
-import styles from './Calendar.module.css';
-// import styles from './Calendar.css';
+// import styles from './Calendar.module.css';
+import './Calendar.css'
 // import DateTime from 'react-DateTime';
 
 function CalendarModal() {
@@ -10,10 +10,10 @@ function CalendarModal() {
 
     return (
         <>
-            <button className={styles.calendarModalButton} onClick={() => setShowModal(true)}>Today</button>
+            <button className="calendarModalButton" onClick={() => setShowModal(true)}>Today</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <Calendar className={styles.calendarModal} onClose={() => setShowModal(false)} />
+                    <Calendar className="calendarModal" onClose={() => setShowModal(false)} />
                 </Modal>
             )}
         </>

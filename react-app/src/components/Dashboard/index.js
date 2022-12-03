@@ -32,7 +32,11 @@ function Dashboard() {
 
   const friendState = useSelector((state) => state.friends);
   const allFriends = Object.values(friendState);
-  console.log(allFriends, "SADSA");
+  // console.log(allFriends, "SADSA");
+
+  const balanceState = useSelector((state) => state.balances);
+  // const allBalances = balanceState.balance;
+  // console.log(allBalances, "HERE")
 
   return (
     <>
@@ -131,10 +135,27 @@ function Dashboard() {
                 <SettleUpModal />
               </div>
             </div>
+
             <div className="dash-main-header-balances">
-              <div className="dash-total-balance">total balance</div>
-              <div className="dash-you-owe">you owe</div>
-              <div className="dash-you-are-owed">you are owed</div>
+
+              <div className="dash-total-balance-div">total balance 
+                <div className='dash-total-balance'>
+                  {balanceState.balance}
+                </div>
+              </div>
+
+              <div className="dash-you-owe-div">you owe
+                <div className='dash-you-owe'>
+                  {balanceState.owe}
+                </div>
+              </div>
+
+              <div className="dash-you-are-owed-div">you are owed
+                <div className='dash-you-are-owed'> 
+                  {balanceState.owed}
+                </div>
+              </div>
+
             </div>
           </div>
           <div className="dash-main-body">
