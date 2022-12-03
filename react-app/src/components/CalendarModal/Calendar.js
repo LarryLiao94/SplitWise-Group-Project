@@ -50,7 +50,7 @@ function Calendar({ onClose }) {
 
       <div className='styles.calendarMain'>
         <div data-toggle='true' data-date='' data-date-format='yyyy-mm-dd'>
-   
+             
         </div>
       </div>
     {/* 
