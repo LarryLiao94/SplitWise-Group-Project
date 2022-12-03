@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import './Calendar.css';
+import styles from './Calendar.module.css';
+// import styles from './Calendar.css';
 import './index';
 
 
@@ -30,31 +31,31 @@ function Calendar({ onClose }) {
   };
 
   return (
-    <form className='calendar-form' onSubmit={handleSubmit}>
+    <form className={styles.calendarForm} onSubmit={handleSubmit}>
        {/* <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul> */}
-      <div className='calendar-header'>
-        <p className='calendar-title'>
+      <div className={styles.calendarHeader}>
+        <p className={styles.calendarTitle}>
           Choose date
         </p>
    
           <div onClick={onClose}>
-           <i className="fa-regular fa-x calendar-x"></i>
+           <i className= "fa-regular fa-x calendar-x"></i>
           </div>
   
       </div>
 
-      <div className='calendar-month-year-div'>
+      <div className={styles.calendarMonthYearDiv}>
         <i className="fa-solid fa-arrow-left"></i>
-          <div className="calendar-month-year">
-          <div className="date-container">
+          <div className={styles.calendarMonthYear}>
+          <div className={styles.dateContainer}>
           <div>
             <label>Date:</label>
             <input
-              className="event-info"
+              className={styles.eventInfo}
               type="datetime-local"
               required
               min={new Date().toISOString().slice(0, 16)}
