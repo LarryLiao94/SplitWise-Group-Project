@@ -48,7 +48,13 @@ function Calendar({ onClose }) {
   
       </div>
 
-      <div className={styles.calendarMonthYearDiv}>
+      <div className='styles.calendarMain'>
+        <div data-toggle='true' data-date='' data-date-format='yyyy-mm-dd'>
+
+        </div>
+      </div>
+    {/* 
+     <div className={styles.calendarMonthYearDiv}>
         <i className="fa-solid fa-arrow-left"></i>
           <div className={styles.calendarMonthYear}>
           <div className={styles.dateContainer}>
@@ -56,7 +62,7 @@ function Calendar({ onClose }) {
             <label>Date:</label>
             <input
               className={styles.eventInfo}
-              type="datetime-local"
+              type="date-local"
               required
               min={new Date().toISOString().slice(0, 16)}
               value={date}
@@ -65,9 +71,9 @@ function Calendar({ onClose }) {
           </div>
           </div>
         <i className="fa-solid fa-arrow-right"></i>
-
      </div>
-      </div>
+      </div>  */}
+
 
       
     </form>
