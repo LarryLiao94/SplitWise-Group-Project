@@ -1,33 +1,40 @@
-// import { csrfFetch } from './csrf'
+import { csrfFetch } from "./csrf";
 
-// const GET_BALANCE = 'balance/GET_BALANCE';
+const GET_BALANCE = "balance/GET_BALANCE";
 
-// const getBalance = (balance) => ({
-//     type: GET_BALANCE,
-//     balance
-// })
+const getBalance = (balance) => ({
+  type: GET_BALANCE,
+  balance,
+});
 
-// export const getBalanceThunk = () => async (dispatch) => {
-//     const res = await csrfFetch(`/api/balance/`);
-//     const { balance } = await res.json()
+export const getBalanceThunk = () => async (dispatch) => {
+  console.log("hit get balance...");
+  const res = await csrfFetch(`/api/users/balance`);
+  console.log("hit get balance...222222222");
 
-//     if (res.ok) {
-//         const data = {}
-//         data[balance] = balance.balance
-//         dispatch(getBalance(data))
-//     }
-//     return res
-// }
+  const { balance, owe, owed } = await res.json();
 
-// const initialState = {}
+  if (res.ok) {
+    const data = {};
+    data["owe"] = owe;
+    data["owed"] = owed;
+    data["balance"] = balance;
+    dispatch(getBalance(data));
+  }
+  return res;
+};
 
-// const balanceReducer = (state = initialState, action) => {
-//     let newState = {...state};
+const initialState = {};
 
-//     switch(action.type){
-//         case GET_BALANCE:
-//             return {...state, ...action.balance}
-//     }
-// };
+const balanceReducer = (state = initialState, action) => {
+  let newState = { ...state };
 
-// export default balanceReducer;
+  switch (action.type) {
+    case GET_BALANCE:
+      return { ...state, ...action.balance };
+    default:
+      return newState;
+  }
+};
+
+export default balanceReducer;
