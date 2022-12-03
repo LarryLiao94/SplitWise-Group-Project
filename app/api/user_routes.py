@@ -44,5 +44,21 @@ def get_balance():
     for balance in balances:
         positive_balance += balance / 2
     user.balance += positive_balance
+    print(positive_balance)
 
-    return jsonify({'balance': user.balance})
+    #recipient of expense
+    expenses = Expense.query.filter(Expense.recipientId == current_user.id).all()
+    owe_balance = [expense.balance for expense in expenses]
+
+    negative_balance = 0
+    for balance in owe_balance:
+        negative_balance += balance / 2
+
+    user.balance -= negative_balance
+    print(negative_balance)
+
+    return jsonify({
+        'balance': user.balance,
+        'owed': positive_balance,
+        'owe': negative_balance
+    })

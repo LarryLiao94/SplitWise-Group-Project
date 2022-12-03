@@ -8,12 +8,30 @@ def seed_expenses():
         transaction_user_id=1, user_id=1, recipientId=2, title='test1', timestamp=datetime.now(), description='Your balance has been paid',balance=100, isSettled=False)
     test2 = Expense(
         transaction_user_id=2, user_id=2, recipientId=3, title='test2', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+    test3 = Expense(
+        transaction_user_id=2, user_id=2, recipientId=1, title='test3', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+    test4 = Expense(
+        transaction_user_id=2, user_id=2, recipientId=1, title='test4', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+    test5 = Expense(
+        transaction_user_id=2, user_id=2, recipientId=3, title='test5', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+    test6 = Expense(
+        transaction_user_id=3, user_id=3, recipientId=1, title='test6', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+    test7 = Expense(
+        transaction_user_id=1, user_id=1, recipientId=3, title='test7', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+    test8 = Expense(
+        transaction_user_id=2, user_id=2, recipientId=3, title='test8', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
 
     # transaction1 = Transaction(userId=2,description='Your balance has been paid', transactionableType='expense')
     # transaction2 = Transaction(userId=3,description='Your balance has not been paid', transactionableType='expense')
 
     db.session.add(test1)
     db.session.add(test2)
+    db.session.add(test3)
+    db.session.add(test4)
+    db.session.add(test5)
+    db.session.add(test6)
+    db.session.add(test7)
+    db.session.add(test8)
     # db.session.add(transaction1)
     # db.session.add(transaction2)
     # db.session.add_all()
