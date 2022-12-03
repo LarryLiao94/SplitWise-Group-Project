@@ -40,7 +40,7 @@ function SettleUpForm({ onClose }) {
           <p className='settle-up-title'>
           Settle up
           </p>
-          <i className="fa-regular fa-x settle-up-x"></i>
+          <i onClick={onClose} className="fa-regular fa-x settle-up-x"></i>
           {/* <button className='close-modal' onClick={() => setShowModal(false)}>
           </button> */}
         </div>

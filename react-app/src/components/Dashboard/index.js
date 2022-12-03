@@ -25,6 +25,7 @@ function Dashboard() {
 
   const friendState = useSelector((state) => state.friends);
   const allFriends = Object.values(friendState);
+  console.log(allFriends, 'SADSA')
   
  
   return(
@@ -85,14 +86,20 @@ function Dashboard() {
      
           </Link>
         </div>
-        <div className='dash-friends-list'>
-        {
-      allFriends?.map((friend) => {
-       return(<li className='friends' key={friend.id}>
-          {friend}
-        </li>)
-      })
-    }
+        <div className='dash-friends-list-container'>
+         
+            {
+              allFriends?.map((friend) => {
+                return(
+              <div className='friends-div'>
+                <i className="fa-solid fa-user"></i>
+                <li className='friends' key={friend.id}>
+                    {friend}
+                </li>
+              </div>)
+              })
+            }
+           
         </div> 
 
         <div className='invite-friends-div'>

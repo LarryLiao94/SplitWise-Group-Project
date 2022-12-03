@@ -146,11 +146,29 @@
   margin: 5px 0;
 }
 
-.dash-friends-list {
+.dash-friends-list-container{
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
-  height: auto;
+  width: auto;
+}
+
+.friends-div {
+  display: flex;
+}
+
+.fa-user {
+  color:rgb(161, 158, 158);
+  padding: 3px 0 3px 3px;
+}
+
+.friends {
+  list-style: none;
+  height: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 3px 8px 2px 5px; 
+  text-decoration: none;
+  color: #aeaeae;
 }
 
 .dash-friends-title {

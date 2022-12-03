@@ -1,4 +1,18 @@
-.calendar-form {
+.calendarModal {
+  display: flex;
+  /* border: 1px solid red; */
+  /* position: relative; */
+  margin: 0 0 0 100px;
+}
+
+.calendarModal {
+  display: flex;
+  background-color: red;
+  margin: 0 0 0 100px;
+  position: none;
+}
+
+.calendarForm {
   display: flex;
   flex-direction: column;
   width: 350px;
@@ -10,7 +24,7 @@
   box-shadow: 2px 2px 5px #aeaeae;
 }
 
-.calendar-header {
+.calendarHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,7 +35,7 @@
   padding: 2px 10px;
 }
 
-.calendar-modal-button {
+.calendarModalButton {
   border: none;
   background: none;
   padding: 0;

@@ -45,6 +45,11 @@
   margin: 0 0 0 10px;
 }
 
+.add-expense-dropdown {
+  border: none;
+
+}
+
 ::placeholder {
   opacity: .3;
 }
@@ -105,7 +110,8 @@
   width: 150px;
   padding: 5px;
   outline: none;
-  border-bottom: 1px dotted #aeaeae;
+  /* border-bottom: 1px dotted #aeaeae; */
+  font-size: 36px;
 }
 
 .add-expense-amount::placeholder {

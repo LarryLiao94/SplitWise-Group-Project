@@ -11,7 +11,7 @@ function AddFriendModal() {
             <button className='dash-add-friend-modal' onClick={() => setShowModal(true)}>add</button>
             {showModal && (
                 <Modal className='add-friend-modal' onClose={() => setShowModal(false)}>
-                    <AddFriendForm />
+                    <AddFriendForm onClose={() => setShowModal(false)}/>
                 </Modal>
             )}
         </>

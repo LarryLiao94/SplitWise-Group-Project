@@ -1,32 +1,55 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
+import * as friendActions from "../../store/friend"
 import { useDispatch, useSelector } from "react-redux";
+// import { allFriends } from '../Dashboard'
 import './AddFriend.css'
 import './index'
+import { useHistory } from "react-router-dom";
 
-function AddFriendForm() {
+function AddFriendForm({ onClose }) {
     const dispatch = useDispatch();
+    const history = useHistory()
     const [credential, setCredential] = useState('');
     const [description, setDescription] = useState('');
-    const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
     
-    const [ showModal, setShowModal ] = useState(true);
+    // const [ showModal, setShowModal ] = useState(true);
 
     const sessionUser = useSelector(state => state.session.user);
+    const friendState = useSelector((state) => state.friends);
+    const allFriends = Object.values(friendState);
+    
+    
 
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
         //session actions required for friend
-        return dispatch(sessionActions.login({ credential, password })).catch(
-          async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-          }
-        );
-      };
+        // return dispatch(friendActions.addFriendThunk({ credential, password })).catch(
+        //   async (res) => {
+        //     const data = await res.json();
+        //     if (data && data.errors) setErrors(data.errors);
+        //   }
+        // );
+        const friend = {
+          email: credential,
+          description
+        }
+
+        try {
+          const newFriend = await dispatch(friendActions.addFriendThunk({ friend }))
+
+          allFriends.push(Object.values(newFriend))
+          history.push('/dashboard')
+
+        } catch (res) {
+        
+          const data = await res.json();
+          if (data && data.errors) setErrors(data.errors);
+        }
+    }
+
 
       return (
         <form className='add-friend-form' onSubmit={handleSubmit}>
@@ -42,7 +65,7 @@ function AddFriendForm() {
               Invite friends
             </p>
 
-            <button className='close-modal' onClick={() => setShowModal(false)}>
+            <button className='close-modal' onClick={onClose}>
               <i className="fa-regular fa-x"></i>
             </button>
 
