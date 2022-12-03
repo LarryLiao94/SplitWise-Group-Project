@@ -1,0 +1,94 @@
+/* .calendarModal {
+  display: flex;
+  margin: 0 0 0 100px;
+} */
+
+/* .calendarModal {
+  display: flex;
+  background-color: red;
+  margin: 0 0 0 100px;
+} */
+
+.calendarModalButton {
+  border: none;
+  background: none;
+  padding: 0;
+  color: #668;
+}
+
+.calendarForm {
+  /* display: flex;
+  flex-direction: column; */
+  width: 350px;
+  height: 350px;
+  border: 1px solid #aeaeae;
+  border-radius: 10px;
+  box-shadow: #333333;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #aeaeae;
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #5cc5a7;
+  color: white;
+  font-size: 18px;
+  height: 35px;
+  padding: 2px 10px;
+}
+
+datePicker th, datePicker td {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+dates th, dates td {
+  padding: 4px 5px;
+}
+
+th {
+  display: table cell;
+  vertical-align: inherit;
+  font-weight: bold;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+table {
+  display: table;
+  text-indent: initial;
+  max-width: 100%;
+  border-collapse: collapse;
+  border-spacing: 2px;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.calendarMain {
+  border: 1px solid red;
+  height: 300px;
+}
+
+.dropdownMenu {
+  display: block;
+  position: relative;
+  top: auto;
+  left: auto;
+}
+
+.day {
+  display: table-cell;
+}

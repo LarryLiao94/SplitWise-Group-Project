@@ -6,14 +6,15 @@ import { getExpenses } from "../../store/expense";
 
 function ExpensesPage() {
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(getExpenses());
   }, [dispatch]);
 
   const expensesObj = useSelector((state) => state.expenses);
-  console.log(expensesObj);
+  // console.log(expensesObj);
   const expenses = Object.values(expensesObj);
-  console.log(expenses);
+  // console.log(expenses);
   return (
     <>
       <div className="expense-container">

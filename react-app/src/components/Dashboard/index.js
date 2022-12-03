@@ -7,6 +7,7 @@ import AddExpenseModal from '../AddExpenseModal';
 import SettleUpModal from '../SettleUpModal';
 import { getFriends } from '../../store/friend'
 import { useEffect } from 'react';
+import { getBalanceThunk } from '../../store/balance'
 // import * as friendActions from '../../store/friend'
 
 
@@ -21,13 +22,24 @@ function Dashboard() {
     myFriends()
   }, [])
 
+  useEffect(() => {
+    const getTotalBalance = async () => {
+      await dispatch(getBalanceThunk())
+    }
+    getTotalBalance()
+    // dispatch(getBalanceThunk())
+  }, [])
+
   const loggedSession = useSelector((state) => (state.session.user)); 
 
   const friendState = useSelector((state) => state.friends);
   const allFriends = Object.values(friendState);
-  console.log(allFriends, 'SADSA')
-  
- 
+  // console.log(allFriends, 'SADSA')
+
+  const balanceState = useSelector((state) => state.balances);
+  const allBalances = Object.values(balanceState);
+  // console.log(allBalances, 'ALLBALANCESS')
+
   return(
     <>
       <div className='dash-navbar'>
@@ -132,6 +144,7 @@ function Dashboard() {
           <div className='dash-main-header-balances'>
             <div className='dash-total-balance'>
               total balance
+              {console.log(allBalances,'herehrerererara')}
             </div>
             <div className='dash-you-owe'>
               you owe
