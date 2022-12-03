@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, redirect, request
 from flask_login import login_required, current_user
-from app.models import Expense, Comment, db
+from app.models import Expense, Comment, User, db
 from ..forms import CommentForm, ExpenseForm
 from datetime import datetime
 
@@ -57,10 +57,15 @@ def create_new_expense():
     form = ExpenseForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
+        fullName = form.recipientName.data.split(" ")
+        print(fullName)
+        firstName = fullName[0]
+        lastName = fullName[1]
+        recipient = User.query.filter(User.firstName == firstName and User.lastName == lastName)
         new_expense = Expense(
             user_id = current_user.id,
             transaction_user_id = current_user.id,
-            recipientId = form.recipientId.data,
+            recipientId = recipient[0].id,
             title = form.description.data,
             description = form.description.data,
             timestamp = datetime.now(),

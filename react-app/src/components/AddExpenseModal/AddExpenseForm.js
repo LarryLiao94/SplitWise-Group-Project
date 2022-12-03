@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
 import { addExpenseThunk } from "../../store/expense";
-import { getFriends } from '../../store/friend'
+import { getFriends } from "../../store/friend";
 import "./AddExpense.css";
 import "./index";
 import { useEffect } from "react";
@@ -14,9 +14,7 @@ import { useEffect } from "react";
 
 function AddExpenseForm({ onClose }) {
   const dispatch = useDispatch();
-  // const history = useHistory();
-  // const [recipientId, setRecipientId] = useState(0)
-  const [credential, setCredential] = useState('');
+  const [credential, setCredential] = useState(0);
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(0);
   const [image, setImage] = useState("");
@@ -42,10 +40,10 @@ function AddExpenseForm({ onClose }) {
 
   useEffect(() => {
     const myFriends = async () => {
-      await dispatch(getFriends())
-    }
-    myFriends()
-  }, [])
+      await dispatch(getFriends());
+    };
+    myFriends();
+  }, []);
 
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -66,7 +64,6 @@ function AddExpenseForm({ onClose }) {
     //   await dispatch(addExpenseThunk(payload))
     //   history.push('/dashboard')
 
-
     // } catch (res) {
     //   setErrors([]);
     //   const data = await res.json();
@@ -76,11 +73,10 @@ function AddExpenseForm({ onClose }) {
     e.preventDefault();
 
     let payload = {
-      recipientId: 2,
+      recipientName: credential,
       description,
       balance: amount,
     };
-
 
     return dispatch(addExpenseThunk(payload)).catch(async (res) => {
       // history.push('/dashboard')
@@ -88,7 +84,7 @@ function AddExpenseForm({ onClose }) {
       const data = await res.json();
 
       if (data && data.errors) setErrors(data.errors);
-    });    
+    });
   };
 
   return (
@@ -104,8 +100,6 @@ function AddExpenseForm({ onClose }) {
         <div onClick={onClose}>
           <i onClick={onClose} className="fa-regular fa-x add-friends-x"></i>
         </div>
-
-
       </div>
 
       <div className="add-expense-credential-div">
@@ -141,26 +135,24 @@ function AddExpenseForm({ onClose }) {
             })}
           </table> */}
 
-
           <select
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          className='add-expense-dropdown'
-          required
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
+            className="add-expense-dropdown"
+            required
           >
-            <option value='' disabled>
+            <option value="" disabled>
               Select from friends
             </option>
-            {
-              allFriends?.map((friend) => {
-                return(<option key={friend.id} value={friend}>
+            {allFriends?.map((friend) => {
+              return (
+                <option key={friend.id} value={friend}>
                   {friend}
-                </option>)
-                })
-            }
+                </option>
+              );
+            })}
           </select>
         </div>
-
       </div>
 
       <div className="add-expense-main">
@@ -184,7 +176,13 @@ function AddExpenseForm({ onClose }) {
             />
             <div className="add-expense-amount-div">
               <p className="add-expense-dollar">$</p>
-              <input className="add-expense-amount" placeholder="0.00" />
+              <input
+                className="add-expense-amount"
+                placeholder="0.00"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                required
+              />
             </div>
           </div>
         </div>
