@@ -20,7 +20,6 @@ function AddFriendForm({ onClose }) {
     const friendState = useSelector((state) => state.friends);
     const allFriends = Object.values(friendState);
     
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -1,19 +1,21 @@
 import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
 // import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
+import ImageModal from '../ImageModal';
 import { addExpenseThunk } from "../../store/expense";
 import { getFriends } from "../../store/friend";
 import "./AddExpense.css";
 import "./index";
 import { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 // import * as Modal from '../src/context/Modal.js'
 
 //larry push
 
 function AddExpenseForm({ onClose }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [credential, setCredential] = useState(0);
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(0);
@@ -51,7 +53,7 @@ function AddExpenseForm({ onClose }) {
     return;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     // e.preventDefault();
 
     // let payload = {
@@ -61,15 +63,16 @@ function AddExpenseForm({ onClose }) {
     // };
 
     // try {
-    //   await dispatch(addExpenseThunk(payload))
-    //   history.push('/dashboard')
-
+    //   const newExpense = dispatch(addExpenseThunk(payload))
+    //   return history.push(`/expenses/${newExpense.id}`)
+ 
     // } catch (res) {
     //   setErrors([]);
     //   const data = await res.json();
 
     //   if (data && data.errors) setErrors(data.errors);
     // }
+
     e.preventDefault();
 
     let payload = {
@@ -79,10 +82,7 @@ function AddExpenseForm({ onClose }) {
     };
 
     return dispatch(addExpenseThunk(payload)).catch(async (res) => {
-      // history.push('/dashboard')
-
       const data = await res.json();
-
       if (data && data.errors) setErrors(data.errors);
     });
   };
@@ -202,7 +202,9 @@ function AddExpenseForm({ onClose }) {
           <button className="add-expense-date">
             <CalendarModal />
           </button>
-          <button className="add-expense-image">Add image/notes</button>
+          <button className="add-expense-image">
+            <ImageModal />
+          </button>
           <button className="add-expense-group">No group</button>
         </div>
       </div>
