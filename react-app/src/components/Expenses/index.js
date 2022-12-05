@@ -182,7 +182,18 @@ function ExpensesPage() {
                 Object.keys(expenseState).map(function(key, index) {
                   return (
                     <div className='expenses' key={expenseState[key].expenseId}>
-                      {expenseState[key].balance}
+                      <div className='expense-date'>
+                      { expenseState[key].timestamp }
+                      </div>
+                      <div className='expense-title'>
+                      { expenseState[key].title }
+                      </div>
+                      <div className='expense-who-paid'>
+                      { expenseState[key].type == 'owner' ? `You paid ${expenseState[key].balance}` : `${expenseState[key].ownerName} paid ${expenseState[key].balance}` }
+                      </div>
+                      <div className='expense-needs-to-pay'>
+                      { expenseState[key].type == 'owner' ? `You lent ${expenseState[key].ownerName} ${expenseState[key].balance / 2}` : `${expenseState[key].ownerName} lent you ${expenseState[key].balance}` }
+                      </div>
                     </div>
                   )
                 })
