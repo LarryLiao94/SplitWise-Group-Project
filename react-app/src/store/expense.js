@@ -26,14 +26,17 @@ const deleteExpense = (expense) => ({
 });
 
 export const getExpenses = () => async (dispatch) => {
-  const res = await csrfFetch("/api/expense/");
+  const res = await csrfFetch("/api/users/expenses");
   const { expenses } = await res.json();
 
   if (res.ok) {
     const data = {};
-    expenses.forEach((expense) => (data[expense.id] = expense));
+    for(let key in expenses){
+      data[key] = expenses[key]
+    }
     dispatch(getAllExpenses(data));
   }
+  return res
 };
 
 export const addExpenseThunk = (expense) => async (dispatch) => {
@@ -72,6 +75,7 @@ export const deleteExpenseThunk = (id) => async (dispatch) => {
 };
 
 const initialState = {};
+
 const expensesReducer = (state = initialState, action) => {
   let newState = { ...state };
   switch (action.type) {
