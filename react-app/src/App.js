@@ -12,6 +12,7 @@ import Friends from "./components/Friends";
 import LandingPage from "./components/LandingPage";
 import Dashboard from "./components/Dashboard";
 import ExpensesPage from "./components/Expenses";
+import TransactionsPage from "./components/Transactions";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -49,7 +50,9 @@ function App() {
           <Groups />
         </Route>
         <Route path="/expenses" exact={true} component={ExpensesPage} />
-
+        <Route path="/transactions" exact={true}>
+          <TransactionsPage />
+        </Route>
         {/* <Route path='friends' exact={true}>
           <
         </Route> */}

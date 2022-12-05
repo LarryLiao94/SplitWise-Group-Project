@@ -71,7 +71,7 @@ function Dashboard() {
             Dashboard
           </Link>
 
-          <Link className="dash-left-side-tabs" to="/activity">
+          <Link className="dash-left-side-tabs" to="/transactions">
             <i className="fa-sharp fa-solid fa-flag"></i>
             Recent activity
           </Link>
@@ -79,7 +79,7 @@ function Dashboard() {
             <i className="fa-solid fa-magnifying-glass"></i>
             <input type="text" placeholder="Filter by name" />
           </div>
-          <Link className="dash-all-expenses" to="/all">
+          <Link className="dash-all-expenses" to="/expenses">
             <i className="fa-solid fa-list"></i>
             All expenses
           </Link>
