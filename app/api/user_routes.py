@@ -62,3 +62,66 @@ def get_balance():
         'owed': positive_balance,
         'owe': negative_balance
     })
+
+@user_routes.route('/expenses')
+@login_required
+def get_expenses():
+    user = User.query.get(current_user.id)
+    transactions = Transaction.query.filter(Transaction.transaction_user_id == current_user.id)
+    expense_query = [Expense.query.get(transaction.id) for transaction in transactions]
+
+
+    # owner of expense
+    balances = [expense.balance for expense in user.expenses]
+    positive_balance = 0
+    for balance in balances:
+        positive_balance += balance / 2
+    user.balance += positive_balance
+    # print(positive_balance)
+
+    #recipient of expense
+    expenses = Expense.query.filter(Expense.recipientId == current_user.id).all()
+    owe_balance = [expense.balance for expense in expenses]
+
+    negative_balance = 0
+    for balance in owe_balance:
+        negative_balance += balance / 2
+
+    user.balance -= negative_balance
+    # print(negative_balance)
+
+    all_expenses = {}
+
+    for expense in expense_query:
+        if expense:
+            all_expenses[expense.id] = {
+                'expenseId': expense.id,
+                'userId': expense.user_id,
+                'recipientId': expense.recipientId,
+                'ownerName': User.query.get(expense.user_id).firstName,
+                'recipientName': User.query.get(expense.recipientId).firstName,
+                'title': expense.title,
+                'timestamp': expense.timestamp,
+                'balance': expense.balance,
+                'type': 'owner'
+            }
+    for expense in expenses:
+        if expense:
+            all_expenses[expense.id] = {
+                'expenseId': expense.id,
+                'userId': expense.user_id,
+                'recipientId': expense.recipientId,
+                'ownerName': User.query.get(expense.user_id).firstName,
+                'recipientName': User.query.get(expense.recipientId).firstName,
+                'title': expense.title,
+                'timestamp': expense.timestamp,
+                'balance': expense.balance,
+                'type': 'recipient'
+            }
+
+    # print(all_expenses)
+    
+    return jsonify({
+        'balance': user.balance,
+        'expenses': all_expenses
+    })
