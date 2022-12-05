@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
-import ImageModal from '../ImageModal';
+import ImageModal from "../ImageModal";
 import { addExpenseThunk } from "../../store/expense";
 import { getFriends } from "../../store/friend";
 import "./AddExpense.css";
@@ -65,7 +65,7 @@ function AddExpenseForm({ onClose }) {
     // try {
     //   const newExpense = dispatch(addExpenseThunk(payload))
     //   return history.push(`/expenses/${newExpense.id}`)
- 
+
     // } catch (res) {
     //   setErrors([]);
     //   const data = await res.json();
@@ -195,7 +195,7 @@ function AddExpenseForm({ onClose }) {
           {/* <div className>.</div> */}
         </div>
         <div className="add-expense-distribution">
-          ({`${splitAmount}/person`})
+          ({`$${amount / 2}/person`})
         </div>
 
         <div className="add-expense-buttons">

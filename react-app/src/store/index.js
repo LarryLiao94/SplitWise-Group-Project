@@ -5,13 +5,15 @@ import friendsReducer from "./friend";
 import expensesReducer from "./expense";
 import balanceReducer from "./balance";
 import transactionReducer from "./transactions";
+import commentsReducer from "./comment";
 
 const rootReducer = combineReducers({
   session,
   friends: friendsReducer,
   expenses: expensesReducer,
   balances: balanceReducer,
-  transactions: transactionReducer
+  transactions: transactionReducer,
+  comments: commentsReducer,
 });
 
 let enhancer;
