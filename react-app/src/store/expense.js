@@ -2,6 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const GET_EXPENSE = "expense/GET_EXPENSE";
 const ADD_EXPENSE = "expense/ADD_EXPENSE";
+const EDIT_EXPENSE = "expense/EDIT_EXPENSE";
+const DELETE_EXPENSE = "expense/DELETE_EXPENSE";
 
 const getAllExpenses = (expenses) => ({
   type: GET_EXPENSE,
@@ -10,6 +12,16 @@ const getAllExpenses = (expenses) => ({
 
 const addExpense = (expense) => ({
   type: ADD_EXPENSE,
+  expense,
+});
+
+const editExpense = (expense) => ({
+  type: EDIT_EXPENSE,
+  expense,
+});
+
+const deleteExpense = (expense) => ({
+  type: DELETE_EXPENSE,
   expense,
 });
 
@@ -36,6 +48,29 @@ export const addExpenseThunk = (expense) => async (dispatch) => {
   }
 };
 
+export const editExpenseThunk = (expense) => async (dispatch) => {
+  const { id } = expense;
+  const res = await csrfFetch(`/api/expense/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(expense),
+  });
+  if (res.ok) {
+    const editedExpense = await res.json();
+    dispatch(editExpense(editedExpense));
+  }
+  return res;
+};
+
+export const deleteExpenseThunk = (id) => async (dispatch) => {
+  const res = await csrfFetch(`api/expense/${id}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    dispatch(deleteExpense(id));
+  }
+};
+
 const initialState = {};
 const expensesReducer = (state = initialState, action) => {
   let newState = { ...state };
@@ -46,6 +81,14 @@ const expensesReducer = (state = initialState, action) => {
 
     case ADD_EXPENSE:
       newState = { ...state, [action.expense.id]: action.expense };
+      return newState;
+
+    case EDIT_EXPENSE:
+      newState = { ...state, [action.expense.id]: action.expense };
+      return newState;
+
+    case DELETE_EXPENSE:
+      delete newState[action.expense.id];
       return newState;
 
     default:
