@@ -69,7 +69,7 @@
   margin: 5px;
 }
 
-::placeholder {
+.add-image-description::placeholder {
   position: absolute;
   top: 0px;
   padding: 5px;

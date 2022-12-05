@@ -4,12 +4,14 @@ import session from "./session";
 import friendsReducer from "./friend";
 import expensesReducer from "./expense";
 import balanceReducer from "./balance";
+import transactionReducer from "./transactions";
 
 const rootReducer = combineReducers({
   session,
   friends: friendsReducer,
   expenses: expensesReducer,
   balances: balanceReducer,
+  transactions: transactionReducer
 });
 
 let enhancer;
