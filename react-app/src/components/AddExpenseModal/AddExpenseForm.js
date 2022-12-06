@@ -2,6 +2,7 @@ import React, { useState } from "react";
 // import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
+import { Redirect } from "react-router-dom";
 import ImageModal from "../ImageModal";
 import { addExpenseThunk } from "../../store/expense";
 import { getFriends } from "../../store/friend";
@@ -9,6 +10,7 @@ import "./AddExpense.css";
 import "./index";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import Friends from '../Friends'
 // import * as Modal from '../src/context/Modal.js'
 
 //larry push
@@ -40,6 +42,8 @@ function AddExpenseForm({ onClose }) {
   //   });
   // }
 
+
+
   useEffect(() => {
     const myFriends = async () => {
       await dispatch(getFriends());
@@ -47,24 +51,17 @@ function AddExpenseForm({ onClose }) {
     myFriends();
   }, []);
 
-  const sessionUser = useSelector((state) => state.session.user);
-
-  const splitAmount = () => {
-    return;
-  };
-
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
 
-    // let payload = {
-    //   recipientId: credential,
-    //   description,
-    //   balance: amount,
-    // };
+    let payload = {
+      recipientId: credential,
+      description,
+      balance: amount,
+    };
 
     // try {
-    //   const newExpense = dispatch(addExpenseThunk(payload))
-    //   return history.push(`/expenses/${newExpense.id}`)
+    //  return dispatch(addExpenseThunk(payload))
 
     // } catch (res) {
     //   setErrors([]);
@@ -73,18 +70,18 @@ function AddExpenseForm({ onClose }) {
     //   if (data && data.errors) setErrors(data.errors);
     // }
 
-    e.preventDefault();
+    // e.preventDefault();
 
-    let payload = {
-      recipientName: credential,
-      description,
-      balance: amount,
-    };
-
-    return dispatch(addExpenseThunk(payload)).catch(async (res) => {
+    // let payload = {
+    //   recipientName: credential,
+    //   description,
+    //   balance: amount,
+    // };
+     dispatch(addExpenseThunk(payload)).catch(async (res) => {
       const data = await res.json();
       if (data && data.errors) setErrors(data.errors);
     });
+    return <Redirect to='/dashboard' />
   };
 
   return (
@@ -109,31 +106,16 @@ function AddExpenseForm({ onClose }) {
 
         <div className="add-expense-search">
           {/* <input
+          type='text'
+          id='filter'
           className='add-expense-credential-input'
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           placeholder='Enter names or email addresses'
-          required /> */}
-          {/* <input
-            type='text'
-            className="add-expense-credential-input"
-            value={searchInput}
-            onChange={handleSearch}
-            placeholder="Enter names or email addresses"
-            required
-          />
-          <table>
-            <tr>
-              <th>Friend</th>
-            </tr>
-            {allFriends.map((friend) => {
-              <div>
-                <tr>
-                  <td>{friend}</td>
-                </tr>
-              </div>
-            })}
-          </table> */}
+          required />
+          <ul id='result' class='user-friends-list'>
+            <li></li>
+          </ul> */}
 
           <select
             value={credential}
@@ -152,6 +134,7 @@ function AddExpenseForm({ onClose }) {
               );
             })}
           </select>
+          {/* <Friends /> */}
         </div>
       </div>
 

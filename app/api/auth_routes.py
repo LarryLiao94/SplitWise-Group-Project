@@ -72,8 +72,8 @@ def sign_up():
         )
         db.session.add(user)
         db.session.commit()
-        db.session.redirect('/dashboard')
         login_user(user)
+        # db.session.redirect('/dashboard')
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

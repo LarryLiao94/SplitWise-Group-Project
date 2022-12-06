@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
@@ -13,18 +14,17 @@ function Image({ onClose }) {
   const [description, setDescription] = useState('');
   const [errors, setErrors] = useState([]); 
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setErrors([])
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setErrors([])
     
-  //   return(e)
-  //   // return dispatch(sessionActions.login({ image, description })).catch(
-  //   //   async (res) => {
-  //   //     const data = await res.json();
-  //   //     if (data && data.errors) setErrors(data.errors);
-  //   //   }
-  //   // );
-  // }
+    return dispatch(sessionActions.login({ image, description })).catch(
+      async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      }
+    );
+  }
 
   return (
     <form className='add-image-form'>
@@ -40,11 +40,11 @@ function Image({ onClose }) {
       </div>
 
       <div className='add-image'>
-        <p className='add-image-text'>
+        <span className='add-image-text'>
           Attach an image or PDF:
-        </p>
+        </span>
         <button className='choose-file'>
-          Choose File
+          <input className='file-input' type='file' multiple/>
         </button>
       </div>
 
