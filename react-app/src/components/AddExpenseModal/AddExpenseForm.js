@@ -2,7 +2,6 @@ import React, { useState } from "react";
 // import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
-import { Redirect } from "react-router-dom";
 import ImageModal from "../ImageModal";
 import { addExpenseThunk } from "../../store/expense";
 import { getFriends } from "../../store/friend";
@@ -26,6 +25,9 @@ function AddExpenseForm({ onClose }) {
   const [errors, setErrors] = useState([]);
   // const [ searchDropDown, setSearchDropdown ] = useState('');
   // const [recipientId, setRecipientId] = useState(0)
+  // const closeModal = () =>{
+  //   return({onClose})
+  // }
 
   // const [searchInput, setSearchInput] = useState('')
   const friendState = useSelector((state) => state.friends);
@@ -42,8 +44,6 @@ function AddExpenseForm({ onClose }) {
   //   });
   // }
 
-
-
   useEffect(() => {
     const myFriends = async () => {
       await dispatch(getFriends());
@@ -55,20 +55,20 @@ function AddExpenseForm({ onClose }) {
     e.preventDefault();
 
     let payload = {
-      recipientId: credential,
+      recipientName: credential,
       description,
       balance: amount,
     };
 
-    // try {
-    //  return dispatch(addExpenseThunk(payload))
+    try {
+     dispatch(addExpenseThunk(payload))
+     history.go('/dashboard')
+    } catch (res) {
+      setErrors([]);
+      const data = await res.json();
 
-    // } catch (res) {
-    //   setErrors([]);
-    //   const data = await res.json();
-
-    //   if (data && data.errors) setErrors(data.errors);
-    // }
+      if (data && data.errors) setErrors(data.errors);
+    }
 
     // e.preventDefault();
 
@@ -77,11 +77,22 @@ function AddExpenseForm({ onClose }) {
     //   description,
     //   balance: amount,
     // };
-     dispatch(addExpenseThunk(payload)).catch(async (res) => {
-      const data = await res.json();
-      if (data && data.errors) setErrors(data.errors);
-    });
-    return <Redirect to='/dashboard' />
+
+    // let res = dispatch(addExpenseThunk(payload)).catch(async (res) => {
+    //   const data = await res.json();
+    //   if (data && data.errors) setErrors(data.errors);
+    // });
+    // console.log(res, 'RES')
+    // if(!res.catch) {
+    //   history.go("/dashboard")
+    //   console.log('here')
+    //   closeModal()
+    // }
+
+    // return dispatch(addExpenseThunk(payload)).catch(async (res) => {
+    //     const data = await res.json();
+    //     if (data && data.errors) setErrors(data.errors);
+    // });
   };
 
   return (

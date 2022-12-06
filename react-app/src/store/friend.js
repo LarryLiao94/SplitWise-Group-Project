@@ -17,7 +17,7 @@ const getAllFriends = (friends) => ({
 const initialState = {};
 
 export const addFriendThunk = (friendEE) => async (dispatch) => {
-    const response = await csrfFetch(`/api/friends`, {
+    const response = await csrfFetch(`/api/friends/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
