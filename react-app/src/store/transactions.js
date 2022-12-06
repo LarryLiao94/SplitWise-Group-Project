@@ -13,9 +13,12 @@ export const getAllTransactions = () => async (dispatch) => {
 
   if (res.ok) {
     const data = {};
-    transactions.forEach((transaction) => (data[transaction.id] = transaction));
+    for(let key in transactions) {
+      (data[key] = transactions[key]);
+    }
     dispatch(getTransactions(data))
   }
+  return res
 }
 
 const initialState = {};
