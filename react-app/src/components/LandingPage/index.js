@@ -124,7 +124,7 @@ function LandingPage(){
                 <div className='download-app-div'>
                     <button className='landing-app-download'>
                         <a className='download-link' href='/'>
-                        Download the app
+                        Sign up
                         </a>
                     </button>
                 </div>
