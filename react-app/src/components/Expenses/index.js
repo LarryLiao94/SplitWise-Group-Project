@@ -10,6 +10,7 @@ import SettleUpModal from "../SettleUpModal";
 import { getFriends } from "../../store/friend";
 import { getBalanceThunk } from "../../store/balance";
 import EditExpenseModal from "../EditExpenseModal";
+import { deleteExpenseThunk } from "../../store/expense";
 
 function ExpensesPage() {
   const dispatch = useDispatch();
@@ -55,6 +56,11 @@ function ExpensesPage() {
   // console.log(allBalances, "HERE")
 
   const expenseState = useSelector((state) => state.expenses);
+  const history = useHistory();
+  //   const onClick = async (e) => {
+  //     e.preventDefault();
+  //     await dispatch(deleteExpenseThunk(id));
+  //   };
 
   return (
     <>
@@ -201,6 +207,15 @@ function ExpensesPage() {
                           }`
                         : `${expenseState[key].ownerName} lent you ${expenseState[key].balance}`}
                     </div>
+                    <button
+                      onClick={async (e) => {
+                        e.preventDefault();
+                        history.go("/dashboard");
+                        await dispatch(deleteExpenseThunk(key));
+                      }}
+                    >
+                      delete
+                    </button>
                   </div>
                 );
               })}
