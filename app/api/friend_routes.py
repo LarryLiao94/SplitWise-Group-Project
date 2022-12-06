@@ -44,7 +44,8 @@ def add_friend():
         new_friend = Friend(
             user_id = current_user.id,
             transaction_user_id = current_user.id,
-            friendEE = form.friendEE.data,
+            friendEE = User.query.filter(User.email == form.email.data)[0].id,
+            # friendEE = 3,
             description = form.description.data
         )
         db.session.add(new_friend)
