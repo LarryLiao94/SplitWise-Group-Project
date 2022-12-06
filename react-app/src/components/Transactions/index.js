@@ -175,18 +175,43 @@ function TransactionsPage() {
           <div className='transaction' key={transactionObj[key].transactionId}>
             <a className="default-image-link">
             <img
-              className="default-image"
+              className="transaction-default-image"
               src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
               height="40"
               width="40"
               />
             </a>
-            <div className='transaction-description'>
-              {transactionObj[key].transactionType == 'friend' ? (transactionObj[key].type == 'owner' ? `You added ${transactionObj[key].recipientName}` : `${transactionObj[key].recipientName} added you`) : (transactionObj[key].type == 'owner' ? `You added ${transactionObj[key].description}` : `${transactionObj[key].ownerName} added ${transactionObj[key].description}`)}
+            <div className='transaction-info'>
+              <div className='transaction-description'>
+                {transactionObj[key].transactionType == 'friend' ?
+                (transactionObj[key].type == 'owner' ? 
+                `You added ${transactionObj[key].recipientName}` : 
+                `${transactionObj[key].recipientName} added you`) : 
+                (transactionObj[key].type == 'owner' ? 
+                `You added ${transactionObj[key].description}` : 
+                `${transactionObj[key].ownerName} added ${transactionObj[key].description}`)}
+              </div>
+            {
+              (transactionObj[key].type == 'owner') ?
+              <div className='transaction-balance-owe'>
+                {transactionObj[key].transactionType == 'expense' ? 
+                (transactionObj[key].type == 'owner' ? 
+                `You get back $${transactionObj[key].balance / 2}` :
+                 `You owe $${transactionObj[key].balance / 2}`) :
+                  ``}
+              </div>
+              :
+              <div className='transaction-balance-paid'>
+                {transactionObj[key].transactionType == 'expense' ? 
+                (transactionObj[key].type == 'owner' ? 
+                `You get back $${transactionObj[key].balance / 2}` : 
+                `You owe $${transactionObj[key].balance / 2}`) : ``}
+              </div>
+            }
+            <div className='transaction-date'>
+              {console.log(transactionObj[key], 'here')}
             </div>
-            <div className='transaction-balance'>
-              {transactionObj[key].transactionType == 'expense' ? (transactionObj[key].type == 'owner' ? `You get back $${transactionObj[key].balance / 2}` : `You owe $${transactionObj[key].balance / 2}`) : ``}
-            </div>
+          </div>
           </div>
         )})
           }
