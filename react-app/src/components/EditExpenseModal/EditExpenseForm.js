@@ -3,22 +3,23 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
 import ImageModal from "../ImageModal";
-import { addExpenseThunk } from "../../store/expense";
 import { getFriends } from "../../store/friend";
-import "./AddExpense.css";
+import "../AddExpenseModal/AddExpense.css";
 import "./index";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 // import * as Modal from '../src/context/Modal.js'
+import { editExpenseThunk } from "../../store/expense";
+import { getExpenses } from "../../store/expense";
 
 //larry push
 
-function AddExpenseForm({ onClose }) {
+function EditExpenseForm({ expense, onClose }) {
+  console.log(expense.recipientName);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [credential, setCredential] = useState("");
-  const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [description, setDescription] = useState(expense.title);
+  const [amount, setAmount] = useState(expense.balance);
   const [image, setImage] = useState("");
   const [group, setGroup] = useState("");
   const [errors, setErrors] = useState([]);
@@ -53,6 +54,10 @@ function AddExpenseForm({ onClose }) {
     return;
   };
 
+  //   useEffect(() => {
+  //     dispatch(getExpenses());
+  //   }, [dispatch]);
+
   const handleSubmit = async (e) => {
     // e.preventDefault();
 
@@ -76,15 +81,25 @@ function AddExpenseForm({ onClose }) {
     e.preventDefault();
 
     let payload = {
-      recipientName: credential,
+      id: expense.expenseId,
       description,
       balance: amount,
     };
 
-    return dispatch(addExpenseThunk(payload)).catch(async (res) => {
+    // return dispatch(editExpenseThunk(payload)).catch(async (res) => {
+    //   const data = await res.json();
+    //   if (data && data.errors) setErrors(data.errors);
+    // });
+
+    try {
+      dispatch(editExpenseThunk(payload));
+      history.go("/expenses");
+    } catch (res) {
+      setErrors([]);
       const data = await res.json();
+
       if (data && data.errors) setErrors(data.errors);
-    });
+    }
   };
 
   return (
@@ -95,7 +110,7 @@ function AddExpenseForm({ onClose }) {
         ))}
       </ul> */}
       <div className="add-expense-header">
-        <p className="add-expense-title">Add an expense</p>
+        <p className="add-expense-title">Edit an expense</p>
 
         <div onClick={onClose}>
           <i onClick={onClose} className="fa-regular fa-x add-friends-x"></i>
@@ -134,7 +149,7 @@ function AddExpenseForm({ onClose }) {
               </div>
             })}
           </table> */}
-
+          {/*
           <select
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
@@ -151,7 +166,8 @@ function AddExpenseForm({ onClose }) {
                 </option>
               );
             })}
-          </select>
+          </select> */}
+          <div className="recipientName">{expense.recipientName}</div>
         </div>
       </div>
 
@@ -221,4 +237,4 @@ function AddExpenseForm({ onClose }) {
   );
 }
 
-export default AddExpenseForm;
+export default EditExpenseForm;
