@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
+import CalendarModal from "../CalendarModal";
+import ImageModal from "../ImageModal";
+import { getFriends } from "../../store/friend";
 import './SettleUp.css'
 import './index'
 
@@ -75,8 +78,8 @@ function SettleUpForm({ onClose }) {
     
 
         <div className='settle-up-buttons'>
-          <button className='settle-up-date'>November 28, 2022</button>
-          <button className='settle-up-image'>Add image/notes</button>
+          <button className='settle-up-date'><CalendarModal /></button>
+          <button className='settle-up-image'><ImageModal /></button>
           <button className='settle-up-group'>No group</button>
         </div>
 
