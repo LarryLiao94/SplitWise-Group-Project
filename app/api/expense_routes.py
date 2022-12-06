@@ -40,7 +40,6 @@ def edit_expense(expenseId):
         # transaction = Transaction.query.get(expenseId)
         # print(expense)
         if expense.user_id == current_user.id:
-            print(expense)
             expense.title = form.description.data
             expense.description = form.description.data
             expense.timestamp = datetime.now()
@@ -58,7 +57,7 @@ def create_new_expense():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         fullName = form.recipientName.data.split(" ")
-        print(fullName)
+        print(fullName, '----------------------')
         firstName = fullName[0]
         lastName = fullName[1]
         recipient = User.query.filter(User.firstName == firstName and User.lastName == lastName)

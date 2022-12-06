@@ -31,12 +31,12 @@ export const getExpenses = () => async (dispatch) => {
 
   if (res.ok) {
     const data = {};
-    for(let key in expenses){
-      data[key] = expenses[key]
+    for (let key in expenses) {
+      data[key] = expenses[key];
     }
     dispatch(getAllExpenses(data));
   }
-  return res
+  return res;
 };
 
 export const addExpenseThunk = (expense) => async (dispatch) => {
@@ -59,7 +59,7 @@ export const editExpenseThunk = (expense) => async (dispatch) => {
     body: JSON.stringify(expense),
   });
   if (res.ok) {
-    const editedExpense = await res.json();
+    let editedExpense = await res.json();
     dispatch(editExpense(editedExpense));
   }
   return res;
