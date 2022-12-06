@@ -170,8 +170,9 @@ function TransactionsPage() {
           </div>
           <div className="dash-main-body">
           <div className="transactions-container">
-        {transactions.map((transaction) => (
-          <div className='transaction'>
+        { Object.keys(transactionObj).map(function(key, index) {
+          return (
+          <div className='transaction' key={transactionObj[key].transactionId}>
             <a className="default-image-link">
             <img
               className="default-image"
@@ -180,35 +181,15 @@ function TransactionsPage() {
               width="40"
               />
             </a>
-          <div className='transaction-description'>
-            
-              {/* {
-                Object.keys(transactionObj).map(function(key, index) {
-                  return (
-                    <div className='expenses' key={expenseState[key].expenseId}>
-                      <div className='expense-date'>
-                      { expenseState[key].timestamp }
-                      </div>
-                      <div className='expense-title'>
-                      { expenseState[key].title }
-                      </div>
-                      <div className='expense-who-paid'>
-                      { expenseState[key].type == 'owner' ? `You paid ${expenseState[key].balance}` : `${expenseState[key].ownerName} paid ${expenseState[key].balance}` }
-                      </div>
-                      <div className='expense-needs-to-pay'>
-                      { expenseState[key].type == 'owner' ? `You lent ${expenseState[key].ownerName} ${expenseState[key].balance / 2}` : `${expenseState[key].ownerName} lent you ${expenseState[key].balance}` }
-                      </div>
-                    </div>
-                  )
-                })
-              } */}
-              {
-                transaction.description
-              }
-            
+            <div className='transaction-description'>
+              {transactionObj[key].transactionType == 'friend' ? (transactionObj[key].type == 'owner' ? `You added ${transactionObj[key].recipientName}` : `${transactionObj[key].recipientName} added you`) : (transactionObj[key].type == 'owner' ? `You added ${transactionObj[key].description}` : `${transactionObj[key].ownerName} added ${transactionObj[key].description}`)}
+            </div>
+            <div className='transaction-balance'>
+              {transactionObj[key].transactionType == 'expense' ? (transactionObj[key].type == 'owner' ? `You get back $${transactionObj[key].balance / 2}` : `You owe $${transactionObj[key].balance / 2}`) : ``}
             </div>
           </div>
-        ))}
+        )})
+          }
       </div>
           </div>
         </div>

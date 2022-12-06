@@ -183,7 +183,7 @@ function ExpensesPage() {
                   return (
                     <div className='expenses' key={expenseState[key].expenseId}>
                       <div className='expense-date'>
-                      { expenseState[key].timestamp }
+                      { expenseState[key].timestamp.slice(0, 11) }
                       </div>
                       <div className='expense-title'>
                       { expenseState[key].title }
