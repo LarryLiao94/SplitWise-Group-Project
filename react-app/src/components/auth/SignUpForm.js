@@ -8,29 +8,29 @@ import './Signup.css'
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [ showSecondary, setShowSecondary ] = useState(false)
+  // const [ showSecondary, setShowSecondary ] = useState(false)
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
-  const revealSecondary = () => {
-    if ( showSecondary ) return;
-    setShowSecondary(true);
-  }
+  // const revealSecondary = () => {
+  //   if ( showSecondary ) return;
+  //   setShowSecondary(true);
+  // }
 
-  useEffect(() => {
-    if (!showSecondary) return;
-    const closeSecondary = () => setShowSecondary(false)
-    document.addEventListener('click', closeSecondary)
+  // useEffect(() => {
+  //   if (!showSecondary) return;
+  //   const closeSecondary = () => setShowSecondary(false)
+  //   document.addEventListener('click', closeSecondary)
 
-    return () => 
-    document.removeEventListener('click', closeSecondary)
-  }, [showSecondary])
+  //   return () => 
+  //   document.removeEventListener('click', closeSecondary)
+  // }, [showSecondary])
 
   const reset = () => {
     setEmail("");
@@ -55,7 +55,7 @@ const SignUpForm = () => {
     e.preventDefault();
     if (password === repeatPassword) {
       const data = await dispatch(
-        signUp(username, email, password)
+        signUp(username, firstName, lastName, phoneNumber, email, password)
       );
       if (data) {
         setErrors(data);
@@ -67,17 +67,17 @@ const SignUpForm = () => {
     setUsername(e.target.value);
   };
 
-  // const updateFirstName = (e) => {
-  //   setFirstName(e.target.value);
-  // };
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
 
-  // const updateLastName = (e) => {
-  //   setLastName(e.target.value);
-  // };
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
+  };
 
-  // const updatePhoneNumber = (e) => {
-  //   setPhoneNumber(e.target.value);
-  // };
+  const updatePhoneNumber = (e) => {
+    setPhoneNumber(e.target.value);
+  };
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -104,17 +104,59 @@ const SignUpForm = () => {
       <h2 className='introduce-text'>
         INTRODUCE YOURSELF
       </h2>
-      <div className='signup-name-text'>
-        Hi there! My name is 
+      <div className='signup-username-text'>
+        Hi there! My username will be 
       </div>
         <div>
          <input
-          className='signup-name-input'
+          className='signup-username-input'
           type="text"
           name="userName"
           onChange={updateUsername}
-          onInput={revealSecondary()}
+          // onInput={revealSecondary()}
           value={username}
+          />
+        </div>
+
+      <div className='signup-firstname-text'>
+        My first name
+      </div>
+        <div>
+         <input
+          className='signup-firstname-input'
+          type="text"
+          name="firstName"
+          onChange={updateFirstName}
+          // onInput={revealSecondary()}
+          value={firstName}
+          />
+        </div>
+
+      <div className='signup-lastname-text'>
+        and last name
+      </div>
+        <div>
+         <input
+          className='signup-lastname-input'
+          type="text"
+          name="lastName"
+          onChange={updateLastName}
+          // onInput={revealSecondary()}
+          value={lastName}
+          />
+        </div>
+
+      <div className='signup-number-text'>
+        This is my phone number:
+      </div>
+        <div>
+         <input
+          className='signup-number-input'
+          type="text"
+          name="phoneNumber"
+          onChange={updatePhoneNumber}
+          // onInput={revealSecondary()}
+          value={phoneNumber}
           />
         </div>
 
@@ -133,21 +175,39 @@ const SignUpForm = () => {
           value={email}
           />
       </div>
+
       <div className='signup-password-div'>
-          And here's my
+          Here's my
         <strong className='signup-password'>
           password:
         </strong>
         <br/>
         <input
           className='signup-password-input'
-          type="text"
+          type="password"
           name="password"
           onChange={updatePassword}
           value={password}
           />
       </div>
-      <input type='hidden' />
+
+      <div className='signup-repeatpassword-div'>
+          Here's my
+        <strong className='signup-repeatpassword'>
+          password again:
+        </strong>
+        <br/>
+        <input
+          className='signup-repeatpassword-input'
+          type="password"
+          name="repeatpassword"
+          onChange={updateRepeatPassword}
+          value={repeatPassword}
+          required={true}
+          />
+      </div>
+
+      {/* <input type='hidden' /> */}
       </div>
 
       <button className='signup-submit-button' type="submit">Sign me up!</button>
@@ -157,9 +217,6 @@ const SignUpForm = () => {
       </div>
       </div>
    
-
-
-
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>

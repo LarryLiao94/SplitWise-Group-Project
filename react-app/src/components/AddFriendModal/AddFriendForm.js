@@ -25,28 +25,30 @@ function AddFriendForm({ onClose }) {
         e.preventDefault();
         setErrors([]);
         //session actions required for friend
-        // return dispatch(friendActions.addFriendThunk({ credential, password })).catch(
-        //   async (res) => {
-        //     const data = await res.json();
-        //     if (data && data.errors) setErrors(data.errors);
-        //   }
-        // );
         const friend = {
           email: credential,
           description
         }
 
-        try {
-          const newFriend = await dispatch(friendActions.addFriendThunk({ friend }))
+        return dispatch(friendActions.addFriendThunk(friend)).catch(
+          async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+          }
+        );
 
-          allFriends.push(Object.values(newFriend))
-          history.push('/dashboard')
+        // try {
+        //   const newFriend = await dispatch(friendActions.addFriendThunk({ friend }))
 
-        } catch (res) {
+        //   allFriends.push(Object.values(newFriend))
+
+        //   history.push('/dashboard')
+
+        // } catch (res) {
         
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
-        }
+        //   const data = await res.json();
+        //   if (data && data.errors) setErrors(data.errors);
+        // }
     }
 
 
@@ -65,7 +67,7 @@ function AddFriendForm({ onClose }) {
             </p>
 
             <button className='close-modal' onClick={onClose}>
-              <i className="fa-regular fa-x"></i>
+              <i onClick={onClose}className="fa-regular fa-x"></i>
             </button>
 
           </div>

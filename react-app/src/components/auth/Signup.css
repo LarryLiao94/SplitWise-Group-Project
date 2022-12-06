@@ -16,13 +16,55 @@
   margin: 15px 20px;
 }
 
-.signup-name-input {
+.signup-username-input {
   height: 40px;
   width: 300px;
   margin: 5px 20px;
 }
 
-.signup-name-input:focus {
+.signup-username-input:focus {
+  outline: none;
+  box-shadow: 0px 4px 8px #0088CC, -.5px 0 1px #0088CC;
+}
+
+.signup-firstname-input {
+  height: 40px;
+  width: 300px;
+  margin: 5px 20px;
+}
+
+.signup-firstname-input:focus {
+  outline: none;
+  box-shadow: 0px 4px 8px #0088CC, -.5px 0 1px #0088CC;
+}
+
+.signup-lastname-input {
+  height: 40px;
+  width: 300px;
+  margin: 5px 20px;
+}
+
+.signup-lastname-input:focus {
+  outline: none;
+  box-shadow: 0px 4px 8px #0088CC, -.5px 0 1px #0088CC;
+}
+.signup-number-input {
+  height: 40px;
+  width: 300px;
+  margin: 5px 20px;
+}
+
+.signup-number-input:focus {
+  outline: none;
+  box-shadow: 0px 4px 8px #0088CC, -.5px 0 1px #0088CC;
+}
+.signup-repeatpassword-input {
+  height: 40px;
+  width: 300px;
+  margin: 5px 20px;
+}
+
+.signup-repeatpassword-input:focus {
   outline: none;
   box-shadow: 0px 4px 8px #0088CC, -.5px 0 1px #0088CC;
 }
@@ -48,7 +90,25 @@
   box-shadow: 0px 4px 8px #0088CC, -.5px 0 1px #0088CC;
 }
 
-.signup-name-text {
+.signup-username-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin: 0 20px;
+}
+
+.signup-firstname-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin: 0 20px;
+}
+
+.signup-lastname-text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  margin: 0 20px;
+}
+
+.signup-number-text {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 24px;
   margin: 0 20px;
@@ -61,7 +121,18 @@
   margin: 0 20px;
 }
 
+.signup-repeatpassword-div {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  margin: 0 20px;
+}
+
 .signup-password-input {
+  height: 40px;
+  width: 300px;
+  margin: 5px 0;
+}
+.signup-repeatpassword-input {
   height: 40px;
   width: 300px;
   margin: 5px 0;
@@ -72,6 +143,15 @@
 }
 
 .signup-password-input:focus {
+  outline: none;
+  box-shadow: 0px 4px 8px #0088CC, -.5px 0 1px #0088CC;
+}
+
+.signup-repeatpassword {
+  margin: 0 0 0 3px;
+}
+
+.signup-repeatpassword-input:focus {
   outline: none;
   box-shadow: 0px 4px 8px #0088CC, -.5px 0 1px #0088CC;
 }
