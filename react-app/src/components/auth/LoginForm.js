@@ -11,6 +11,15 @@ const LoginForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const handleGuestLogin = (e) => {
+    e.preventDefault();
+
+    return (
+      setEmail('demo@aa.io'),
+      setPassword('password')
+    )
+  }
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -91,8 +100,15 @@ const LoginForm = () => {
         />
       </div>
         <button className='submit-button' type='submit'>Log in</button>
+      
+        <button onClick={handleGuestLogin}type='submit' className='gsi-button'>
+        <h2 className='gsi-button-text'> 
+          Continue as Guest
+        </h2> 
+        </button>
+       </div>
       </div>
-      </div>
+
     </form>
   );
 };

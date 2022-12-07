@@ -83,6 +83,8 @@
 
 .dash-left-side {
   width: 15%;
+  min-width: 183px;
+  max-width: 200px;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -360,7 +362,7 @@
   width: 25%;
 }
 
-.dash-main-body {
+/* .dash-main-body {
   display: flex;
   justify-content: space-evenly;
 }
@@ -372,7 +374,7 @@
   padding: 8px;
   font-family: Arial, Helvetica, sans-serif;
   justify-content: space-between;
-}
+} */
 
 .dash-main-left {
   font-size: 14px;
@@ -428,4 +430,86 @@
 
 .plates-download-button:hover {
   cursor: pointer;
+}
+
+.tab-container {
+  display: flex;
+  flex-direction: column;
+  word-break: break-all;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tabs-div {
+  display: flex;
+}
+
+.tabs {
+  text-align: center;
+  position: relative;
+  height: 27px;
+  width: 27px;
+  border: 1px solid #aeaeae;
+  border-radius: 5px;
+  margin: 1px;
+}
+
+.tabs:focus {
+  background-color: #eeeeee;
+}
+
+.tabs:not(:focus) {
+  opacity: .3;
+}
+
+.active-tabs::before {
+  content:'';
+  display: block;
+  position: absolute;
+  top: -5px;
+}
+
+.content {
+  display: none;
+}
+
+.active-content {
+  display: block;
+}
+
+.your-total-balance-text,
+.upcoming-expenses-text,
+.trends-this-month-text {
+  font-size: 14px;
+  color: #999999
+}
+
+.your-total-balance {
+  color:#ff652f;
+}
+
+.tab-you-owe-text {
+  font-size: 15px;
+}
+
+.balance-total {
+  font-size: 28px;
+}
+
+.upcoming-expenses-text-secondary {
+  font-size: 14px;
+  width: 155px;
+}
+
+.trend-text {
+  font-size: 14px;
+}
+
+.trend-balance {
+  color:#1cc29f;
+  margin-bottom: 10px;
+}
+
+.trend-balance-share {
+  color: #ff652f;
+  margin-bottom: 10px;
 }

@@ -5,11 +5,23 @@
 .main {
   /* border: 5px solid red; */
   display: flex;
+  /* align-items: center; */
   flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
   background-image: url('https://assets.splitwise.com/assets/core/facets.png');
   height: 100%;
   width: 100%;
   z-index: 5;
+}
+
+.main::before {
+  background-color: rgba(0,0,0,.25);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .sharing-expenses {
@@ -47,18 +59,20 @@
 }
 
 .trip-text {
-  color: #1CC29F
+  color: #1CC29F;
+  margin-left: 8px;
 }
 
 .housemates-text {
-  color: #CFBEEA
+  color: rgb(134,87,205);
+  margin-left: 8px;
 }
 
 .landing-plane-icon {
   height: 50px;
   width: 50px;
-  margin: 5px;
-  opacity: .7;
+  /* margin: 5px; */
+  /* opacity: .7; */
 }
 
 .landing-plane-icon:hover {
@@ -68,8 +82,8 @@
 .landing-home-icon {
   height: 50px;
   width: 50px;
-  margin: 5px;
-  opacity: .5;
+  /* margin: 5px; */
+  /* opacity: .5; */
 }
 
 .landing-home-icon:hover {
@@ -80,8 +94,8 @@
   /* border: 1px solid red; */
   height: 50px;
   width: 50px;
-  margin: 5px;
-  opacity: .5;
+  /* margin: 5px; */
+  /* opacity: 1; */
 }
 
 .landing-heart-icon:hover {
@@ -92,8 +106,8 @@
   /* border: 1px solid red; */
   height: 50px;
   width: 50px;
-  margin: 5px;
-  opacity: .5;
+  /* margin: 5px; */
+  /* opacity: .5; */
 }
 
 .landing-wild-icon:hover {
@@ -107,11 +121,13 @@
 }
 
 .partner-text {
-  color: #A6042F
+  color: #A6042F;
+  margin-left: 8px;
 }
 
 .anyone-text {
-  color: #B0B1B3
+  color: 383B3F;
+  margin-left: 8px;
 }
 
 .landing-share-options {
@@ -268,6 +284,7 @@
   flex-direction: column;
   align-items: center;
   width: 250px;
+  opacity: 1;
 }
 
 .balance-text-title {
@@ -357,7 +374,7 @@
   width: 300px;
 }
 
-.add-image {
+.add-expenses-image {
   padding-top: 15px;
   width: 275px;
 }
@@ -491,9 +508,12 @@
 }
 
 .footer-section {
+  display: flex;
+  flex-direction: column;
   list-style: none;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
+  margin: 10px 0;
 }
 
 .footer-splitwise {
@@ -522,4 +542,97 @@
 .appStore-img {
   height: 40px;
   margin: 5px;
+}
+
+.landing-tab {
+  position: relative;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  padding: 0;
+  background-color: rgba(255,255,255,.1);
+}
+
+.active-landing-tabs::before {
+  content: '';
+  display: block;
+  position: absolute;
+  transition-duration: 2s; 
+}
+
+.landing-tab:focus {
+  opacity: 5;
+  z-index: 100
+}
+
+.landing-tab:not(:focus) {
+  opacity: .5;
+}
+
+.landing-content {
+  display: none;
+}
+
+.active-landing-content {
+  display: block;
+  transition-duration: 5s;
+}
+
+.signup-green {
+  background-color: #1CC29F;
+  color: white;
+  height: 50px;
+  width: 100px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  padding: 0;
+}
+
+.signup-purple {
+  background-color: rgb(134,87,205);
+  color: white;
+  height: 50px;
+  width: 100px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  padding: 0;
+}
+
+.signup-red {
+  background-color: #A6042F;
+  color: white;
+  height: 50px;
+  width: 100px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  padding: 0;
+}
+
+.signup-gray {
+  background-color: #383B3F;
+  color: white;
+  height: 50px;
+  width: 100px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  padding: 0;
+}
+
+.footer-signup,
+.footer-login
+{
+  text-decoration: none;
+  color: #373B3F;
 }
