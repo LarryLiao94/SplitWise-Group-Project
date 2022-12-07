@@ -1,0 +1,7 @@
+.search-header {
+  display: flex;
+}
+
+.search-friend-list {
+  visibility: hidden;
+}
