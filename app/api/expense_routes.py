@@ -91,13 +91,13 @@ def get_all_comments(expenseId):
 @expense_routes.route('/<int:expenseId>/comments',methods=["POST"])
 @login_required
 def post_new_comment(expenseId):
+    print(expenseId)
     form = CommentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
 
-    print(expenseId)
     if form.validate_on_submit():
         new_comment = Comment(
-            userId = current_user.id,
+            user_id = current_user.id,
             expenseId = expenseId,
             comment = form.comment.data,
         )
