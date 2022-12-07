@@ -11,6 +11,7 @@ import { getFriends } from "../../store/friend";
 import { getBalanceThunk } from "../../store/balance";
 import EditExpenseModal from "../EditExpenseModal";
 import { deleteExpenseThunk } from "../../store/expense";
+import CommentForm from "../Comment";
 
 function ExpensesPage() {
   const dispatch = useDispatch();
@@ -206,6 +207,9 @@ function ExpensesPage() {
                             expenseState[key].balance / 2
                           }`
                         : `${expenseState[key].ownerName} lent you ${expenseState[key].balance}`}
+                    </div>
+                    <div>
+                      <CommentForm expenseId={expenseState[key]} />
                     </div>
                     <button
                       onClick={async (e) => {
