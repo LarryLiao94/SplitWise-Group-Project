@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
-from app.models import Friend, User, db
 from flask_login import current_user, login_required
+from app.models import Friend, User, Expense, Transaction, db
 from ..forms import AddFriendForm
 
 friend_routes = Blueprint('friends', __name__)
@@ -28,9 +28,42 @@ def get_friend_by_id(id):
             friend_id = friend.friendEE
     
     user_friend = User.query.get(friend_id)
+    details = {}
+
+    expenses = Expense.query.filter(Expense.user_id == current_user.id).all()
+    recipient_expenses = Expense.query.filter(Expense.recipientId == current_user.id).all()
+    for expense in expenses:
+        if expense.recipientId == id:
+            details[f"{expense.id}"] = {
+                'transactionId': expense.id,
+                'userId': expense.user_id,
+                'recipientId': expense.recipientId,
+                'ownerName': User.query.get(expense.user_id).firstName,
+                'recipientName': User.query.get(expense.recipientId).firstName,
+                'description': expense.title,
+                'balance': expense.balance,
+                'type': 'owner'       
+            }
+    for expense in recipient_expenses:
+        if expense.user_id == id:
+            details[f"{expense.id}"] = {
+                'transactionId': expense.id,
+                'userId': expense.user_id,
+                'recipientId': expense.recipientId,
+                'ownerName': User.query.get(expense.user_id).firstName,
+                'recipientName': User.query.get(expense.recipientId).firstName,
+                'description': expense.title,
+                'balance': expense.balance,
+                'type': 'recipient'       
+            }
+
+    details['firstName'] = user_friend.firstName
+    details['lastName'] = user_friend.lastName
+    details['id'] = user_friend.id
+
 
     if user_friend:
-        return user_friend.to_dict()
+        return details
     else:
         return jsonify({'Not found': 'User does not exist or is not part of your friends list'}), 404
 
