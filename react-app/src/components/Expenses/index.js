@@ -182,7 +182,7 @@ function ExpensesPage() {
             </div>
           </div>
           <div className="dash-main-body">
-            <div className="dash-owe">
+            <div className="dash-expense-owe">
               {/* <div className="dash-main-left">YOU OWE</div>
               <div className="dash-main-right">YOU ARE OWED</div> */}
               {Object.keys(expenseState).map(function (key, index) {
