@@ -8,12 +8,13 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Groups from "./components/Groups";
-import Friends from "./components/Friends";
+// import Friends from "./components/Friends";
 import LandingPage from "./components/LandingPage";
 import Dashboard from "./components/Dashboard";
 import ExpensesPage from "./components/Expenses";
 import TransactionsPage from "./components/Transactions";
 import { authenticate } from "./store/session";
+import FriendDetails from "./components/FriendDetails";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -62,8 +63,11 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/friends" exact={true}>
+        {/* <ProtectedRoute path="/friends" exact={true}>
           <Friends />
+        </ProtectedRoute> */}
+        <ProtectedRoute path="/friends/:id" exact={true}>
+          <FriendDetails />
         </ProtectedRoute>
         {/* <Route path='/' exact={true} >
           <h1>My Home Page</h1>
