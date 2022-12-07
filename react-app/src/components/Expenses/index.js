@@ -13,6 +13,7 @@ import EditExpenseModal from "../EditExpenseModal";
 import { deleteExpenseThunk } from "../../store/expense";
 import CommentForm from "../Comment";
 import Tab from "./RightTab";
+import GetExpenseComments from "../Comment/Comments";
 
 function ExpensesPage() {
   const dispatch = useDispatch();
@@ -208,6 +209,11 @@ function ExpensesPage() {
                             expenseState[key].balance / 2
                           }`
                         : `${expenseState[key].ownerName} lent you ${expenseState[key].balance}`}
+                    </div>
+                    <div>
+                      <GetExpenseComments
+                        expenseId={expenseState[key].expenseId}
+                      />
                     </div>
                     <div>
                       <CommentForm expense={expenseState[key]} />
