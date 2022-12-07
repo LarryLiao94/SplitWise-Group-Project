@@ -57,7 +57,6 @@ def create_new_expense():
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
         fullName = form.recipientName.data.split(" ")
-        print(fullName, '----------------------')
         firstName = fullName[0]
         lastName = fullName[1]
         recipient = User.query.filter(User.firstName == firstName and User.lastName == lastName)
@@ -86,8 +85,6 @@ def get_all_comments(expenseId):
     """
     # comments = Comment.query.all()
     comments = Comment.query.filter(Comment.expenseId == expenseId)
-    print(expenseId)
-    print(comments)
     # return comments
     return jsonify({'comments': [comment.to_dict() for comment in comments]})
 
