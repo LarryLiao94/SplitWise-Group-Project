@@ -61,6 +61,7 @@ function Dashboard() {
         </div>
       </div>
 
+      <div className='dash-container'>
       <div className="dashboard-div">
         <div className="dash-left-side column">
           <Link className="dash-left-side-tabs" to="/dashboard">
@@ -179,6 +180,7 @@ function Dashboard() {
           <button className="plates-download-button">Download Plates</button>
         </div>
       </div>
+    </div>
     </>
   );
 }

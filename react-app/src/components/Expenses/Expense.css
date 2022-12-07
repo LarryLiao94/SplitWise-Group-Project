@@ -208,12 +208,13 @@
 }
 
 .dashboard-div {
-  display: table;
+  display: flex;
+  justify-content: center;
   width: 100%;
 }
 
 .dash-main {
-  width: 65%;
+  width: 50%;
   box-shadow: 3px 0 8px -4px #999999, -3px 0 8px -4px #999999;
 }
 
@@ -361,20 +362,39 @@
   border-right: 1px solid #d3cece;
   width: 25%;
 }
-
-/* .dash-main-body {
+/* 
+.dash-main-body {
   display: flex;
   justify-content: space-evenly;
-}
+} */
 
-.dash-owe {
+.dash-expense-owe {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 8px;
-  font-family: Arial, Helvetica, sans-serif;
   justify-content: space-between;
-} */
+} 
+
+.expenses {
+  display: flex;
+  border-bottom: 1px solid #aeaeae;
+  font-family: Arial, Helvetica, sans-serif; 
+}
+
+.expense-date {
+  border: 1px solid red;
+  display: flex;
+  width: 40px;
+  height: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color:rgb(161, 158, 158);
+}
+
+.expense-title {
+
+}
 
 .dash-main-left {
   font-size: 14px;
@@ -392,7 +412,7 @@
   width: 15%;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-direction: column;
   padding: 10px;
   margin-left: 10px;
@@ -415,6 +435,7 @@
   font-size: 13px;
   text-align: left;
   margin: 5px 0;
+  width: 150px;
 }
 
 .plates-download-button {

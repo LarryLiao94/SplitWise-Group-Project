@@ -1,3 +1,10 @@
+/* .dash-container {
+  display: flex;
+  justify-content: center;
+  border: 1px solid red;
+  max-width: 1200px;
+} */
+
 .dash-navbar {
   display: flex;
   justify-content: space-between;
@@ -77,9 +84,9 @@
   font-size: 15px;
 }
 
-.column {
+/* .column {
   float: left;
-}
+} */
 
 .dash-left-side {
   width: 15%;
@@ -209,12 +216,13 @@
 
 
 .dashboard-div {
-  display: table;
+  display: flex;
+  justify-content: center;
   width: 100%;
 }
 
 .dash-main {
-  width: 65%;
+  width: 50%;
   box-shadow: 3px 0 8px -4px #999999, -3px 0 8px -4px #999999;
 }
 
@@ -394,7 +402,7 @@
   width: 15%;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-direction: column;
   padding: 10px;
   margin-left: 10px;
@@ -416,7 +424,9 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
   text-align: left;
+  width: 150px;
   margin: 5px 0;
+
 }
 
 .plates-download-button {
