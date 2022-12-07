@@ -14,11 +14,17 @@ import lpPlane from './images/lp-plane.png'
 import lpHouse from './images/lp-house.png'
 import lpHeart from './images/lp-heart.png'
 import lpWild from './images/lp-wild.png'
-import { applyMiddleware } from 'redux';
+// import { applyMiddleware } from 'redux';
 
 function LandingPage(){
     const history = useHistory();
     const dispatch = useDispatch();
+
+    const [toggleState, setToggleState] = useState(1);
+
+    const toggleTab = (index) => {
+      setToggleState(index);
+    };
   
     const loggedSession = useSelector((state) => (state.session.user));
 
@@ -52,61 +58,79 @@ function LandingPage(){
                 </nav>
             </div>
             <main className='main'>
-            
+            <div className='toggle'>
                 <h1>
-                    <span className='landing-share-options trips '>
-                        "Less stress when sharing expenses "
+                     <div className={toggleState === 1 ? "landing-content active-landing-content" : "landing-content"}>
+                        Less stress when sharing expenses 
                         <span className='trip-text'>
                             on trips.
                         </span>
-                    </span>
-                    <span className='landing-share-options housemates'>
-                        "Less stress when sharing expenses "
+                    </div>
+
+                     <div className={toggleState === 2 ? "landing-content active-landing-content" : "landing-content"}>
+                        Less stress when sharing expenses 
                         <span className='housemates-text'>
                             with housemates.
                         </span>
-                    </span>
-                    <span className='landing-share-options partner'>
-                        "Less stress when sharing expenses "
+                    </div>
+
+                    <div className={toggleState === 3 ? "landing-content active-landing-content" : "landing-content"}>
+                        Less stress when sharing expenses 
                         <span className='partner-text'>
                             with your partner.
                         </span>
-                    </span>
-                    <span className='landing-share-options anyone'>
-                        "Less stress when sharing expenses "
+                    </div>
+
+                    <div className={toggleState === 4 ? "landing-content active-landing-content" : "landing-content"}>
+                        Less stress when sharing expenses 
                         <span className='anyone-text'>
                             with anyone.
                         </span>
-                    </span>
+                    </div>
                 </h1>
                   
-                <ul className='landing-share-list-icons'>
-                    <li className='landing-plane-icon-list'>
-                        <a href='#' className='landing-nav-plane-link'>
-                           <img className='landing-plane-icon' src={planeIcon} alt='plane'/> 
-                        </a> 
-                    </li>
+                <div className='landing-share-list-icons'>
+                    <button className={toggleState === 1 ? "landing-tab active-landing-tabs" : "landing-tab "}
+                    onClick={() => toggleTab(1)}>
+                        <img className='landing-plane-icon' src={planeIcon} alt='plane'/> 
+                    </button>
 
-                    <li className='landing-home-icon-list'>
-                    <a href='#' className='landing-nav-home'>
-                           <img className='landing-home-icon' src={houseMates} alt='home'/>
-                        </a> 
-                    </li>
+                     <button className={toggleState === 1 ? "landing-tab active-landing-tabs" : "landing-tab "}
+                    onClick={() => toggleTab(2)}>
+                        <img className='landing-home-icon' src={houseMates} alt='home'/>
+                    </button>
 
-                    <li className='landing-heart-icon-list'>
-                    <a href='#'  className='landing-nav-heart'>
-                            <img className='landing-heart-icon' src={partner} alt='partner'/>
-                        </a> 
-                    </li>
+                    <button className={toggleState === 1 ? "landing-tab active-landing-tabs" : "landing-tab "}
+                    onClick={() => toggleTab(3)}>
+                        <img className='landing-heart-icon' src={partner} alt='partner'/>
+                    </button>
 
-                    <li className='landing-wild-icon-list'>
-                    <a href='#'  className='landing-nav-wild'>
-                            <img className='landing-wild-icon' src={wild} alt='wild'/>
-                        </a> 
-                    </li>
-                </ul>
+                    <button className={toggleState === 1 ? "landing-tab active-landing-tabs" : "landing-tab "}
+                    onClick={() => toggleTab(4)}>
+                        <img className='landing-wild-icon' src={wild} alt='wild'/>
+                    </button>
+                </div>
+                
+                <div className='landing-content-tabs'>
+                    
+                    <div className={toggleState === 1 ? "landing-content active-landing-content" : "landing-content"}>
+                        <img src={lpPlane} />
+                    </div>
 
-                <ul className='lp-large-icons'>
+                    <div className={toggleState === 2 ? "landing-content active-landing-content" : "landing-content"}>
+                        <img src={lpHouse} />
+                    </div>
+
+                    <div className={toggleState === 3 ? "landing-content active-landing-content" : "landing-content"}>
+                        <img src={lpHeart} />
+                    </div>
+
+                    <div className={toggleState === 4 ? "landing-content active-landing-content" : "landing-content"}>
+                        <img src={lpWild} />
+                    </div>
+                </div>
+                
+                {/* <ul className='lp-large-icons'>
                     <li className='lp-icon plane hidden'>
                         <img src={lpPlane} />
                     </li>
@@ -119,14 +143,36 @@ function LandingPage(){
                     <li className='lp-icon wild hidden'>
                         <img src={lpWild} />
                     </li>
-                </ul>
+                </ul> */}
 
-                <div className='download-app-div'>
-                    <button className='landing-app-download'>
-                        <a className='download-link' href='/'>
-                        Sign up
-                        </a>
-                    </button>
+                        <div className={toggleState === 1 ? "landing-content active-landing-content" : "landing-content"}>
+                            <button className='active signup-green'> 
+                            <a href='/sign-up' exact={true} className='active signup-green'>
+                                Sign up
+                            </a>
+                            </button>
+                        </div>
+                        <div className={toggleState === 2 ? "landing-content active-landing-content" : "landing-content"}>
+                            <button className='active signup-purple'> 
+                            <a href='/sign-up' exact={true} className='active signup-purple'>
+                                Sign up
+                            </a>
+                            </button>
+                        </div>
+                        <div className={toggleState === 3 ? "landing-content active-landing-content" : "landing-content"}>
+                            <button className='active signup-red'> 
+                            <a href='/sign-up' exact={true} className='active signup-red'>
+                                Sign up
+                            </a>
+                            </button>
+                        </div>
+                        <div className={toggleState === 4 ? "landing-content active-landing-content" : "landing-content"}>
+                            <button className='active signup-gray'> 
+                            <a href='/sign-up' exact={true} className='active signup-gray'>
+                                Sign up
+                            </a>
+                            </button>
+                        </div>
                 </div>
 
 
@@ -165,7 +211,7 @@ function LandingPage(){
                     <p className='add-expenses-description'>
                         Quickly add expenses on the go before you forget who paid.
                     </p>
-                    <img className='add-image' src='https://secure.splitwise.com/assets/home_page/fixtures/asset3.png' />
+                    <img className='add-expenses-image' src='https://secure.splitwise.com/assets/home_page/fixtures/asset3.png' />
                 </div>
                 </div>
 
@@ -280,12 +326,12 @@ function LandingPage(){
                         <li className='footer-splitwise title'>Splitwise</li>
                         <li>About</li>
                     </ul>
-                    <ul className='footer-section'>
+                    <div className='footer-section'>
                         <li className='footer-account title'>Account</li>
-                        <li>Log in</li>
-                        <li>Sign up</li>
+                        <a className='footer-login' href='/login'>Log in</a>
+                        <a className='footer-signup' href='/sign-up'>Sign up</a>
                         <li>Reset password</li>
-                    </ul>
+                    </div>
                     <ul className='footer-section'>
                         <li className='footer-more title'>More</li>
                         <li>Contact Us</li>

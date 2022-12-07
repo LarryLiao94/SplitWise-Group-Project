@@ -1,4 +1,4 @@
-import "./Expense.css";
+import "./FriendDetails.css";
 import { useEffect, useState } from "react";
 import { getExpenses } from "../../store/expense";
 import { NavLink, Link, useHistory, useParams } from "react-router-dom";
@@ -11,10 +11,8 @@ import { getFriends } from "../../store/friend";
 import { getBalanceThunk } from "../../store/balance";
 import EditExpenseModal from "../EditExpenseModal";
 import { deleteExpenseThunk } from "../../store/expense";
-import CommentForm from "../Comment";
-import Tab from "./RightTab";
 
-function ExpensesPage() {
+function FriendDetails() {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -209,9 +207,6 @@ function ExpensesPage() {
                           }`
                         : `${expenseState[key].ownerName} lent you ${expenseState[key].balance}`}
                     </div>
-                    <div>
-                      <CommentForm expense={expenseState[key]} />
-                    </div>
                     <button
                       onClick={async (e) => {
                         e.preventDefault();
@@ -229,7 +224,7 @@ function ExpensesPage() {
         </div>
 
         <div className="dash-right-side column">
-          {/* <div className="dash-right-split-text">SPLIT THE DINNER BILL</div>
+          <div className="dash-right-split-text">SPLIT THE DINNER BILL</div>
           <img
             className="knife-fork"
             src="https://assets.splitwise.com/assets/fat_rabbit/sidebar/plates-01a8a1ced1d926765746e2638c42d5d829416fb14326e1a1be5cd34440d4ba76.png"
@@ -238,12 +233,11 @@ function ExpensesPage() {
             Check out Plates, our free iOS app to quickly and easily split
             dinner bills with friends.
           </div>
-          <button className="plates-download-button">Download Plates</button> */}
-          <Tab />
+          <button className="plates-download-button">Download Plates</button>
         </div>
       </div>
     </>
   );
 }
 
-export default ExpensesPage;
+export default FriendDetails;
