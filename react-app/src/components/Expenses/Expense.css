@@ -379,7 +379,7 @@
 .expenses {
   display: flex;
   border-bottom: 1px solid #aeaeae;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif; 
 }
 
 .expense-date {
