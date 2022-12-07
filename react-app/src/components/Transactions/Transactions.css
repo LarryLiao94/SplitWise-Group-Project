@@ -442,6 +442,8 @@
   border-bottom: 1px solid #aeaeae;
   height: 50px;
   padding: 20px;
+  text-decoration: none;
+  color: #333333
 }
 
 .transaction-default-image {

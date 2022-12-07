@@ -138,41 +138,17 @@ function TransactionsPage() {
           <div className="dash-main-header">
             <div className="dash-main-header-upper">
               <div className="dashboard-title">Recent activity</div>
-              {/* <div className="dash-buttons">
-                <AddExpenseModal />
-
-                <SettleUpModal />
-              </div> */}
+  
             </div>
-
-            {/* <div className="dash-main-header-balances">
-
-              <div className="dash-total-balance-div">total balance 
-                <div className='dash-total-balance'>
-                  {balanceState.balance}
-                </div>
-              </div>
-              
-
-              <div className="dash-you-owe-div">you owe
-                <div className='dash-you-owe'>
-                  {balanceState.owe}
-                </div>
-              </div>
-
-              <div className="dash-you-are-owed-div">you are owed
-                <div className='dash-you-are-owed'> 
-                  {balanceState.owed}
-                </div>
-              </div>
-
-            </div> */}
           </div>
           <div className="dash-main-body">
           <div className="transactions-container">
-        { Object.keys(transactionObj).map(function(key, index) {
+            {Object.keys(transactionObj).map(function(key, index) {
           return (
-          <div className='transaction' key={transactionObj[key].transactionId}>
+          <>
+          {
+          transactionObj[key].transactionType == 'friend' ?
+            <a className='transaction' key={transactionObj[key].transactionId} href='/friends'>
             <a className="default-image-link">
             <img
               className="transaction-default-image"
@@ -208,13 +184,51 @@ function TransactionsPage() {
                 `You owe $${transactionObj[key].balance / 2}`) : ``}
               </div>
             }
-            <div className='transaction-date'>
-              {console.log(transactionObj[key], 'here')}
             </div>
+            </a> 
+            : 
+            <a className='transaction' key={transactionObj[key].transactionId} href='/expenses'>
+            <a className="default-image-link">
+            <img
+              className="transaction-default-image"
+              src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
+              height="40"
+              width="40"
+              />
+            </a>
+            <div className='transaction-info'>
+              <div className='transaction-description'>
+                {transactionObj[key].transactionType == 'friend' ?
+                (transactionObj[key].type == 'owner' ? 
+                `You added ${transactionObj[key].recipientName}` : 
+                `${transactionObj[key].recipientName} added you`) : 
+                (transactionObj[key].type == 'owner' ? 
+                `You added ${transactionObj[key].description}` : 
+                `${transactionObj[key].ownerName} added ${transactionObj[key].description}`)}
+              </div>
+            {
+              (transactionObj[key].type == 'owner') ?
+              <div className='transaction-balance-owe'>
+                {transactionObj[key].transactionType == 'expense' ? 
+                (transactionObj[key].type == 'owner' ? 
+                `You get back $${transactionObj[key].balance / 2}` :
+                 `You owe $${transactionObj[key].balance / 2}`) :
+                  ``}
+              </div>
+              :
+              <div className='transaction-balance-paid'>
+                {transactionObj[key].transactionType == 'expense' ? 
+                (transactionObj[key].type == 'owner' ? 
+                `You get back $${transactionObj[key].balance / 2}` : 
+                `You owe $${transactionObj[key].balance / 2}`) : ``}
+              </div>
+            }
           </div>
-          </div>
+          </a>
+           }
+          </>
         )})
-          }
+      }
       </div>
           </div>
         </div>
