@@ -12,6 +12,7 @@ import { getBalanceThunk } from "../../store/balance";
 import EditExpenseModal from "../EditExpenseModal";
 import { deleteExpenseThunk } from "../../store/expense";
 import CommentForm from "../Comment";
+import { getAllCommentsThunk } from "../../store/comment";
 
 function ExpensesPage() {
   const dispatch = useDispatch();
@@ -209,7 +210,7 @@ function ExpensesPage() {
                         : `${expenseState[key].ownerName} lent you ${expenseState[key].balance}`}
                     </div>
                     <div>
-                      <CommentForm expenseId={expenseState[key]} />
+                      <CommentForm expense={expenseState[key]} />
                     </div>
                     <button
                       onClick={async (e) => {

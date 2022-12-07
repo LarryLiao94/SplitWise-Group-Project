@@ -6,10 +6,10 @@ import {
   editCommentThunk,
   getAllCommentsThunk,
 } from "../../store/comment";
-export default function CommentForm({ expenseId }) {
-  //   const { spotId } = useParams();
+export default function CommentForm({ expense }) {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { expenseId } = expense;
 
   const [comment, setComment] = useState("");
   const [errors, setErrors] = useState([]);
@@ -18,14 +18,16 @@ export default function CommentForm({ expenseId }) {
     e.preventDefault();
     setErrors([]);
     let payload = {
+      id: expenseId,
+      expenseId: expenseId,
       comment,
     };
 
     try {
-      await dispatch(addCommentThunk(payload));
-      //   history.push("/user/reviews");
+      dispatch(addCommentThunk(payload));
+
       //   dispatch(getAllreviews(expenseId));
-      history.push(`/expenses`);
+      //   history.go(`/expenses`);
     } catch (res) {
       const data = await res.json();
 
