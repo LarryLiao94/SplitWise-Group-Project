@@ -1,7 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCommentsThunk } from "../../store/comment";
+import {
+  getAllCommentsThunk,
+  deleteCommentThunk,
+  editCommentThunk,
+} from "../../store/comment";
 import "./Comments.css";
+import EditCommentModal from "../EditCommentModal";
 
 export default function GetExpenseComments({ expenseId }) {
   const dispatch = useDispatch();
@@ -22,6 +27,9 @@ export default function GetExpenseComments({ expenseId }) {
               <div id="comment-container" key={comment.id}>
                 <div id="comment" key={comment.id}>
                   {comment.comment}
+                </div>
+                <div>
+                  <EditCommentModal comment={comment} />
                 </div>
                 <button
                   onClick={async (e) => {

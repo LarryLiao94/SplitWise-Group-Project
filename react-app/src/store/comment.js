@@ -51,6 +51,7 @@ export const addCommentThunk = (comment) => async (dispatch) => {
 
 export const editCommentThunk = (comment) => async (dispatch) => {
   const { id } = comment;
+  console.log("hit edit comment thunkkkkkk");
   const res = await csrfFetch(`/api/comments/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },

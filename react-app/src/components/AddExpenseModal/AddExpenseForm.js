@@ -1,4 +1,4 @@
-import React, {useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 // import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
@@ -23,7 +23,7 @@ function AddExpenseForm({ onClose }) {
   const [image, setImage] = useState("");
   const [group, setGroup] = useState("");
   const [errors, setErrors] = useState([]);
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState("");
   // const [ searchDropDown, setSearchDropdown ] = useState('');
   // const [recipientId, setRecipientId] = useState(0)
   // const closeModal = () =>{
@@ -50,7 +50,7 @@ function AddExpenseForm({ onClose }) {
       await dispatch(getFriends());
     };
     myFriends();
-  }, []);
+  }, [dispatch]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,8 +62,8 @@ function AddExpenseForm({ onClose }) {
     };
 
     try {
-     dispatch(addExpenseThunk(payload))
-     history.go('/dashboard')
+      dispatch(addExpenseThunk(payload));
+      history.go("/dashboard");
     } catch (res) {
       setErrors([]);
       const data = await res.json();
