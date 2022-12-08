@@ -3,6 +3,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
 import ImageModal from "../ImageModal";
+import RecipientModal from "../RecipientModal"
 import { getFriends } from "../../store/friend";
 import './SettleUp.css'
 import './index'
@@ -64,7 +65,7 @@ function SettleUpForm({ onClose }) {
           </button>
           <div>paid</div>
           <button className='settle-up-recipient'>
-            Recipient
+            <RecipientModal />
           </button>
         </div>
 
