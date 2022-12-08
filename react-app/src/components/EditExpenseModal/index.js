@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal } from "../../context/Modal";
 import EditExpenseForm from "./EditExpenseForm";
 import "../AddExpenseModal/AddExpense.css";
+import "./EditExpense.css"
 
 function EditExpenseModal({ expense }) {
   const [showModal, setShowModal] = useState(false);
@@ -9,7 +10,7 @@ function EditExpenseModal({ expense }) {
   return (
     <>
       <button
-        className="dash-add-expense-modal"
+        className="dash-edit-expense-modal"
         onClick={() => setShowModal(true)}
       >
         Edit expense

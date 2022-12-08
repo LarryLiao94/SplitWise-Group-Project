@@ -362,39 +362,21 @@
   border-right: 1px solid #d3cece;
   width: 25%;
 }
-/* 
-.dash-main-body {
+
+.dash-expense-main-body {
+  /* border: 1px solid red; */
   display: flex;
-  justify-content: space-evenly;
-} */
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+}
 
 .dash-expense-owe {
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 8px;
+  /* padding: 8px; */
   justify-content: space-between;
 } 
-
-.expenses {
-  display: flex;
-  border-bottom: 1px solid #aeaeae;
-  font-family: Arial, Helvetica, sans-serif; 
-}
-
-.expense-date {
-  border: 1px solid red;
-  display: flex;
-  width: 40px;
-  height: 30px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 12px;
-  color:rgb(161, 158, 158);
-}
-
-.expense-title {
-
-}
 
 .dash-main-left {
   font-size: 14px;
@@ -534,3 +516,138 @@
   color: #ff652f;
   margin-bottom: 10px;
 }
+
+.expense-tab-container {
+  display: flex;
+  flex-direction: column;
+  word-break: break-all;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.expense-tabs-div {
+  display: flex;
+}
+
+.expense-tabs {
+  border: none;
+  width: 100%;
+  background-color: rgba(255,255,255,.1);
+  border-bottom: 1px solid #aeaeae;
+}
+
+.expenses {
+  display: flex;
+  justify-content: space-between;
+  font-family: Arial, Helvetica, sans-serif; 
+}
+
+.expense-date {
+  display: flex;
+  width: 45px;
+  height: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color:rgb(161, 158, 158);
+  margin: 5px;
+  padding-top: 5px;
+}
+
+.expense-image {
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+}
+
+.active-expense-tabs::before {
+  content:'';
+  display: block;
+  position: absolute;
+  top: -5px;
+}
+
+.expense-content {
+  display: none;
+}
+
+.active-expense-content {
+  display: block;
+  background-color: #f8f8f8;
+}
+
+.expense-title {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.expense-who-paid {
+  display: flex;
+  align-items: center;
+}
+
+.expense-needs-to-pay {
+  display: flex;
+  align-items: center;
+}
+
+.expense-left,
+.expense-right {
+  display: flex;
+}
+
+.expense-transaction-div {
+  margin: 10px;
+}
+
+.expense-transaction-text {
+  color:rgb(161, 158, 158)
+}
+
+.expense-you-paid-balance {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.expense-you-lent-balance {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1cc29f
+}
+
+.expense-owner-lent-balance {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ff652f
+}
+
+.expense-dropdown-header {
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 1px solid #cccaca;
+  padding: 15px;
+  box-shadow: 0px 2px 8px -4px #999999, 0px -3px 8px -4px #999999;
+}
+
+.expense-dropdown-image {
+  margin: 0 15px 15px 0;
+  height: 86px;
+  width: 86px;
+}
+
+.expense-dropdown-header-info {
+  /* border: 1px solid red; */
+  padding-top: 10px;
+}
+
+.expense-dropdown-balance {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.expense-dropdown-secondary-text {
+  color:rgb(161, 158, 158);
+  font-size: 12px;
+}
+
+
+
