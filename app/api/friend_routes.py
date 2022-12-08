@@ -29,41 +29,58 @@ def get_friend_by_id(id):
     
     user_friend = User.query.get(friend_id)
     details = {}
+    
 
     expenses = Expense.query.filter(Expense.user_id == current_user.id).all()
     recipient_expenses = Expense.query.filter(Expense.recipientId == current_user.id).all()
+    friend_total_balance = 0
+
     for expense in expenses:
-        if expense.recipientId == id:
-            details[f"{expense.id}"] = {
-                'transactionId': expense.id,
-                'userId': expense.user_id,
-                'recipientId': expense.recipientId,
-                'ownerName': User.query.get(expense.user_id).firstName,
-                'recipientName': User.query.get(expense.recipientId).firstName,
-                'description': expense.title,
-                'balance': expense.balance,
-                'type': 'owner'       
-            }
+        if expense.recipientId == friend_id:
+            friend_total_balance += expense.balance / 2
+
     for expense in recipient_expenses:
         if expense.user_id == id:
-            details[f"{expense.id}"] = {
+            friend_total_balance -= expense.balance /2
+
+    for expense in expenses:
+        if expense.recipientId == id:
+                details[f"expense {expense.id}"] = {
+                    'transactionId': expense.id,
+                    'userId': expense.user_id,
+                    'recipientId': expense.recipientId,
+                    'ownerName': User.query.get(expense.user_id).firstName,
+                    'recipientName': User.query.get(expense.recipientId).firstName,
+                    'recipientLastName': User.query.get(expense.recipientId).lastName,
+                    'description': expense.title,
+                    'timestamp': expense.timestamp,
+                    'balance': expense.balance,
+                    'totalFriendBalance': friend_total_balance,
+                    'type': 'owner'       
+                }
+    for expense in recipient_expenses:
+        if expense.user_id == id:
+            details[f"expense {expense.id}"] = {
                 'transactionId': expense.id,
                 'userId': expense.user_id,
                 'recipientId': expense.recipientId,
                 'ownerName': User.query.get(expense.user_id).firstName,
                 'recipientName': User.query.get(expense.recipientId).firstName,
+                'recipientLastName': User.query.get(expense.recipientId).lastName,
                 'description': expense.title,
+                'timestamp': expense.timestamp,
                 'balance': expense.balance,
+                'totalFriendBalance': friend_total_balance,
                 'type': 'recipient'       
             }
 
-    details['firstName'] = user_friend.firstName
-    details['lastName'] = user_friend.lastName
-    details['id'] = user_friend.id
-
+    detail_list = list(details.items())
 
     if user_friend:
-        return details
+        return jsonify({
+            'details': detail_list,
+            'friendTotal': friend_total_balance
+        })
     else:
         return jsonify({'Not found': 'User does not exist or is not part of your friends list'}), 404
 
