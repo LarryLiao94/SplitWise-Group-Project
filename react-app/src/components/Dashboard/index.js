@@ -5,6 +5,7 @@ import Profile from "./ProfileButton";
 import AddFriendModal from "../AddFriendModal";
 import AddExpenseModal from "../AddExpenseModal";
 import SettleUpModal from "../SettleUpModal";
+import Search from '../Search';
 import { getFriends } from "../../store/friend";
 import { useEffect } from "react";
 import { getBalanceThunk } from "../../store/balance";
@@ -31,7 +32,9 @@ function Dashboard() {
   const loggedSession = useSelector((state) => state.session.user);
 
   const friendState = useSelector((state) => state.friends);
+  // const friendIdState = useSelector((state) => state.friendId);
   const allFriends = Object.values(friendState);
+  // const friendIds = Object.values(friendIdState);
   // console.log(allFriends, "SADSA");
 
   const balanceState = useSelector((state) => state.balances);
@@ -78,6 +81,7 @@ function Dashboard() {
           </Link>
           <div className="dash-search-bar">
             <i className="fa-solid fa-magnifying-glass"></i>
+            {/* <Search /> */}
             <input type="text" placeholder="Filter by name" />
           </div>
           <Link className="dash-all-expenses" to="/expenses">
@@ -103,14 +107,14 @@ function Dashboard() {
               </Link>
             </div>
             <div className="dash-friends-list-container">
-              {allFriends?.map((friend) => {
+              {allFriends?.map((friend, friendId) => {
                 return (
-                  <div className="friends-div">
-                    <i className="fa-solid fa-user"></i>
-                    <li className="friends" key={friend.id}>
-                      {friend}
-                    </li>
-                  </div>
+                    <Link className="friends-div" to={`/friends/${friendId.id}`}>
+                      <i className="fa-solid fa-user"></i>
+                      <li className="friends" key={friend.id}>
+                        {friend}
+                      </li>
+                   </Link>
                 );
               })}
             </div>

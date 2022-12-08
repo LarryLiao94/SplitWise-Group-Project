@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllCommentsThunk,
-  editCommentThunk,
-  deleteCommentThunk,
-} from "../../store/comment";
+import { getAllCommentsThunk } from "../../store/comment";
+import "./Comments.css";
 
 export default function GetExpenseComments({ expenseId }) {
   const dispatch = useDispatch();

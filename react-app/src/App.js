@@ -15,6 +15,7 @@ import ExpensesPage from "./components/Expenses";
 import TransactionsPage from "./components/Transactions";
 import { authenticate } from "./store/session";
 import FriendDetails from "./components/FriendDetails";
+import RemoveFriendForm from "./components/FriendDetails/RemoveFriend"
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -54,6 +55,9 @@ function App() {
         <Route path="/transactions" exact={true}>
           <TransactionsPage />
         </Route>
+        <Route exact path="/friends/:id/edit" component={RemoveFriendForm} /> 
+          {/* <RemoveFriendForm /> */}
+        {/* </Route>
         {/* <Route path='friends' exact={true}>
           <
         </Route> */}
@@ -69,6 +73,9 @@ function App() {
         <ProtectedRoute path="/friends/:id" exact={true}>
           <FriendDetails />
         </ProtectedRoute>
+        {/* <ProtectedRoute path="/friends/2/edit" >
+          <RemoveFriendForm />
+        </ProtectedRoute> */}
         {/* <Route path='/' exact={true} >
           <h1>My Home Page</h1>
         </Route> */}
