@@ -11,26 +11,20 @@ import { getFriends } from "../../store/friend";
 import { getBalanceThunk } from "../../store/balance";
 import EditExpenseModal from "../EditExpenseModal";
 import { deleteExpenseThunk } from "../../store/expense";
+import { getFriendIdThunk } from "../../store/friendDetails";
+import { getTotalBalanceThunk } from "../../store/friendTotal";
 
 function FriendDetails() {
   const dispatch = useDispatch();
 
+  const { id } = useParams();
+
+  console.log(typeof id)
+
   useEffect(() => {
     dispatch(getExpenses());
   }, []);
-
-  const expensesObj = useSelector((state) => state.expenses);
-  // console.log(expensesObj);
-  const expenses = Object.values(expensesObj);
-  // console.log(expenses);
-  {
-    /* <div className="expense-container">
-    <h1>Hello From Expenses</h1>
-    {expenses.map((expense) => (
-      <div>{expense.description}</div>
-    ))}
-  </div> */
-  }
+  
   useEffect(() => {
     const myFriends = async () => {
       await dispatch(getFriends());
@@ -45,17 +39,43 @@ function FriendDetails() {
     allBalance();
   }, []);
 
+  useEffect(() => {
+    const friendDetails = async () => {
+      await dispatch(getFriendIdThunk(Number(id)))
+    };
+    friendDetails()
+  }, []);
+
+  useEffect(() => {
+    const totalBalance = async () => {
+      await dispatch(getTotalBalanceThunk(Number(id)))
+    };
+    totalBalance()
+  }, []);
+
+  const expensesObj = useSelector((state) => state.expenses);
+
+  const expenses = Object.values(expensesObj);
+
   const loggedSession = useSelector((state) => state.session.user);
 
   const friendState = useSelector((state) => state.friends);
+
   const allFriends = Object.values(friendState);
-  // console.log(allFriends, "SADSA");
 
   const balanceState = useSelector((state) => state.balances);
-  // const allBalances = balanceState.balance;
-  // console.log(allBalances, "HERE")
 
   const expenseState = useSelector((state) => state.expenses);
+
+  const friendInfoState = useSelector((state) => state.friend);
+
+  const friendTotalBalanceState = useSelector((state) => state.friendTotal.friendTotal);
+
+  console.log(friendTotalBalanceState)
+
+  
+
+  
   const history = useHistory();
   //   const onClick = async (e) => {
   //     e.preventDefault();
@@ -130,7 +150,7 @@ function FriendDetails() {
                 return (
                   <div className="friends-div">
                     <i className="fa-solid fa-user"></i>
-                    <li className="friends" key={friend.id}>
+                    <li className="friends" key={friend?.id}>
                       {friend}
                     </li>
                   </div>
@@ -163,60 +183,36 @@ function FriendDetails() {
             <div className="dash-main-header-balances">
               <div className="dash-total-balance-div">
                 total balance
-                <div className="dash-total-balance">{balanceState.balance}</div>
+                <div className="dash-total-balance">{friendTotalBalanceState}</div>
               </div>
-
-              {/* <div className="dash-you-owe-div">you owe
-                <div className='dash-you-owe'>
-                  {balanceState.owe}
-                </div>
-              </div>
-
-              <div className="dash-you-are-owed-div">you are owed
-                <div className='dash-you-are-owed'>
-                  {balanceState.owed}
-                </div>
-              </div> */}
             </div>
           </div>
           <div className="dash-main-body">
             <div className="dash-owe">
-              {/* <div className="dash-main-left">YOU OWE</div>
-              <div className="dash-main-right">YOU ARE OWED</div> */}
-              {Object.keys(expenseState).map(function (key, index) {
+              {Object.keys(friendInfoState).map(function (key, index) {
                 return (
-                  <div className="expenses" key={expenseState[key].expenseId}>
-                    <div>
-                      <EditExpenseModal expense={expenseState[key]} />
+                    <div className='expenses' key={friendInfoState[key][1].transactionId}>
+                      <div>
+                      <EditExpenseModal expense={friendInfoState[key][1].transactionId} />
+                      </div>
+                      <div className='expense-left'>
+                        <div className='expense-date'>
+                          {friendInfoState[key][1].timestamp.slice(0, 11)}
+                        </div>
+                        <img className='expense-image' src='https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png' />
+                        <div className='expense-title'>
+                          {friendInfoState[key][1].description}
+                        </div>
+                      </div>
+                      <div className='expense-right'>
+                        <div className='expense-who-paid'>
+                          {friendInfoState[key][1].type == "owner" ? `You paid ${friendInfoState[key][1].balance}` : `${friendInfoState[key][1].ownerName} paid ${friendInfoState[key][1].balance}`}
+                        </div>
+                        <div className='expense-needs-to-pay'>
+                          {friendInfoState[key][1].type == "owner" ? `You lent ${friendInfoState[key][1].recipientName}  ${friendInfoState[key][1].balance / 2}` : `${friendInfoState[key][1].ownerName} lent you ${friendInfoState[key][1].balance / 2}`}
+                        </div>
+                      </div>
                     </div>
-                    <div className="expense-date">
-                      {expenseState[key].timestamp.slice(0, 11)}
-                    </div>
-                    <div className="expense-title">
-                      {expenseState[key].title}
-                    </div>
-                    <div className="expense-who-paid">
-                      {expenseState[key].type == "owner"
-                        ? `You paid ${expenseState[key].balance}`
-                        : `${expenseState[key].ownerName} paid ${expenseState[key].balance}`}
-                    </div>
-                    <div className="expense-needs-to-pay">
-                      {expenseState[key].type == "owner"
-                        ? `You lent ${expenseState[key].ownerName} ${
-                            expenseState[key].balance / 2
-                          }`
-                        : `${expenseState[key].ownerName} lent you ${expenseState[key].balance}`}
-                    </div>
-                    <button
-                      onClick={async (e) => {
-                        e.preventDefault();
-                        history.go("/dashboard");
-                        await dispatch(deleteExpenseThunk(key));
-                      }}
-                    >
-                      delete
-                    </button>
-                  </div>
                 );
               })}
             </div>

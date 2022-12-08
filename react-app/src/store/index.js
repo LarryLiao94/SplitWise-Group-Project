@@ -6,14 +6,18 @@ import expensesReducer from "./expense";
 import balanceReducer from "./balance";
 import transactionReducer from "./transactions";
 import commentsReducer from "./comment";
+import friendDetailsReducer from "./friendDetails";
+import friendTotalReducer from "./friendTotal";
 
 const rootReducer = combineReducers({
   session,
   friends: friendsReducer,
+  friend: friendDetailsReducer,
   expenses: expensesReducer,
   balances: balanceReducer,
   transactions: transactionReducer,
   comments: commentsReducer,
+  friendTotal: friendTotalReducer
 });
 
 let enhancer;

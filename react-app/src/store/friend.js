@@ -2,7 +2,8 @@ import { csrfFetch } from './csrf'
 
 const ADD_FRIEND = 'friend/ADD_FRIEND';
 const REMOVE_FRIEND = 'friend/REMOVE_FRIEND';
-const GET_FRIENDS = 'friend/GET_FRIEND'
+const GET_FRIENDS = 'friend/GET_FRIEND';
+const GET_FRIEND_ID = 'friend/GET_FRIEND_ID';
 
 const addFriend = (friend) => ({
     type: ADD_FRIEND,
@@ -12,6 +13,11 @@ const addFriend = (friend) => ({
 const getAllFriends = (friends) => ({
     type: GET_FRIENDS,
     friends
+})
+
+const getFriendById = (friend) => ({
+    type: GET_FRIEND_ID,
+    friend
 })
 
 const initialState = {};
