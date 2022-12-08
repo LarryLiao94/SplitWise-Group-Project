@@ -78,7 +78,7 @@ function EditExpenseForm({ expense, onClose }) {
     //   if (data && data.errors) setErrors(data.errors);
     // }
 
-    e.preventDefault();
+    // e.preventDefault();
 
     let payload = {
       id: expense.expenseId,
@@ -93,7 +93,7 @@ function EditExpenseForm({ expense, onClose }) {
 
     try {
       dispatch(editExpenseThunk(payload));
-      history.go("/expenses");
+      history.go("/dashboard");
     } catch (res) {
       setErrors([]);
       const data = await res.json();

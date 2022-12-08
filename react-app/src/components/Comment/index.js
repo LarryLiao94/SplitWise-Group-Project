@@ -40,7 +40,6 @@ export default function CommentForm({ expense }) {
     <div id="review-form-container">
       <div id="form-container">
         <form onSubmit={handleSubmit}>
-          <p>NOTES AND COMMENTS</p>
           {errors && (
             <ul>
               {errors.map((error, idx) => (
@@ -51,7 +50,7 @@ export default function CommentForm({ expense }) {
             </ul>
           )}
           <label>
-            Review
+            Comment
             <textarea
               value={comment}
               onChange={(e) => setComment(e.target.value)}

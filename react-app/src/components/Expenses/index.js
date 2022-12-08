@@ -14,6 +14,7 @@ import { deleteExpenseThunk } from "../../store/expense";
 import CommentForm from "../Comment";
 import Tab from "./RightTab";
 import GetExpenseComments from "../Comment/Comments";
+import EditCommentModal from "../EditCommentModal";
 
 function ExpensesPage() {
   const dispatch = useDispatch();
@@ -189,139 +190,145 @@ function ExpensesPage() {
           </div>
           <div className="dash-expense-main-body">
             <div className="dash-expense-owe">
-        
               {Object.keys(expenseState).map(function (key, index) {
                 return (
-                <div className='expense-tab-container'>
+                  <div className="expense-tab-container">
+                    <div className="expense-tabs-div">
+                      <button
+                        className={
+                          toggleState === expenseState[key].expenseId
+                            ? "expense-tabs active-expense-tabs"
+                            : "expense-tabs"
+                        }
+                        onClick={() => toggleTab(expenseState[key].expenseId)}
+                      >
+                        <div
+                          className="expenses"
+                          key={expenseState[key].expenseId}
+                        >
+                          <div className="expense-left">
+                            <div className="expense-date">
+                              {expenseState[key].timestamp.slice(0, 11)}
+                            </div>
+                            <img
+                              className="expense-image"
+                              src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
+                            />
+                            <div className="expense-title">
+                              {expenseState[key].title}
+                            </div>
+                          </div>
 
-                  <div className='expense-tabs-div'>
-                    <button
-                    className={toggleState === expenseState[key].expenseId ? "expense-tabs active-expense-tabs" : "expense-tabs"}
-                    onClick={() => toggleTab(expenseState[key].expenseId)}>
+                          <div className="expense-right">
+                            <div className="expense-who-paid">
+                              {expenseState[key].type == "owner" ? (
+                                <div className="expense-transaction-div">
+                                  <div className="expense-transaction-text">
+                                    You paid
+                                  </div>
 
-                    <div className="expenses" key={expenseState[key].expenseId}>
+                                  <div className="expense-you-paid-balance">
+                                    ${expenseState[key].balance}
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className="expense-transaction-div">
+                                  <div className="expense-transaction-text">
+                                    {expenseState[key].ownerName} paid
+                                  </div>
 
-                  <div className='expense-left'>
-                      <div className="expense-date">
-                        {expenseState[key].timestamp.slice(0, 11)}
-                      </div>
-                      <img className='expense-image' src='https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png' />
-                      <div className="expense-title">
-                        {expenseState[key].title}
-                      </div>
-                  </div>
-
-                  <div className='expense-right'>
-
-                      <div className="expense-who-paid">
-                        {
-                          expenseState[key].type == "owner"
-                          ? 
-                          <div className='expense-transaction-div'> 
-                            <div className='expense-transaction-text'>
-                              You paid  
+                                  <div className="expense-you-paid-balance">
+                                    ${expenseState[key].balance}
+                                  </div>
+                                </div>
+                              )}
                             </div>
 
-                            <div className='expense-you-paid-balance'> 
-                              ${expenseState[key].balance} 
-                            </div>
+                            <div className="expense-needs-to-pay">
+                              {expenseState[key].type == "owner" ? (
+                                <div className="expense-transaction-div">
+                                  <div className="expense-transaction-text">
+                                    You lent {expenseState[key].ownerName}
+                                  </div>
 
-                          </div>
-                          : 
-                          <div className='expense-transaction-div'> 
-                          <div className='expense-transaction-text'>
-                          {expenseState[key].ownerName} paid
-                          </div>
+                                  <div className="expense-you-lent-balance">
+                                    ${expenseState[key].balance / 2}
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className="expense-transaction-div">
+                                  <div className="expense-transaction-text">
+                                    {expenseState[key].ownerName} lent you
+                                  </div>
 
-                          <div className='expense-you-paid-balance'> 
-                            ${expenseState[key].balance} 
-                          </div>
-                          </div>
-                          }
-                      </div>
+                                  <div className="expense-owner-lent-balance">
+                                    ${expenseState[key].balance}
+                                  </div>
+                                </div>
+                              )}
 
-                      <div className="expense-needs-to-pay">
-                      {
-                          expenseState[key].type == "owner"
-                          ? 
-                          <div className='expense-transaction-div'> 
-                            <div className='expense-transaction-text'>
-                              You lent {expenseState[key].ownerName}
-                            </div>
-
-                            <div className='expense-you-lent-balance'> 
-                              ${expenseState[key].balance / 2}
-                            </div>
-
-                          </div>
-                          : 
-                          <div className='expense-transaction-div'> 
-                          <div className='expense-transaction-text'>
-                          {expenseState[key].ownerName} lent you
-                          </div>
-
-                          <div className='expense-owner-lent-balance'> 
-                            ${expenseState[key].balance} 
-                          </div>
-                          </div>
-                          }
-
-                        {/* {expenseState[key].type == "owner"
+                              {/* {expenseState[key].type == "owner"
                           ? `You lent ${expenseState[key].ownerName} ${
                             expenseState[key].balance / 2
                           }`
                           : `${expenseState[key].ownerName} lent you ${expenseState[key].balance}`} */}
-                      </div>
+                            </div>
+                          </div>
+                        </div>
+                      </button>
                     </div>
-                  </div>
-                </button>
 
-                </div>
- 
+                    <div className="expense-content-tabs">
+                      <div
+                        className={
+                          toggleState === expenseState[key].expenseId
+                            ? "expense-content active-expense-content"
+                            : "expense-content"
+                        }
+                      >
+                        <div className="expense-dropdown-header">
+                          <img
+                            className="expense-dropdown-image"
+                            src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
+                          />
 
-                <div className='expense-content-tabs'>
-                    <div
-                      className={toggleState === expenseState[key].expenseId ? "expense-content active-expense-content" : "expense-content"}>
-                      <div className='expense-dropdown-header'>
-                          <img className='expense-dropdown-image' src='https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png' />
-                          
-                          <div className='expense-dropdown-header-info'>
-                          
-                            <div className='expense-dropdown-title'>
-                            {expenseState[key].title}
+                          <div className="expense-dropdown-header-info">
+                            <div className="expense-dropdown-title">
+                              {expenseState[key].title}
                             </div>
 
-                            <div className='expense-dropdown-balance'>
-                            ${expenseState[key].balance}
+                            <div className="expense-dropdown-balance">
+                              ${expenseState[key].balance}
                             </div>
 
-                            <div className='expense-dropdown-secondary-text'>
-                              Added by {expenseState[key].ownerName} on {expenseState[key].timestamp.slice(0, 11)}
+                            <div className="expense-dropdown-secondary-text">
+                              Added by {expenseState[key].ownerName} on{" "}
+                              {expenseState[key].timestamp.slice(0, 11)}
                             </div>
 
                             <EditExpenseModal expense={expenseState[key]} />
                           </div>
+                        </div>
+                        <div>
+                          <GetExpenseComments
+                            expenseId={expenseState[key].expenseId}
+                          />
+                        </div>
+                        <div>
+                          <CommentForm expense={expenseState[key]} />
+                        </div>
+                        <button
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            history.go("/dashboard");
+                            await dispatch(deleteExpenseThunk(key));
+                          }}
+                        >
+                          delete
+                        </button>
                       </div>
-                      <div>
-                        <GetExpenseComments
-                          expenseId={expenseState[key].expenseId}
-                        />
-                      </div>
-                      <div>
-                        <CommentForm expense={expenseState[key]} />
-                      </div>
-                      <button
-                        onClick={async (e) => {
-                          e.preventDefault();
-                          history.go("/dashboard");
-                          await dispatch(deleteExpenseThunk(key));
-                        }}
-                      >
-                        delete
-                      </button>
                     </div>
                   </div>
-                </div>
                 );
               })}
             </div>
