@@ -114,3 +114,11 @@ def remove_friend(id):
     db.session.commit()
     return f'Comment number {id} deleted'
     # return 'Unauthorized'
+
+# @friend_routes.route('/search')
+# @login_required
+# def friend_search():
+#     filtered_friends = request.args.get('username')
+#     friends = Friend.query.filter(Friend.firstName.ilike(f'%{filtered_friends}%')).all() if filtered_friends else []
+
+#     return {'friends': [friend.to_dict_all() for friend in friends]}

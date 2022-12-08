@@ -155,14 +155,20 @@
   margin: 5px 0;
 }
 
-.dash-friends-list-container{
+.dash-friend-filter {
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
+  height: 3
+}
+
+.dash-friends-list-container{
   width: auto;
 }
 
 .friends-div {
   display: flex;
+  text-decoration: none;
 }
 
 .fa-user {

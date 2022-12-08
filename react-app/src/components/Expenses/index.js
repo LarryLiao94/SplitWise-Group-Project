@@ -1,5 +1,5 @@
 import "./Expense.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { getExpenses } from "../../store/expense";
 import { NavLink, Link, useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,6 +19,7 @@ import EditCommentModal from "../EditCommentModal";
 function ExpensesPage() {
   const dispatch = useDispatch();
   const [toggleState, setToggleState] = useState(1);
+  const [ search, setSearch ] = useState('')
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -71,6 +72,12 @@ function ExpensesPage() {
   //     await dispatch(deleteExpenseThunk(id));
   //   };
 
+  const filtered = useMemo(() => {
+    return allFriends.filter(friend => {
+      return friend.toLowerCase().includes(search.toLowerCase())
+    })
+  }, [allFriends, search])
+
   return (
     <>
       <div className="dash-navbar">
@@ -108,45 +115,61 @@ function ExpensesPage() {
             <i className="fa-sharp fa-solid fa-flag"></i>
             Recent activity
           </Link>
-          <div className="dash-search-bar">
+
+          {/* <div className="dash-search-bar">
             <i className="fa-solid fa-magnifying-glass"></i>
             <input type="text" placeholder="Filter by name" />
-          </div>
-          <Link className="dash-all-expenses" to="/expenses">
-            <i className="fa-solid fa-list"></i>
-            All expenses
-          </Link>
+          </div> */}
 
-          <div>
-            <div className="dash-groups">
-              <div className="dash-groups-title">GROUPS</div>
-              <Link className="dash-add-link" to="/groups/new">
-                <i className="fa-sharp fa-solid fa-plus"></i>
-                add
-              </Link>
-            </div>
+<div className='dash-friend-filter'>
 
-            <div className="dash-friends">
-              <div className="dash-friends-title">FRIENDS</div>
-              <Link className="dash-add-link">
-                <i className="fa-sharp fa-solid fa-plus"></i>
+<div className='search-header'>
+  <i className="fa-solid fa-magnifying-glass"></i>
+  <input
+    className='search-input'
+    placeholder="Filter by name"
+    type='search'
+    value={search}
+    onChange={e => setSearch(e.target.value)}
+    />
+</div>
 
-                <AddFriendModal />
-              </Link>
-            </div>
-            <div className="dash-friends-list-container">
-              {allFriends?.map((friend) => {
-                return (
-                  <div className="friends-div">
-                    <i className="fa-solid fa-user"></i>
-                    <li className="friends" key={friend.id}>
-                      {friend}
-                    </li>
-                  </div>
-                );
-              })}
-            </div>
+<Link className="dash-all-expenses" to="/expenses">
+<i className="fa-solid fa-list"></i>
+All expenses
+</Link>
 
+<div>
+<div className="dash-groups">
+  <div className="dash-groups-title">GROUPS</div>
+  <Link className="dash-add-link" to="/groups/new">
+    <i className="fa-sharp fa-solid fa-plus"></i>
+    add
+  </Link>
+</div>
+
+<div className="dash-friends">
+  <div className="dash-friends-title">FRIENDS</div>
+  <Link className="dash-add-link">
+    <i className="fa-sharp fa-solid fa-plus"></i>
+
+    <AddFriendModal />
+  </Link>
+</div>
+
+<div className="dash-friends-list-container">
+  {filtered?.map((friend, friendId) => {
+    return (
+        <Link className="friends-div" to={`/friends/${friendId.id}`}>
+          <i className="fa-solid fa-user"></i>
+          <li className="friends" key={friend.id}>
+            {friend}
+          </li>
+       </Link>
+    );
+  })}
+</div>
+</div>
             <div className="invite-friends-div">
               <div className="invite-friends">Invite friends</div>
               <input
