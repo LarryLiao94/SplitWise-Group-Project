@@ -9,7 +9,7 @@ import "./AddExpense.css";
 import "./index";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Friends from '../Friends'
+// import Friends from '../Friends'
 // import * as Modal from '../src/context/Modal.js'
 
 //larry push

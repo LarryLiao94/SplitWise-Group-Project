@@ -20,6 +20,11 @@ const getFriendById = (friend) => ({
     friend
 })
 
+const removeFriend = (friend) => ({
+    type:REMOVE_FRIEND,
+    friend
+})
+
 const initialState = {};
 
 export const addFriendThunk = (friendEE) => async (dispatch) => {
@@ -39,7 +44,7 @@ export const addFriendThunk = (friendEE) => async (dispatch) => {
 
 export const getFriends = () => async (dispatch) => {
     const res = await csrfFetch(`/api/friends/`);
-    const { friends } = await res.json()
+    const { friends, friendId } = await res.json()
     
     if (res.ok) {
         const data = {}
@@ -48,6 +53,18 @@ export const getFriends = () => async (dispatch) => {
         dispatch(getAllFriends(data))
     }
     return res
+}
+
+export const removeFriendThunk = (friend) => async (dispatch) => {
+    const res = await csrfFetch(`/api/friends/${friend.id}/edit`, {
+        method: 'DELETE'
+    })
+    const data = await res.json();
+
+    if (res.ok) {
+        dispatch(removeFriend(friend))
+        return data;
+    }
 }
 
 const friendsReducer = (state = initialState, action) => {
@@ -60,6 +77,10 @@ const friendsReducer = (state = initialState, action) => {
 
         case GET_FRIENDS:
             return { ...state, ...action.friends }
+
+        case REMOVE_FRIEND:
+            delete newState[action.friend.id]
+            return newState
 
         default:
             return state;

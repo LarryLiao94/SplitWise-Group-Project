@@ -105,3 +105,12 @@ def add_friend():
         db.session.commit()
         return new_friend.to_dict()
     return "Bad Data"
+
+@friend_routes.route('/<int:id>/edit', methods=["DELETE"])
+@login_required
+def remove_friend(id):
+    friend = Friend.query.get(id)
+    db.session.delete(friend)
+    db.session.commit()
+    return f'Comment number {id} deleted'
+    # return 'Unauthorized'
