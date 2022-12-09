@@ -65,7 +65,8 @@ function SettleUpForm({ onClose }) {
           </button>
           <div>paid</div>
           <button className='settle-up-recipient'>
-            <RecipientModal />
+            {/* <RecipientModal /> */}
+            Recipient
           </button>
         </div>
 
