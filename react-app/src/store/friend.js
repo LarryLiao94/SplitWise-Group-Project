@@ -85,14 +85,14 @@ export const getFriends = () => async (dispatch) => {
 //     }
 // } 
 
-export const removeFriendThunk = (friend) => async (dispatch) => {
-    const res = await csrfFetch(`/api/friends/${friend.id}/edit`, {
+export const removeFriendThunk = (id) => async (dispatch) => {
+    const res = await csrfFetch(`/api/friends/${Number(id)}`, {
         method: 'DELETE'
     })
     const data = await res.json();
 
     if (res.ok) {
-        dispatch(removeFriend(friend))
+        dispatch(removeFriend(id))
         return data;
     }
 }

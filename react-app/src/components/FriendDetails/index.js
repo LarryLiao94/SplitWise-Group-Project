@@ -99,7 +99,8 @@ function FriendDetails() {
   const friendTotalBalanceState = useSelector(
     (state) => state.friendTotal.friendTotal
   );
-
+  
+  console.log(friendTotalBalanceState)
   // console.log(friendTotalBalanceState)
 
   const history = useHistory();

@@ -13,8 +13,9 @@ function FriendTabs() {
     setToggleState(index);
   };
 
-  const balanceState = useSelector((state) => state.balances);
-  const friendInfoState = useSelector((state) => state.friend);
+  const friendTotalBalanceState = useSelector(
+    (state) => state.friendTotal.friendTotal
+  );
 
   return (
     <div className="tab-container">
@@ -56,7 +57,7 @@ function FriendTabs() {
                 you owe 
               </div>
               <div className='balance-total'>
-              ${balanceState.owe}
+              ${friendTotalBalanceState}
               </div>
             </div>
             }
