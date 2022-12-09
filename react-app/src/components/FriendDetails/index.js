@@ -32,35 +32,35 @@ function FriendDetails() {
 
   useEffect(() => {
     dispatch(getExpenses());
-  }, []);
+  }, [dispatch, id]);
 
   useEffect(() => {
     const myFriends = async () => {
       await dispatch(getFriends());
     };
     myFriends();
-  }, []);
+  }, [dispatch, id]);
 
   useEffect(() => {
     const allBalance = async () => {
       await dispatch(getBalanceThunk());
     };
     allBalance();
-  }, []);
+  }, [dispatch, id]);
 
   useEffect(() => {
     const friendDetails = async () => {
       await dispatch(getFriendIdThunk(Number(id)));
     };
     friendDetails();
-  }, []);
+  }, [dispatch, id]);
 
   useEffect(() => {
     const totalBalance = async () => {
       await dispatch(getTotalBalanceThunk(Number(id)));
     };
     totalBalance();
-  }, []);
+  }, [dispatch, id]);
 
   const expensesObj = useSelector((state) => state.expenses);
 
@@ -319,7 +319,7 @@ function FriendDetails() {
                                   </div>
 
                                   <div className="expense-owner-lent-balance">
-                                    ${friendInfoState[key][1].balance}
+                                    ${friendInfoState[key][1].balance / 2}
                                   </div>
                                 </div>
                               )}

@@ -71,7 +71,7 @@ function ExpensesPage() {
     idFriends = Object.values(idTwoFriends);
   }
 
-  console.log(idFriends, "he;llaodsfkaoskfapweof");
+  // console.log(idFriends, "he;llaodsfkaoskfapweof");
   // console.log(allFriends, "SADSA");
 
   const balanceState = useSelector((state) => state.balances);
@@ -290,7 +290,7 @@ function ExpensesPage() {
                                   </div>
 
                                   <div className="expense-owner-lent-balance">
-                                    ${expenseState[key].balance}
+                                    ${expenseState[key].balance / 2}
                                   </div>
                                 </div>
                               )}
