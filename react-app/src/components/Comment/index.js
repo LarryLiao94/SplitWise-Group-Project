@@ -39,7 +39,7 @@ export default function CommentForm({ expense }) {
   return (
     <div id="review-form-container">
       <div id="form-container">
-        <form onSubmit={handleSubmit}>
+        <form className='comment-form' onSubmit={handleSubmit}>
           {errors && (
             <ul>
               {errors.map((error, idx) => (
@@ -49,16 +49,18 @@ export default function CommentForm({ expense }) {
               ))}
             </ul>
           )}
-          <label>
-            Comment
+         
             <textarea
+              className='add-comment-area'
               value={comment}
+              placeholder='Add a comment'
               onChange={(e) => setComment(e.target.value)}
               required
             />
-          </label>
-
-          <input type="submit" />
+      
+          <button className='comment-submit' type="submit">
+            Post
+          </button>
         </form>
       </div>
     </div>
