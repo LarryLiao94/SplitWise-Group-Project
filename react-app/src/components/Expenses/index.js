@@ -208,24 +208,14 @@ All expenses
               </div>
             </div>
 
-            <div className="dash-main-header-balances">
+            {/* <div className="dash-main-header-balances">
               <div className="dash-total-balance-div">
                 total balance
                 <div className="dash-total-balance">{balanceState.balance}</div>
               </div>
 
-              {/* <div className="dash-you-owe-div">you owe
-                <div className='dash-you-owe'>
-                  {balanceState.owe}
-                </div>
-              </div>
-
-              <div className="dash-you-are-owed-div">you are owed
-                <div className='dash-you-are-owed'>
-                  {balanceState.owed}
-                </div>
-              </div> */}
-            </div>
+            
+            </div> */}
           </div>
           <div className="dash-expense-main-body">
             <div className="dash-expense-owe">
@@ -356,7 +346,14 @@ All expenses
                         <div>
                           <CommentForm expense={expenseState[key]} />
                         </div>
-                        <button
+
+                        <i class="fa-duotone fa-x" onClick={async (e) => {
+                            e.preventDefault();
+                            history.go("/dashboard");
+                            await dispatch(deleteExpenseThunk(key));
+                          }}></i>
+                        {
+                        /* <button
                           onClick={async (e) => {
                             e.preventDefault();
                             history.go("/dashboard");
@@ -364,7 +361,7 @@ All expenses
                           }}
                         >
                           delete
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   </div>
