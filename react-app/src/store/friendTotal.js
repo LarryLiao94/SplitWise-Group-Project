@@ -1,6 +1,6 @@
 import { csrfFetch } from './csrf'
 
-const GET_TOTAL_BALANCE = 'friend/GET_TOTAL_BALANCE';
+const GET_TOTAL_BALANCE = 'friendTotal/GET_TOTAL_BALANCE';
 
 const getTotalBalance = (friendTotal) => ({
     type: GET_TOTAL_BALANCE,
