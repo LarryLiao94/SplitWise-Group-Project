@@ -9,12 +9,13 @@ function EditCommentModal({ comment }) {
 
   return (
     <>
-      <button
+    <i className="fa-regular fa-pen-to-square" onClick={() => setShowModal(true)}></i>
+      {/* <button
         className="dash-edit-expense-modal"
         onClick={() => setShowModal(true)}
       >
         Edit comment
-      </button>
+      </button> */}
       {showModal && (
         <Modal
           className="add-expense-modal"
