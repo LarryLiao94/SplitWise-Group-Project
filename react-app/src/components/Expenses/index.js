@@ -19,11 +19,17 @@ import EditCommentModal from "../EditCommentModal";
 function ExpensesPage() {
   const dispatch = useDispatch();
   const [toggleState, setToggleState] = useState(1);
-  const [ search, setSearch ] = useState('')
+  const [search, setSearch] = useState("");
 
   const toggleTab = (index) => {
     setToggleState(index);
   };
+  useEffect(() => {
+    const myFriends = async () => {
+      await dispatch(getFriends());
+    };
+    myFriends();
+  }, []);
 
   useEffect(() => {
     dispatch(getExpenses());
@@ -41,12 +47,6 @@ function ExpensesPage() {
     ))}
   </div> */
   }
-  useEffect(() => {
-    const myFriends = async () => {
-      await dispatch(getFriends());
-    };
-    myFriends();
-  }, []);
 
   useEffect(() => {
     const allBalance = async () => {
@@ -58,7 +58,20 @@ function ExpensesPage() {
   const loggedSession = useSelector((state) => state.session.user);
 
   const friendState = useSelector((state) => state.friends);
-  const allFriends = Object.values(friendState);
+  const oneFriends = Object.values(friendState);
+  let twoFriends = oneFriends[0]?.friends;
+  let allFriends;
+  if (twoFriends) {
+    allFriends = Object.values(twoFriends);
+  }
+
+  let idTwoFriends = oneFriends[0]?.friendId;
+  let idFriends;
+  if (idTwoFriends) {
+    idFriends = Object.values(idTwoFriends);
+  }
+
+  console.log(idFriends, "he;llaodsfkaoskfapweof");
   // console.log(allFriends, "SADSA");
 
   const balanceState = useSelector((state) => state.balances);
@@ -73,10 +86,12 @@ function ExpensesPage() {
   //   };
 
   const filtered = useMemo(() => {
-    return allFriends.filter(friend => {
-      return friend.toLowerCase().includes(search.toLowerCase())
-    })
-  }, [allFriends, search])
+    return allFriends?.filter((friend) => {
+      return friend.toLowerCase().includes(search.toLowerCase());
+    });
+  }, [allFriends, search]);
+
+  // console.log(filtered, 'FAOSIDFJAOW;IEFJA;OIWEFJA;OWEIFJA;OWI');
 
   return (
     <>
@@ -121,55 +136,55 @@ function ExpensesPage() {
             <input type="text" placeholder="Filter by name" />
           </div> */}
 
-<div className='dash-friend-filter'>
+          <div className="dash-friend-filter">
+            <div className="search-header">
+              <i className="fa-solid fa-magnifying-glass"></i>
+              <input
+                className="search-input"
+                placeholder="Filter by name"
+                type="search"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
 
-<div className='search-header'>
-  <i className="fa-solid fa-magnifying-glass"></i>
-  <input
-    className='search-input'
-    placeholder="Filter by name"
-    type='search'
-    value={search}
-    onChange={e => setSearch(e.target.value)}
-    />
-</div>
+            <Link className="dash-all-expenses" to="/expenses">
+              <i className="fa-solid fa-list"></i>
+              All expenses
+            </Link>
 
-<Link className="dash-all-expenses" to="/expenses">
-<i className="fa-solid fa-list"></i>
-All expenses
-</Link>
+            <div>
+              <div className="dash-groups">
+                <div className="dash-groups-title">GROUPS</div>
+                <Link className="dash-add-link" to="/groups/new">
+                  <i className="fa-sharp fa-solid fa-plus"></i>
+                  add
+                </Link>
+              </div>
 
-<div>
-<div className="dash-groups">
-  <div className="dash-groups-title">GROUPS</div>
-  <Link className="dash-add-link" to="/groups/new">
-    <i className="fa-sharp fa-solid fa-plus"></i>
-    add
-  </Link>
-</div>
+              <div className="dash-friends">
+                <div className="dash-friends-title">FRIENDS</div>
+                <Link className="dash-add-link">
+                  <i className="fa-sharp fa-solid fa-plus"></i>
 
-<div className="dash-friends">
-  <div className="dash-friends-title">FRIENDS</div>
-  <Link className="dash-add-link">
-    <i className="fa-sharp fa-solid fa-plus"></i>
+                  <AddFriendModal />
+                </Link>
+              </div>
 
-    <AddFriendModal />
-  </Link>
-</div>
-
-<div className="dash-friends-list-container">
-  {filtered?.map((friend, friendId) => {
-    return (
-        <Link className="friends-div" to={`/friends/${friendId.id}`}>
-          <i className="fa-solid fa-user"></i>
-          <li className="friends" key={friend.id}>
-            {friend}
-          </li>
-       </Link>
-    );
-  })}
-</div>
-</div>
+              <div className="dash-friends-list-container">
+                {filtered?.map((friend, index) => {
+                  const idOfFriend = idFriends[index];
+                  return (
+                    <Link className="friends-div" to={`/friends/${idOfFriend}`}>
+                      <i className="fa-solid fa-user"></i>
+                      <li className="friends" key={friend.id}>
+                        {friend}
+                      </li>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
             <div className="invite-friends-div">
               <div className="invite-friends">Invite friends</div>
               <input
@@ -331,13 +346,15 @@ All expenses
                           <CommentForm expense={expenseState[key]} />
                         </div>
 
-                        <i class="fa-duotone fa-x" onClick={async (e) => {
+                        <i
+                          class="fa-duotone fa-x"
+                          onClick={async (e) => {
                             e.preventDefault();
                             history.go("/dashboard");
                             await dispatch(deleteExpenseThunk(key));
-                          }}></i>
-                        {
-                        /* <button
+                          }}
+                        ></i>
+                        {/* <button
                           onClick={async (e) => {
                             e.preventDefault();
                             history.go("/dashboard");

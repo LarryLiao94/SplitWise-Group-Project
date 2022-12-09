@@ -12,14 +12,14 @@ import { getAllTransactions } from "../../store/transactions";
 
 function TransactionsPage() {
   const dispatch = useDispatch();
-  const [ search, setSearch ] = useState('')
-  
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     dispatch(getAllTransactions());
   }, []);
 
   const transactionObj = useSelector((state) => state.transactions);
-  console.log(transactionObj, 'HERE')
+  console.log(transactionObj, "HERE");
   const transactions = Object.values(transactionObj);
 
   useEffect(() => {
@@ -39,14 +39,24 @@ function TransactionsPage() {
   const loggedSession = useSelector((state) => state.session.user);
 
   const friendState = useSelector((state) => state.friends);
-  const allFriends = Object.values(friendState);
-  // console.log(allFriends, "SADSA");
+  const oneFriends = Object.values(friendState);
+  let twoFriends = oneFriends[0]?.friends;
+  let allFriends;
+  if (twoFriends) {
+    allFriends = Object.values(twoFriends);
+  }
+
+  let idTwoFriends = oneFriends[0]?.friendId;
+  let idFriends;
+  if (idTwoFriends) {
+    idFriends = Object.values(idTwoFriends);
+  }
 
   const filtered = useMemo(() => {
-    return allFriends.filter(friend => {
-      return friend.toLowerCase().includes(search.toLowerCase())
-    })
-  }, [allFriends, search])
+    return allFriends?.filter((friend) => {
+      return friend.toLowerCase().includes(search.toLowerCase());
+    });
+  }, [allFriends, search]);
 
   const balanceState = useSelector((state) => state.balances);
   // const allBalances = balanceState.balance;
@@ -92,55 +102,55 @@ function TransactionsPage() {
             Recent activity
           </Link>
 
-          <div className='dash-friend-filter'>
-
-            <div className='search-header'>
+          <div className="dash-friend-filter">
+            <div className="search-header">
               <i className="fa-solid fa-magnifying-glass"></i>
               <input
-                className='search-input'
+                className="search-input"
                 placeholder="Filter by name"
-                type='search'
+                type="search"
                 value={search}
-                onChange={e => setSearch(e.target.value)}
-                />
+                onChange={(e) => setSearch(e.target.value)}
+              />
             </div>
 
-          <Link className="dash-all-expenses" to="/expenses">
-            <i className="fa-solid fa-list"></i>
-            All expenses
-          </Link>
+            <Link className="dash-all-expenses" to="/expenses">
+              <i className="fa-solid fa-list"></i>
+              All expenses
+            </Link>
 
             <div>
-            <div className="dash-groups">
-              <div className="dash-groups-title">GROUPS</div>
-              <Link className="dash-add-link" to="/groups/new">
-                <i className="fa-sharp fa-solid fa-plus"></i>
-                add
-              </Link>
-            </div>
+              <div className="dash-groups">
+                <div className="dash-groups-title">GROUPS</div>
+                <Link className="dash-add-link" to="/groups/new">
+                  <i className="fa-sharp fa-solid fa-plus"></i>
+                  add
+                </Link>
+              </div>
 
-            <div className="dash-friends">
-              <div className="dash-friends-title">FRIENDS</div>
-              <Link className="dash-add-link">
-                <i className="fa-sharp fa-solid fa-plus"></i>
+              <div className="dash-friends">
+                <div className="dash-friends-title">FRIENDS</div>
+                <Link className="dash-add-link">
+                  <i className="fa-sharp fa-solid fa-plus"></i>
 
-                <AddFriendModal />
-              </Link>
-            </div>
+                  <AddFriendModal />
+                </Link>
+              </div>
 
-            <div className="dash-friends-list-container">
-              {filtered?.map((friend, friendId) => {
-                return (
-                    <Link className="friends-div" to={`/friends/${friendId.id}`}>
+              <div className="dash-friends-list-container">
+                {filtered?.map((friend, index) => {
+                  const idOfFriend = idFriends[index];
+                  return (
+                    <Link className="friends-div" to={`/friends/${idOfFriend}`}>
                       <i className="fa-solid fa-user"></i>
                       <li className="friends" key={friend.id}>
                         {friend}
                       </li>
-                   </Link>
-                );
-              })}
+                    </Link>
+                  );
+                })}
+              </div>
             </div>
-          </div>
             <div className="invite-friends-div">
               <div className="invite-friends">Invite friends</div>
               <input
@@ -156,98 +166,120 @@ function TransactionsPage() {
           <div className="dash-main-header">
             <div className="dash-main-header-upper">
               <div className="dashboard-title">Recent activity</div>
-  
             </div>
           </div>
           <div className="dash-main-body">
-          <div className="transactions-container">
-            {Object.keys(transactionObj).map(function(key, index) {
-          return (
-          <>
-          {
-          transactionObj[key].transactionType == 'friend' ?
-            <a className='transaction' key={transactionObj[key].transactionId} href='/friends'>
-            <a className="default-image-link">
-            <img
-              className="transaction-default-image"
-              src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
-              height="40"
-              width="40"
-              />
-            </a>
-            <div className='transaction-info'>
-              <div className='transaction-description'>
-                {transactionObj[key].transactionType == 'friend' ?
-                (transactionObj[key].type == 'owner' ? 
-                `You added ${transactionObj[key].recipientName}` : 
-                `${transactionObj[key].recipientName} added you`) : 
-                (transactionObj[key].type == 'owner' ? 
-                `You added ${transactionObj[key].description}` : 
-                `${transactionObj[key].ownerName} added ${transactionObj[key].description}`)}
-              </div>
-            {
-              (transactionObj[key].type == 'owner') ?
-              <div className='transaction-balance-owe'>
-                {transactionObj[key].transactionType == 'expense' ? 
-                (transactionObj[key].type == 'owner' ? 
-                `You get back $${transactionObj[key].balance / 2}` :
-                 `You owe $${transactionObj[key].balance / 2}`) :
-                  ``}
-              </div>
-              :
-              <div className='transaction-balance-paid'>
-                {transactionObj[key].transactionType == 'expense' ? 
-                (transactionObj[key].type == 'owner' ? 
-                `You get back $${transactionObj[key].balance / 2}` : 
-                `You owe $${transactionObj[key].balance / 2}`) : ``}
-              </div>
-            }
+            <div className="transactions-container">
+              {Object.keys(transactionObj).map(function (key, index) {
+                return (
+                  <>
+                    {transactionObj[key].transactionType == "friend" ? (
+                      <a
+                        className="transaction"
+                        key={transactionObj[key].transactionId}
+                        href="/friends"
+                      >
+                        <a className="default-image-link">
+                          <img
+                            className="transaction-default-image"
+                            src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
+                            height="40"
+                            width="40"
+                          />
+                        </a>
+                        <div className="transaction-info">
+                          <div className="transaction-description">
+                            {transactionObj[key].transactionType == "friend"
+                              ? transactionObj[key].type == "owner"
+                                ? `You added ${transactionObj[key].recipientName}`
+                                : `${transactionObj[key].recipientName} added you`
+                              : transactionObj[key].type == "owner"
+                              ? `You added ${transactionObj[key].description}`
+                              : `${transactionObj[key].ownerName} added ${transactionObj[key].description}`}
+                          </div>
+                          {transactionObj[key].type == "owner" ? (
+                            <div className="transaction-balance-owe">
+                              {transactionObj[key].transactionType == "expense"
+                                ? transactionObj[key].type == "owner"
+                                  ? `You get back $${
+                                      transactionObj[key].balance / 2
+                                    }`
+                                  : `You owe $${
+                                      transactionObj[key].balance / 2
+                                    }`
+                                : ``}
+                            </div>
+                          ) : (
+                            <div className="transaction-balance-paid">
+                              {transactionObj[key].transactionType == "expense"
+                                ? transactionObj[key].type == "owner"
+                                  ? `You get back $${
+                                      transactionObj[key].balance / 2
+                                    }`
+                                  : `You owe $${
+                                      transactionObj[key].balance / 2
+                                    }`
+                                : ``}
+                            </div>
+                          )}
+                        </div>
+                      </a>
+                    ) : (
+                      <a
+                        className="transaction"
+                        key={transactionObj[key].transactionId}
+                        href="/expenses"
+                      >
+                        <a className="default-image-link">
+                          <img
+                            className="transaction-default-image"
+                            src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
+                            height="40"
+                            width="40"
+                          />
+                        </a>
+                        <div className="transaction-info">
+                          <div className="transaction-description">
+                            {transactionObj[key].transactionType == "friend"
+                              ? transactionObj[key].type == "owner"
+                                ? `You added ${transactionObj[key].recipientName}`
+                                : `${transactionObj[key].recipientName} added you`
+                              : transactionObj[key].type == "owner"
+                              ? `You added ${transactionObj[key].description}`
+                              : `${transactionObj[key].ownerName} added ${transactionObj[key].description}`}
+                          </div>
+                          {transactionObj[key].type == "owner" ? (
+                            <div className="transaction-balance-owe">
+                              {transactionObj[key].transactionType == "expense"
+                                ? transactionObj[key].type == "owner"
+                                  ? `You get back $${
+                                      transactionObj[key].balance / 2
+                                    }`
+                                  : `You owe $${
+                                      transactionObj[key].balance / 2
+                                    }`
+                                : ``}
+                            </div>
+                          ) : (
+                            <div className="transaction-balance-paid">
+                              {transactionObj[key].transactionType == "expense"
+                                ? transactionObj[key].type == "owner"
+                                  ? `You get back $${
+                                      transactionObj[key].balance / 2
+                                    }`
+                                  : `You owe $${
+                                      transactionObj[key].balance / 2
+                                    }`
+                                : ``}
+                            </div>
+                          )}
+                        </div>
+                      </a>
+                    )}
+                  </>
+                );
+              })}
             </div>
-            </a> 
-            : 
-            <a className='transaction' key={transactionObj[key].transactionId} href='/expenses'>
-            <a className="default-image-link">
-            <img
-              className="transaction-default-image"
-              src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
-              height="40"
-              width="40"
-              />
-            </a>
-            <div className='transaction-info'>
-              <div className='transaction-description'>
-                {transactionObj[key].transactionType == 'friend' ?
-                (transactionObj[key].type == 'owner' ? 
-                `You added ${transactionObj[key].recipientName}` : 
-                `${transactionObj[key].recipientName} added you`) : 
-                (transactionObj[key].type == 'owner' ? 
-                `You added ${transactionObj[key].description}` : 
-                `${transactionObj[key].ownerName} added ${transactionObj[key].description}`)}
-              </div>
-            {
-              (transactionObj[key].type == 'owner') ?
-              <div className='transaction-balance-owe'>
-                {transactionObj[key].transactionType == 'expense' ? 
-                (transactionObj[key].type == 'owner' ? 
-                `You get back $${transactionObj[key].balance / 2}` :
-                 `You owe $${transactionObj[key].balance / 2}`) :
-                  ``}
-              </div>
-              :
-              <div className='transaction-balance-paid'>
-                {transactionObj[key].transactionType == 'expense' ? 
-                (transactionObj[key].type == 'owner' ? 
-                `You get back $${transactionObj[key].balance / 2}` : 
-                `You owe $${transactionObj[key].balance / 2}`) : ``}
-              </div>
-            }
-          </div>
-          </a>
-           }
-          </>
-        )})
-      }
-      </div>
           </div>
         </div>
 
@@ -266,17 +298,16 @@ function TransactionsPage() {
       </div>
     </>
   );
-//   return (
-//     <>
-//       <div className="transactions-container">
-//         <h1>Hello From Transactions</h1>
-//         {transactions.map((transaction) => (
-//           <div>{transaction.description}</div>
-//         ))}
-//       </div>
-//     </>
-//   );
-
+  //   return (
+  //     <>
+  //       <div className="transactions-container">
+  //         <h1>Hello From Transactions</h1>
+  //         {transactions.map((transaction) => (
+  //           <div>{transaction.description}</div>
+  //         ))}
+  //       </div>
+  //     </>
+  //   );
 }
 
 export default TransactionsPage;
