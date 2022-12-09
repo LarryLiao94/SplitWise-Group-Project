@@ -24,6 +24,12 @@ function ExpensesPage() {
   const toggleTab = (index) => {
     setToggleState(index);
   };
+  useEffect(() => {
+    const myFriends = async () => {
+      await dispatch(getFriends());
+    };
+    myFriends();
+  }, []);
 
   useEffect(() => {
     dispatch(getExpenses());
@@ -41,12 +47,6 @@ function ExpensesPage() {
     ))}
   </div> */
   }
-  useEffect(() => {
-    const myFriends = async () => {
-      await dispatch(getFriends());
-    };
-    myFriends();
-  }, []);
 
   useEffect(() => {
     const allBalance = async () => {
@@ -58,25 +58,40 @@ function ExpensesPage() {
   const loggedSession = useSelector((state) => state.session.user);
 
   const friendState = useSelector((state) => state.friends);
-  const allFriends = Object.values(friendState);
+  const oneFriends = Object.values(friendState);
+  let twoFriends = oneFriends[0]?.friends;
+  let allFriends;
+  if(twoFriends){
+    allFriends = Object.values(twoFriends);
+  }
+
+  let idTwoFriends = oneFriends[0]?.friendId;
+  let idFriends;
+  if(idTwoFriends){
+    idFriends = Object.values(idTwoFriends)
+  }
+
+  console.log(idFriends, 'he;llaodsfkaoskfapweof')
   // console.log(allFriends, "SADSA");
 
   const balanceState = useSelector((state) => state.balances);
   // const allBalances = balanceState.balance;
   // console.log(allBalances, "HERE")
-
+  
   const expenseState = useSelector((state) => state.expenses);
   const history = useHistory();
   //   const onClick = async (e) => {
-  //     e.preventDefault();
-  //     await dispatch(deleteExpenseThunk(id));
-  //   };
+    //     e.preventDefault();
+    //     await dispatch(deleteExpenseThunk(id));
+    //   };
+    
+    const filtered = useMemo(() => {
+      return allFriends?.filter(friend => {
+        return friend.toLowerCase().includes(search.toLowerCase())
+      })
+    }, [allFriends, search])
 
-  const filtered = useMemo(() => {
-    return allFriends.filter(friend => {
-      return friend.toLowerCase().includes(search.toLowerCase())
-    })
-  }, [allFriends, search])
+    // console.log(filtered, 'FAOSIDFJAOW;IEFJA;OIWEFJA;OWEIFJA;OWI');
 
   return (
     <>
@@ -158,9 +173,10 @@ All expenses
 </div>
 
 <div className="dash-friends-list-container">
-  {filtered?.map((friend, friendId) => {
+  {filtered?.map((friend, index) => {
+    const idOfFriend = idFriends[index]
     return (
-        <Link className="friends-div" to={`/friends/${friendId.id}`}>
+        <Link className="friends-div" to={`/friends/${idOfFriend}`}>
           <i className="fa-solid fa-user"></i>
           <li className="friends" key={friend.id}>
             {friend}

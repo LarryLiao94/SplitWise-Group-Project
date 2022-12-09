@@ -55,9 +55,20 @@ export const getFriends = () => async (dispatch) => {
     
     if (res.ok) {
         const data = {}
+        const newData = {
+            'friends': {},
+            'friendId' : {}
+        }
         friends.forEach((friend) =>  
             data[friend] = friend)
-        dispatch(getAllFriends(data))
+        friends.forEach((friend) =>  
+            newData['friends'][friend] = friend)
+        friendId.forEach((friend) =>  
+            newData['friendId'][friend] = friend)
+
+        console.log(newData)
+        
+        dispatch(getAllFriends(newData))
     }
     return res
 }
@@ -95,7 +106,8 @@ const friendsReducer = (state = initialState, action) => {
             return newState;
 
         case GET_FRIENDS:
-            return { ...state, ...action.friends }
+            newState.friends = action.friends
+            return newState;
 
         case REMOVE_FRIEND:
             delete newState[action.friend.id]
