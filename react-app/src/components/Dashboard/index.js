@@ -34,16 +34,25 @@ function Dashboard() {
 
   const friendState = useSelector((state) => state.friends);
   // const friendIdState = useSelector((state) => state.friendId);
-  const allFriends = Object.values(friendState);
-  // const friendIds = Object.values(friendIdState);
-  // console.log(allFriends, "SADSA");
+  const oneFriends = Object.values(friendState);
+  let twoFriends = oneFriends[0]?.friends;
+  let allFriends;
+  if(twoFriends){
+    allFriends = Object.values(twoFriends);
+  }
+
+  let idTwoFriends = oneFriends[0]?.friendId;
+  let idFriends;
+  if(idTwoFriends){
+    idFriends = Object.values(idTwoFriends)
+  }
 
   const balanceState = useSelector((state) => state.balances);
   // const allBalances = balanceState.balance;
   // console.log(allBalances, "HERE")
 
    const filtered = useMemo(() => {
-    return allFriends.filter(friend => {
+    return allFriends?.filter(friend => {
       return friend.toLowerCase().includes(search.toLowerCase())
     })
   }, [allFriends, search])
@@ -128,15 +137,16 @@ function Dashboard() {
             </div>
 
             <div className="dash-friends-list-container">
-              {filtered?.map((friend, friendId) => {
-                return (
-                    <Link className="friends-div" to={`/friends/${friendId.id}`}>
-                      <i className="fa-solid fa-user"></i>
-                      <li className="friends" key={friend.id}>
-                        {friend}
-                      </li>
-                   </Link>
-                );
+            {filtered?.map((friend, index) => {
+              const idOfFriend = idFriends[index]
+              return (
+                <Link className="friends-div" to={`/friends/${idOfFriend}`}>
+                    <i className="fa-solid fa-user"></i>
+                    <li className="friends" key={friend.id}>
+                      {friend}
+                     </li>
+                </Link>
+               );
               })}
             </div>
           </div>
