@@ -16,13 +16,13 @@ def get_all_expenses():
 @expense_routes.route('/<int:expenseId>')
 @login_required
 def get_expense(expenseId):
-    expense = Expense.query.get(expenseId)
+    expense = Expense.query.get_or_404(expenseId)
     return expense.to_dict()
 
 @expense_routes.route('/<int:expenseId>', methods=["DELETE"])
 @login_required
 def delete_expense(expenseId):
-    expense = Expense.query.get(expenseId)
+    expense = Expense.query.get_or_404(expenseId)
     if (expense.user_id == current_user.id):
         db.session.delete(expense)
         db.session.commit()
@@ -36,7 +36,7 @@ def edit_expense(expenseId):
     form = ExpenseForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        expense = Expense.query.get(expenseId)
+        expense = Expense.query.get_or_404(expenseId)
         # transaction = Transaction.query.get(expenseId)
         # print(expense)
         if expense.user_id == current_user.id:
