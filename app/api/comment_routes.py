@@ -21,7 +21,7 @@ comment_routes = Blueprint('comments', __name__)
 @comment_routes.route('/<int:id>')
 @login_required
 def comment(id):
-    comment = Comment.query.get(id)
+    comment = Comment.query.get_or_404(id)
 
     return comment.to_dict()
 
@@ -32,7 +32,7 @@ def comment(id):
 @comment_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_comment(id):
-    comment_to_delete = Comment.query.get(id)
+    comment_to_delete = Comment.query.get_or_404(id)
     if (comment_to_delete.user_id == current_user.id):
         db.session.delete(comment_to_delete)
         db.session.commit()
@@ -45,7 +45,7 @@ def edit_comment(id):
     form = CommentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
-        comment_to_edit = Comment.query.get(id)
+        comment_to_edit = Comment.query.get_or_404(id)
         if comment_to_edit.user_id == current_user.id:
             comment_to_edit.comment = form.comment.data
             db.session.commit()

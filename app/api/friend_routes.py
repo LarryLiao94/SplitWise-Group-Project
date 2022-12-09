@@ -17,7 +17,7 @@ def get_all_friends():
     return jsonify({
         'friends': [User.query.get(friend.friendEE).firstName + " " + User.query.get(friend.friendEE).lastName + " " for friend in friends],
         'friendId': [User.query.get(friend.friendEE).id for friend in friends]
-    }) 
+    })
 
 @friend_routes.route('/<int:id>')
 @login_required
@@ -29,10 +29,10 @@ def get_friend_by_id(id):
     for friend in friends:
         if friend.friendEE == id:
             friend_id = friend.friendEE
-    
+
     user_friend = User.query.get(friend_id)
     details = {}
-    
+
 
     expenses = Expense.query.filter(Expense.user_id == current_user.id).all()
     recipient_expenses = Expense.query.filter(Expense.recipientId == current_user.id).all()
@@ -59,7 +59,7 @@ def get_friend_by_id(id):
                     'timestamp': expense.timestamp,
                     'balance': expense.balance,
                     'totalFriendBalance': friend_total_balance,
-                    'type': 'owner'       
+                    'type': 'owner'
                 }
     for expense in recipient_expenses:
         if expense.user_id == id:
@@ -74,7 +74,7 @@ def get_friend_by_id(id):
                 'timestamp': expense.timestamp,
                 'balance': expense.balance,
                 'totalFriendBalance': friend_total_balance,
-                'type': 'recipient'       
+                'type': 'recipient'
             }
 
     detail_list = list(details.items())
@@ -106,13 +106,15 @@ def add_friend():
         return new_friend.to_dict()
     return "Bad Data"
 
-@friend_routes.route('/<int:id>/edit', methods=["DELETE"])
+@friend_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def remove_friend(id):
-    friend = Friend.query.get(id)
+
+    friend = Friend.query.filter(Friend.friendEE == id).first()
+
     db.session.delete(friend)
     db.session.commit()
-    return f'Comment number {id} deleted'
+    return f'Friend number {id} deleted'
     # return 'Unauthorized'
 
 # @friend_routes.route('/search')
