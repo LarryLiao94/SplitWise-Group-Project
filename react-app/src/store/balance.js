@@ -8,9 +8,7 @@ const getBalance = (balance) => ({
 });
 
 export const getBalanceThunk = () => async (dispatch) => {
-  console.log("hit get balance...");
   const res = await csrfFetch(`/api/users/balance`);
-  console.log("hit get balance...222222222");
 
   const { balance, owe, owed } = await res.json();
 
