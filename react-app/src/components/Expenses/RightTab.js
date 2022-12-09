@@ -47,7 +47,7 @@ function Tabs() {
                 you owe 
               </div>
               <div className='balance-total'>
-              ${balanceState.owe}
+              ${balanceState.owed + balanceState.balance}
               </div>
             </div>
             }

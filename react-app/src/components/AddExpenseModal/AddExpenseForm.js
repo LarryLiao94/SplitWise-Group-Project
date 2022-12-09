@@ -223,7 +223,7 @@ function AddExpenseForm({ onClose }) {
         <div className="add-expense-distribution">
           ({`$${amount / 2}/person`})
         </div>
-
+        
         <div className="add-expense-buttons">
           <button className="add-expense-date">
             <CalendarModal />

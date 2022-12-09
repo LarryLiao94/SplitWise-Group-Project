@@ -29,7 +29,7 @@ const friendDetailsReducer = (state = initialState, action) => {
     
     switch(action.type){
         case GET_FRIEND_ID:
-            return { ...state, ...action.friend }
+            return { ...action.friend }
 
         default:
             return state;
