@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState , useMemo } from "react";
 // import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
@@ -18,6 +18,7 @@ function AddExpenseForm({ onClose }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const [credential, setCredential] = useState("");
+  const [search, setSearch] = useState("");
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState(0);
   const [image, setImage] = useState("");
@@ -30,9 +31,37 @@ function AddExpenseForm({ onClose }) {
   //   return({onClose})
   // }
 
-  // const [searchInput, setSearchInput] = useState('')
+  useEffect(() => {
+    const myFriends = async () => {
+      await dispatch(getFriends());
+    };
+    myFriends();
+  }, [dispatch]);
+
   const friendState = useSelector((state) => state.friends);
-  const allFriends = Object.values(friendState);
+  const oneFriends = Object.values(friendState);
+  let twoFriends = oneFriends[0]?.friends;
+  let allFriends;
+  if (twoFriends) {
+    allFriends = Object.values(twoFriends);
+  }
+
+  let idTwoFriends = oneFriends[0]?.friendId;
+  let idFriends;
+  if (idTwoFriends) {
+    idFriends = Object.values(idTwoFriends);
+  }
+
+
+  // const [searchInput, setSearchInput] = useState('')
+  // const friendState = useSelector((state) => state.friends);
+  // const allFriends = Object.values(friendState);
+
+  const filtered = useMemo(() => {
+    return allFriends?.filter((friend) => {
+      return friend.toLowerCase().includes(search.toLowerCase());
+    });
+  }, [allFriends, search]);
 
   // const handleSearch = (e) => {
   //   e.preventDefault();
@@ -45,12 +74,12 @@ function AddExpenseForm({ onClose }) {
   //   });
   // }
 
-  useEffect(() => {
-    const myFriends = async () => {
-      await dispatch(getFriends());
-    };
-    myFriends();
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const myFriends = async () => {
+  //     await dispatch(getFriends());
+  //   };
+  //   myFriends();
+  // }, [dispatch]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -138,9 +167,11 @@ function AddExpenseForm({ onClose }) {
             <option value="" disabled>
               Select from friends
             </option>
-            {allFriends?.map((friend) => {
+            {filtered?.map((friend, index) => {
+              console.log(friend, 'fREHIARS')
+              const idOfFriend = idFriends[index];
               return (
-                <option key={friend.id} value={friend}>
+                <option key={idOfFriend} value={friend}>
                   {friend}
                 </option>
               );
