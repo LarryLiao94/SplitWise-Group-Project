@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 // import { getFriends } from "../../store/friend";
 import './Search.css'
 
@@ -68,11 +69,11 @@ function Search() {
         <div className='data-result'>
           {filteredData.slice(0, 15).map((friend, key) => {
             return (
-              <a className='data-item'> 
+               <NavLink className='data-item'> 
                 <p>
                   {friend} 
                 </p>
-              </a>
+               </NavLink>
             )
           })}
         </div>

@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 import { editCommentThunk } from "../../store/comment";
+import { NavLink } from "react-router-dom";
 
 //larry push
 
@@ -65,14 +66,14 @@ function EditCommentForm({ comment, onClose }) {
 
       <div className="add-expense-main">
         <div className="add-expense-details-div">
-          {/* <a className="default-image-link">
+          {/*  <NavLink className="default-image-link">
             <img
               className="default-image"
               src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
               height="75"
               width="75"
             />
-          </a> */}
+           <NavLink */}
 
           <div className="add-expense-input-div">
             <textarea

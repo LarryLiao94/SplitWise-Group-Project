@@ -24,7 +24,7 @@ function AddFriendForm({ onClose }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('here')
+        // console.log('here')
         //session actions required for friend
         let payload = {
           email,
@@ -83,7 +83,7 @@ function AddFriendForm({ onClose }) {
             />
           </div>
           <div className='add-friend-description-div'>
-            <input className='add-friend-description' type='text' value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Include an optional message" />
+            <input className='add-friend-description' type='text' value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Please include a message" />
           </div>
           <div className='add-friend-submit-div'>
             <button onClick={handleSubmit}className='add-friend-submit-button' type="submit">Send invites and add friends</button>
