@@ -36,8 +36,11 @@ function ExpensesPage() {
   }, []);
 
   const expensesObj = useSelector((state) => state.expenses);
-  // console.log(expensesObj);
   const expenses = Object.values(expensesObj);
+  const owner = useSelector(
+    (state) => state.session.user);
+  const isOwner = owner.id === expenses?.user_id;
+  // console.log(expensesObj);
   // console.log(expenses);
   {
     /* <div className="expense-container">
@@ -315,6 +318,7 @@ function ExpensesPage() {
                         }
                       >
                         <div className="expense-dropdown-header">
+                          <div className="expense-dropdown-header-left">
                           <img
                             className="expense-dropdown-image"
                             src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
@@ -335,17 +339,11 @@ function ExpensesPage() {
                             </div>
 
                             <EditExpenseModal expense={expenseState[key]} />
-                          </div>
                         </div>
-                        <div>
-                          <GetExpenseComments
-                            expenseId={expenseState[key].expenseId}
-                          />
                         </div>
-                        <div>
-                          <CommentForm expense={expenseState[key]} />
-                        </div>
-
+                        <div className="delete-expense">
+                        {
+                        expenseState[key].type == "owner" && (
                         <i
                           className="fa-duotone fa-x"
                           onClick={async (e) => {
@@ -354,6 +352,31 @@ function ExpensesPage() {
                             await dispatch(deleteExpenseThunk(key));
                           }}
                         ></i>
+                        )
+                      }
+                      </div>
+                          </div>
+
+                        <div>
+                          <GetExpenseComments
+                            expenseId={expenseState[key].expenseId}
+                          />
+                        </div>
+                        <div>
+                          <CommentForm expense={expenseState[key]} />
+                        </div>
+                        {/* {
+                        expenseState[key].type == "owner" && (
+                        <i
+                          className="fa-duotone fa-x"
+                          onClick={async (e) => {
+                            e.preventDefault();
+                            history.go("/dashboard");
+                            await dispatch(deleteExpenseThunk(key));
+                          }}
+                        ></i>
+                        )
+                      } */}
                         {/* <button
                           onClick={async (e) => {
                             e.preventDefault();

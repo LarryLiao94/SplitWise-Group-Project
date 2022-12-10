@@ -622,6 +622,7 @@
 
 .expense-dropdown-header {
   display: flex;
+  justify-content: space-between;
   font-family: Arial, Helvetica, sans-serif;
   border-bottom: 1px solid #cccaca;
   padding: 15px;
@@ -653,3 +654,6 @@
   color:red;
 }
 
+.expense-dropdown-header-left {
+  display: flex;
+}

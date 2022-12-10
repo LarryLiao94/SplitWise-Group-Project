@@ -38,6 +38,7 @@ function AddFriendForm({ onClose }) {
             setErrors([]);
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
+            console.log(data.errors, 'here')
         };
 
         // try {
@@ -77,13 +78,13 @@ function AddFriendForm({ onClose }) {
             <input className='add-friend-credential-input'
               type="text"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.trim())}
               placeholder='Enter names or email addresses'
               required
             />
           </div>
           <div className='add-friend-description-div'>
-            <input className='add-friend-description' type='text' value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Please include a message" />
+            <input className='add-friend-description' type='text' value={description} onChange={(e) => setDescription(e.target.value.trim())} placeholder="Please include a message" />
           </div>
           <div className='add-friend-submit-div'>
             <button onClick={handleSubmit}className='add-friend-submit-button' type="submit">Send invites and add friends</button>
