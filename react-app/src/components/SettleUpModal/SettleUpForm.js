@@ -5,6 +5,7 @@ import CalendarModal from "../CalendarModal";
 import ImageModal from "../ImageModal";
 import RecipientModal from "../RecipientModal"
 import { getFriends } from "../../store/friend";
+import { getTotalBalanceThunk } from "../../store/friendTotal";
 import './SettleUp.css'
 import './index'
 
@@ -15,22 +16,41 @@ function SettleUpForm({ onClose }) {
   const [image, setImage] = useState('')
   const [group, setGroup] = useState('')
   const [errors, setErrors] = useState([]);
-
   const [ showModal, setShowModal ] = useState(true);
 
+  const friendState = useSelector((state) => state.friends);
+
+  const oneFriends = Object.values(friendState);
+  let twoFriends = oneFriends[0]?.friends;
+  let allFriends;
+  if(twoFriends){
+    allFriends = Object.values(twoFriends);
+  }
+
+  let idTwoFriends = oneFriends[0]?.friendId;
+  let idFriends;
+  if(idTwoFriends){
+    idFriends = Object.values(idTwoFriends)
+  }
+
   const sessionUser = useSelector(state => state.session.user);
+  const friendTotalBalanceState = useSelector(
+    (state) => state.friendTotal.friendTotal
+  );
+
+  // console.log(friendTotalBalanceState, 'HERERERE')
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setErrors([]);
-    
-    return dispatch(sessionActions.login({ credential, amount, image, group })).catch(
-      async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      }
-    );
+
+    // return dispatch(sessionActions.login({ credential, amount, image, group })).catch(
+    //   async (res) => {
+    //     const data = await res.json();
+    //     if (data && data.errors) setErrors(data.errors);
+    //   }
+    // );
   };
 
   return (
@@ -65,8 +85,8 @@ function SettleUpForm({ onClose }) {
           </button>
           <div>paid</div>
           <button className='settle-up-recipient'>
-            {/* <RecipientModal /> */}
-            Recipient
+            <RecipientModal />
+            {/* Recipient */}
           </button>
         </div>
 

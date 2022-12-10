@@ -94,13 +94,13 @@ function FriendDetails() {
   const expenseState = useSelector((state) => state.expenses);
 
   const friendInfoState = useSelector((state) => state.friend);
-  console.log(friendInfoState, "hereERE");
-
+  
   const friendTotalBalanceState = useSelector(
     (state) => state.friendTotal.friendTotal
-  );
+    );
+  //   console.log(friendTotalBalanceState, "hereERE");
   
-  console.log(friendTotalBalanceState)
+  // console.log(friendTotalBalanceState)
   // console.log(friendTotalBalanceState)
 
   const history = useHistory();
