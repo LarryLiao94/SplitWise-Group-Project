@@ -32,15 +32,19 @@ function AddExpenseForm({ onClose }) {
   //   return({onClose})
   // }
 
-  useEffect(() => {
-    const myFriends = async () => {
-      await dispatch(getFriends());
-    };
-    myFriends();
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const myFriends = async () => {
+  //     await dispatch(getFriends());
+  //   };
+  //   myFriends();
+  // }, [dispatch]);
+
+  const expenseState = useSelector((state) => state.expenses);
 
   const friendState = useSelector((state) => state.friends);
   const oneFriends = Object.values(friendState);
+
+
   let twoFriends = oneFriends[0]?.friends;
   let allFriends;
   if (twoFriends) {
@@ -92,7 +96,8 @@ function AddExpenseForm({ onClose }) {
 
     try {
       dispatch(addExpenseThunk(payload));
-      history.go("/dashboard");
+      // history.go("/dashboard");
+      onClose()
     } catch (res) {
       setErrors([]);
       const data = await res.json();
@@ -124,6 +129,14 @@ function AddExpenseForm({ onClose }) {
     //     if (data && data.errors) setErrors(data.errors);
     // });
   };
+
+  useEffect(() => {
+    const myFriends = async () => {
+      await dispatch(getFriends());
+    };
+    myFriends();
+  }, [dispatch, expenseState]);
+
 
   return (
     <form className="add-expense-form" onSubmit={handleSubmit}>

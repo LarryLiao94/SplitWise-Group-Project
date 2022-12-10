@@ -155,7 +155,7 @@ function Dashboard() {
               <div className="invite-friends">Invite friends</div>
               <input
                 className="invite-friends-input"
-                placeholder="Enter an email address"
+                placeholder="Feature coming soon"
               ></input>
               <button className="send-invite">Send invite</button>
             </div>

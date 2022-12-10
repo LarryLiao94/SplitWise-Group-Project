@@ -55,7 +55,7 @@ export default function CommentForm({ expense }) {
             value={comment}
             placeholder="Add a comment"
             pattern="^(?!\s*$).+"
-            onChange={(e) => setComment(e.target.value.trim())}
+            onChange={(e) => setComment(e.target.value)}
             required
           />
 

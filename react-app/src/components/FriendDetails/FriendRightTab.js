@@ -1,15 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { getExpenses } from "../../store/expense";
 import { getBalanceThunk } from "../../store/balance";
+import { getTotalBalanceThunk } from "../../store/friendTotal";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import RemoveFriendForm from "./RemoveFriend";
 import "./FriendDetails.css";
 
 function FriendTabs() {
+  const dispatch = useDispatch();
   const { id } = useParams();
 
   const [toggleState, setToggleState] = useState(1);
+  const expenseState = useSelector((state) => state.expenses);
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -18,6 +22,15 @@ function FriendTabs() {
   const friendTotalBalanceState = useSelector(
     (state) => state.friendTotal.friendTotal
   );
+
+  useEffect(() => {
+    const totalBalance = async () => {
+      await dispatch(getTotalBalanceThunk(Number(id)));
+      
+    };
+    totalBalance();
+  }, [dispatch, id, expenseState ]);
+
 
   return (
     <div className="tab-container">

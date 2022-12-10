@@ -21,6 +21,7 @@ function FriendDetails() {
   const dispatch = useDispatch();
   const [toggleState, setToggleState] = useState(1);
   const [search, setSearch] = useState("");
+  const [refresh, setRefresh ] = useState(false)
 
   const toggleTab = (index) => {
     setToggleState(index);
@@ -30,41 +31,14 @@ function FriendDetails() {
 
   // console.log(typeof id)
 
-  useEffect(() => {
-    dispatch(getExpenses());
-  }, [dispatch, id]);
+ 
 
-  useEffect(() => {
-    const myFriends = async () => {
-      await dispatch(getFriends());
-    };
-    myFriends();
-  }, [dispatch, id]);
+  const expenseState = useSelector((state) => state.expenses);
 
-  useEffect(() => {
-    const allBalance = async () => {
-      await dispatch(getBalanceThunk());
-    };
-    allBalance();
-  }, [dispatch, id]);
 
-  useEffect(() => {
-    const friendDetails = async () => {
-      await dispatch(getFriendIdThunk(Number(id)));
-    };
-    friendDetails();
-  }, [dispatch, id]);
+  // const expensesObj = useSelector((state) => state.expenses);
 
-  useEffect(() => {
-    const totalBalance = async () => {
-      await dispatch(getTotalBalanceThunk(Number(id)));
-    };
-    totalBalance();
-  }, [dispatch, id]);
-
-  const expensesObj = useSelector((state) => state.expenses);
-
-  const expenses = Object.values(expensesObj);
+  // const expenses = Object.values(expensesObj);
 
   const loggedSession = useSelector((state) => state.session.user);
 
@@ -91,8 +65,6 @@ function FriendDetails() {
 
   const balanceState = useSelector((state) => state.balances);
 
-  const expenseState = useSelector((state) => state.expenses);
-
   const friendInfoState = useSelector((state) => state.friend);
 
   const friendTotalBalanceState = useSelector(
@@ -108,6 +80,39 @@ function FriendDetails() {
   //     e.preventDefault();
   //     await dispatch(deleteExpenseThunk(id));
   //   };
+
+  useEffect(() => {
+    dispatch(getExpenses());
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    const myFriends = async () => {
+      await dispatch(getFriends());
+    };
+    myFriends();
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    const allBalance = async () => {
+      await dispatch(getBalanceThunk());
+    };
+    allBalance();
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    const friendDetails = async () => {
+      await dispatch(getFriendIdThunk(Number(id)));
+    };
+    friendDetails();
+  }, [dispatch, id, expenseState]);
+
+  useEffect(() => {
+    const totalBalance = async () => {
+      await dispatch(getTotalBalanceThunk(Number(id)));
+      
+    };
+    totalBalance();
+  }, [dispatch, id]);
 
   return (
     <>
@@ -200,7 +205,7 @@ function FriendDetails() {
               <div className="invite-friends">Invite friends</div>
               <input
                 className="invite-friends-input"
-                placeholder="Enter an email address"
+                placeholder="Feature coming soon"
               ></input>
               <button className="send-invite">Send invite</button>
             </div>
@@ -284,7 +289,7 @@ function FriendDetails() {
                                   </div>
 
                                   <div className="expense-you-paid-balance">
-                                    ${friendInfoState[key][1].balance}
+                                    ${Math.abs(friendInfoState[key][1].balance)}
                                   </div>
                                 </div>
                               ) : (
@@ -294,7 +299,7 @@ function FriendDetails() {
                                   </div>
 
                                   <div className="expense-you-paid-balance">
-                                    ${friendInfoState[key][1].balance}
+                                    ${Math.abs(friendInfoState[key][1].balance)}
                                   </div>
                                 </div>
                               )}
@@ -309,7 +314,7 @@ function FriendDetails() {
                                   </div>
 
                                   <div className="expense-you-lent-balance">
-                                    ${friendInfoState[key][1].balance / 2}
+                                    ${Math.abs(friendInfoState[key][1].balance / 2)}
                                   </div>
                                 </div>
                               ) : (
@@ -319,7 +324,7 @@ function FriendDetails() {
                                   </div>
 
                                   <div className="expense-owner-lent-balance">
-                                    ${friendInfoState[key][1].balance / 2}
+                                    ${Math.abs(friendInfoState[key][1].balance / 2)}
                                   </div>
                                 </div>
                               )}
@@ -338,6 +343,8 @@ function FriendDetails() {
                         }
                       >
                         <div className="expense-dropdown-header">
+                          <div className='expense-dropdown-header-left'>
+                          
                           <img
                             className="expense-dropdown-image"
                             src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
@@ -349,7 +356,7 @@ function FriendDetails() {
                             </div>
 
                             <div className="expense-dropdown-balance">
-                              ${friendInfoState[key][1].balance}
+                              ${Math.abs(friendInfoState[key][1].balance)}
                             </div>
 
                             <div className="expense-dropdown-secondary-text">
@@ -360,7 +367,30 @@ function FriendDetails() {
                               <EditExpenseModal expense={expenseState[key]} />
                             )}
                           </div>
+                          </div>
+
+                        <div className="delete-expense">
+                          {friendInfoState[key][1].type == "owner" && (
+                            <i
+                              className="fa-duotone fa-x"
+                              onClick={async (e) => {
+                                e.preventDefault();
+
+                                // history.go(
+                                //   `/friends/${friendInfoState[key][1].recipientId}`
+                                // );
+                                // console.log('hERE',friendInfoState[key][1] )
+                                await dispatch(
+                                  deleteExpenseThunk(
+                                    friendInfoState[key][1]?.transactionId
+                                  )
+                                );
+                              }}
+                            ></i>
+                          )}
                         </div>
+                        </div>
+
                         <div key={friendInfoState[key][1].recipientId}>
                           <GetExpenseComments
                             expenseId={friendInfoState[key][1].transactionId}
@@ -371,7 +401,7 @@ function FriendDetails() {
                             expense={friendInfoState[key][1].transactionId}
                           />
                         </div>
-                        <div className="delete-expense">
+                        {/* <div className="delete-expense">
                           {friendInfoState[key][1].type == "owner" && (
                             <i
                               className="fa-duotone fa-x"
@@ -389,7 +419,7 @@ function FriendDetails() {
                               }}
                             ></i>
                           )}
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>

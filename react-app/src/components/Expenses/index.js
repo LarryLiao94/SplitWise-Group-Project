@@ -24,21 +24,12 @@ function ExpensesPage() {
   const toggleTab = (index) => {
     setToggleState(index);
   };
-  useEffect(() => {
-    const myFriends = async () => {
-      await dispatch(getFriends());
-    };
-    myFriends();
-  }, []);
 
-  useEffect(() => {
-    dispatch(getExpenses());
-  }, []);
 
-  const expensesObj = useSelector((state) => state.expenses);
-  const expenses = Object.values(expensesObj);
-  const owner = useSelector((state) => state.session.user);
-  const isOwner = owner.id === expenses?.user_id;
+  // const expensesObj = useSelector((state) => state.expenses);
+  // const expenses = Object.values(expensesObj);
+  // const owner = useSelector((state) => state.session.user);
+  // const isOwner = owner.id === expenses?.user_id;
   // console.log(expensesObj);
   // console.log(expenses);
   {
@@ -50,12 +41,7 @@ function ExpensesPage() {
   </div> */
   }
 
-  useEffect(() => {
-    const allBalance = async () => {
-      await dispatch(getBalanceThunk());
-    };
-    allBalance();
-  }, []);
+ 
 
   const loggedSession = useSelector((state) => state.session.user);
 
@@ -94,6 +80,24 @@ function ExpensesPage() {
   }, [allFriends, search]);
 
   // console.log(filtered, 'FAOSIDFJAOW;IEFJA;OIWEFJA;OWEIFJA;OWI');
+
+  useEffect(() => {
+    const myFriends = async () => {
+      await dispatch(getFriends());
+    };
+    myFriends();
+  }, []);
+
+  useEffect(() => {
+    dispatch(getExpenses());
+  }, []);
+
+  useEffect(() => {
+    const allBalance = async () => {
+      await dispatch(getBalanceThunk());
+    };
+    allBalance();
+  }, [dispatch, expenseState]);
 
   return (
     <>
@@ -195,7 +199,7 @@ function ExpensesPage() {
               <div className="invite-friends">Invite friends</div>
               <input
                 className="invite-friends-input"
-                placeholder="Enter an email address"
+                placeholder="Feature coming soon"
               ></input>
               <button className="send-invite">Send invite</button>
             </div>
@@ -350,7 +354,7 @@ function ExpensesPage() {
                                 className="fa-duotone fa-x"
                                 onClick={async (e) => {
                                   e.preventDefault();
-                                  history.go("/dashboard");
+                                  // history.go("/dashboard");
                                   await dispatch(deleteExpenseThunk(key));
                                 }}
                               ></i>
