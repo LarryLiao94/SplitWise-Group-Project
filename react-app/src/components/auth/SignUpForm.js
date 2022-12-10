@@ -65,31 +65,31 @@ const SignUpForm = () => {
   };
 
   const updateUsername = (e) => {
-    setUsername(e.target.value);
+    setUsername(e.target.value.trim());
   };
 
   const updateFirstName = (e) => {
-    setFirstName(e.target.value);
+    setFirstName(e.target.value.trim());
   };
 
   const updateLastName = (e) => {
-    setLastName(e.target.value);
+    setLastName(e.target.value.trim());
   };
 
   const updatePhoneNumber = (e) => {
-    setPhoneNumber(e.target.value);
+    setPhoneNumber(e.target.value.trim());
   };
 
   const updateEmail = (e) => {
-    setEmail(e.target.value);
+    setEmail(e.target.value.trim());
   };
 
   const updatePassword = (e) => {
-    setPassword(e.target.value);
+    setPassword(e.target.value.trim());
   };
 
   const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
+    setRepeatPassword(e.target.value.trim());
   };
 
   if (user) {
