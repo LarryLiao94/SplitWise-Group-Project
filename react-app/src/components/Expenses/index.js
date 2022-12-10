@@ -162,7 +162,7 @@ function ExpensesPage() {
                 <Link className="dash-add-link" to="/groups/new">
                   <i className="fa-sharp fa-solid fa-plus"></i>
                   add
-                </Link>
+                </Link> 
               </div>
 
               <div className="dash-friends">
