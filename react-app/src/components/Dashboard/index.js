@@ -9,11 +9,13 @@ import Search from '../Search';
 import { getFriends } from "../../store/friend";
 import { useEffect, useState, useMemo } from "react";
 import { getBalanceThunk } from "../../store/balance";
-// import * as friendActions from '../../store/friend'
+import { getExpenses } from "../../store/expense";
+
 
 function Dashboard() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [toggleState, setToggleState] = useState(1);
   const [ search, setSearch ] = useState('')
 
   useEffect(() => {
@@ -29,6 +31,14 @@ function Dashboard() {
     };
     allBalance();
   }, []);
+
+  useEffect(() => {
+    dispatch(getExpenses());
+  }, []);
+
+  const expensesObj = useSelector((state) => state.expenses);
+  const expenses = Object.values(expensesObj);
+  const owner = useSelector((state) => state.session.user);
 
   const loggedSession = useSelector((state) => state.session.user);
 
@@ -48,8 +58,45 @@ function Dashboard() {
   }
 
   const balanceState = useSelector((state) => state.balances);
-  // const allBalances = balanceState.balance;
-  // console.log(allBalances, "HERE")
+
+  const expenseState = useSelector((state) => state.expenses);
+
+  console.log(Object.values(expenseState))
+  
+  const history = useHistory();
+
+  const owedExpenseNames = [...new Set(Object.values(expenseState).map(expense => expense.ownerName))];
+  const owesYouExpenseNames = [...new Set(Object.values(expenseState).map(expense => expense.ownerName == loggedSession.firstName ? expense.recipientName : expense.ownerName))]
+  
+ 
+
+  let oweFriendObject = {}
+
+  for(let i = 0; i <= owedExpenseNames.length; i++){
+    oweFriendObject[owedExpenseNames[i]] = 0
+  }
+
+  let owedFriendObject = {}
+
+  for(let i = 0; i <= owesYouExpenseNames.length; i++){
+    owedFriendObject[owesYouExpenseNames[i]] = 0
+  }
+
+  let testValues = Object.values(expenseState);
+  console.log(testValues,'TEAIJFOIWEJFOAIWEJF')
+
+  for(let i = 0; i < testValues.length; i++){
+    let expense = testValues[i];
+    if(expense.type == 'owner'){
+      owedFriendObject[expense.recipientName] += expense.balance / 2
+    }
+    else{
+      oweFriendObject[expense.ownerName] += expense.balance / 2
+    }
+  }
+
+  console.log(owedFriendObject)
+  console.log(oweFriendObject)
 
    const filtered = useMemo(() => {
     return allFriends?.filter(friend => {
@@ -197,8 +244,37 @@ function Dashboard() {
           </div>
           <div className="dash-main-body">
             <div className="dash-owe">
-              <div className="dash-main-left">YOU OWE</div>
+              <div className="dash-main-left">YOU OWE
+                <ul>
+                  {
+                    owedExpenseNames.map((name) => {
+                      return (
+                        name == loggedSession.firstName ? null : <li className='dash-friend-name'>
+                          {name}
+                          <div className='you-owe-friend-total'>
+                            you owe {oweFriendObject[name]}
+                          </div>
+                          </li>
+                      )
+                    })
+                  }
+                </ul>
+              </div>
               <div className="dash-main-right">YOU ARE OWED</div>
+              <ul>
+                  {
+                    owesYouExpenseNames.map((name) => {
+                      return (
+                        <li className='dash-friend-name'>
+                          {name}
+                          <div className='you-owe-friend-total'>
+                            owes you {owedFriendObject[name]}
+                          </div>
+                          </li>
+                      )
+                    })
+                  }
+                </ul>
             </div>
           </div>
         </div>
