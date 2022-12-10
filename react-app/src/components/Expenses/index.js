@@ -259,7 +259,8 @@ function ExpensesPage() {
                                   </div>
 
                                   <div className="expense-you-paid-balance">
-                                    ${expenseState[key].balance}
+                                    
+                                    ${Math.abs(expenseState[key].balance)}
                                   </div>
                                 </div>
                               ) : (
@@ -269,11 +270,18 @@ function ExpensesPage() {
                                   </div>
 
                                   <div className="expense-you-paid-balance">
-                                    ${expenseState[key].balance}
+
+                                    ${Math.abs(expenseState[key].balance)}
+                                    {console.log(expenseState[key],'here')}
                                   </div>
                                 </div>
                               )}
                             </div>
+                            
+                            {
+                              !expenseState[key].title.startsWith("You paid")
+
+                              ?
 
                             <div className="expense-needs-to-pay">
                               {expenseState[key].type == "owner" ? (
@@ -283,7 +291,7 @@ function ExpensesPage() {
                                   </div>
 
                                   <div className="expense-you-lent-balance">
-                                    ${expenseState[key].balance / 2}
+                                    ${Math.abs(expenseState[key].balance / 2)}
                                   </div>
                                 </div>
                               ) : (
@@ -293,20 +301,20 @@ function ExpensesPage() {
                                   </div>
 
                                   <div className="expense-owner-lent-balance">
-                                    ${expenseState[key].balance / 2}
+                                   
+                                    ${Math.abs(expenseState[key].balance / 2)}
                                   </div>
                                 </div>
                               )}
 
-                              {/* {expenseState[key].type == "owner"
-                          ? `You lent ${expenseState[key].ownerName} ${
-                            expenseState[key].balance / 2
-                          }`
-                          : `${expenseState[key].ownerName} lent you ${expenseState[key].balance}`} */}
+                            </div> 
+                            :
+                            <div>
                             </div>
+                          }
                           </div>
-                        </div>
-                      </button>
+                          </div>
+                          </button>
                     </div>
 
                     <div className="expense-content-tabs">
