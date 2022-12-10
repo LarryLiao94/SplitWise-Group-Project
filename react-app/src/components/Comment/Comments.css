@@ -1,5 +1,7 @@
 .comments-container {
   display: flex;
+  /* border: 1px solid red; */
+  justify-content: space-between;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -69,7 +71,7 @@
   font-family: Arial, Helvetica, sans-serif;
   width: 200px;
   height: 50px;
-  margin: 5px;
+  /* margin: 5px; */
 }
 
 .add-comment-area:placeholder {
@@ -79,5 +81,5 @@
 .comment-submit {
   width: 50px;
   background-color: #ff652f;
-  margin: 5px;
+  margin-top: 5px;
 }

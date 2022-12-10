@@ -76,7 +76,7 @@ export default function GetExpenseComments({ expenseId }) {
   return (
     <div className='comments-container'>
       <div className='comments-transaction-balances'>
-        Transactions between friends
+        {/* Transactions between friends */}
       </div>
 
       <div className='comments-div'>
