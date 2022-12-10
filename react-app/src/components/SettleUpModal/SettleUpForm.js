@@ -78,7 +78,7 @@ function SettleUpForm({ onClose }) {
     let payload = {
       recipientName: credential,
       description: `You paid ${credential}`,
-      balance: -(amount) * 2,
+      balance: -(amount),
     };
 
     try {
@@ -108,7 +108,7 @@ function SettleUpForm({ onClose }) {
           </button> */}
         </div>
 
-        <div className='settle-up-transaction-div'>
+        {/* <div className='settle-up-transaction-div'>
           <div>
             <img className='settle-up-payer-profile' alt='payer'/>
           </div>
@@ -116,7 +116,7 @@ function SettleUpForm({ onClose }) {
             <div>
               <img className='settle-up-recipient-profile' alt='recipient'/>
             </div>
-        </div>
+        </div> */}
 
         <div className='settle-up-transaction-secondary'>
           <button className='settle-up-payer'>
@@ -130,7 +130,7 @@ function SettleUpForm({ onClose }) {
             <select
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
-            className="add-expense-dropdown"
+            className="add-recipient-dropdown"
             required
           >
             <option value="" disabled>
@@ -140,7 +140,7 @@ function SettleUpForm({ onClose }) {
               // console.log(friend, "fREHIARS");
               const idOfFriend = idFriends[index];
               return (
-                <option key={idOfFriend} value={friend}>
+                <option className='recipient-selection' key={idOfFriend} value={friend}>
                   {friend}
                 </option>
               );
@@ -149,10 +149,10 @@ function SettleUpForm({ onClose }) {
             }
           </button>
         </div>
-        <div className="add-expense-amount-div">
-              <p className="add-expense-dollar">$</p>
+        <div className="settle-up-amount-div">
+              <p className="settle-up-dollar">$</p>
               <input
-                className="add-expense-amount"
+                className="settle-up-amount"
                 type="number"
                 min="1"
                 placeholder="0.00"

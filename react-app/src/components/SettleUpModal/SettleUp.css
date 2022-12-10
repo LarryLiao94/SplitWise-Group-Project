@@ -48,6 +48,8 @@
 .settle-up-transaction-secondary {
   display: flex;
   justify-content: center;
+  padding: 0 0 0 50px;
+  margin-top: 10px;
 }
 
 .settle-up-payer {
@@ -70,8 +72,9 @@
 
 .settle-up-amount-div {
   display: flex;
+  /* border: 1px solid red; */
   justify-content: center;
-  /* padding: 10px 0 0 5px; */
+  padding: 10px 0 0 50px;
   height: 50px;
 }
 
@@ -91,8 +94,8 @@
   font-weight: bold;
   font-size: 36px;
   border-bottom: 1px dotted #aeaeae;
-  /* border: 1px solid red; */
   padding: 0 0 0 20px;
+  outline: none;
 }
 
 
@@ -165,4 +168,20 @@
   height: 35px;
   width: 75px;
   margin: 5px;
+}
+
+.add-expense-dropdown select {
+  background-color: #EFEFEF;
+  outline: none;
+  border: none;
+}
+
+.settle-up-recipient select {
+  border: none;
+  outline: none;
+  direction: ltr;
+  appearance: none;
+  text-align: center;
+  background-color: #EFEFEF;
+  color: #5cc5a7;
 }

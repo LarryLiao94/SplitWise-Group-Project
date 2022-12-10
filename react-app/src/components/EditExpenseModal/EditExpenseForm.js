@@ -16,7 +16,7 @@ import { getExpenses } from "../../store/expense";
 //larry push
 
 function EditExpenseForm({ expense, onClose }) {
-  console.log(expense.recipientName);
+  // console.log(expense.recipientName);
   const dispatch = useDispatch();
   const history = useHistory();
   const [description, setDescription] = useState(expense.title);
@@ -94,7 +94,8 @@ function EditExpenseForm({ expense, onClose }) {
 
     try {
       dispatch(editExpenseThunk(payload));
-      history.go("/dashboard");
+      // history.go("/dashboard");
+      onClose()
     } catch (res) {
       setErrors([]);
       const data = await res.json();
