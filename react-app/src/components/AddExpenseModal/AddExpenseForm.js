@@ -1,4 +1,4 @@
-import React, { useRef, useState , useMemo } from "react";
+import React, { useRef, useState, useMemo } from "react";
 // import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
@@ -20,7 +20,7 @@ function AddExpenseForm({ onClose }) {
   const [credential, setCredential] = useState("");
   const [search, setSearch] = useState("");
   const [description, setDescription] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState();
   const [image, setImage] = useState("");
   const [group, setGroup] = useState("");
   const [errors, setErrors] = useState([]);
@@ -51,7 +51,6 @@ function AddExpenseForm({ onClose }) {
   if (idTwoFriends) {
     idFriends = Object.values(idTwoFriends);
   }
-
 
   // const [searchInput, setSearchInput] = useState('')
   // const friendState = useSelector((state) => state.friends);
@@ -168,7 +167,7 @@ function AddExpenseForm({ onClose }) {
               Select from friends
             </option>
             {filtered?.map((friend, index) => {
-              console.log(friend, 'fREHIARS')
+              console.log(friend, "fREHIARS");
               const idOfFriend = idFriends[index];
               return (
                 <option key={idOfFriend} value={friend}>
@@ -204,6 +203,8 @@ function AddExpenseForm({ onClose }) {
               <p className="add-expense-dollar">$</p>
               <input
                 className="add-expense-amount"
+                type="number"
+                min="1"
                 placeholder="0.00"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
@@ -221,9 +222,9 @@ function AddExpenseForm({ onClose }) {
           {/* <div className>.</div> */}
         </div>
         <div className="add-expense-distribution">
-          ({`$${amount / 2}/person`})
+          ({`$${(amount || 0) / 2}/person`})
         </div>
-        
+
         <div className="add-expense-buttons">
           <button className="add-expense-date">
             <CalendarModal />
