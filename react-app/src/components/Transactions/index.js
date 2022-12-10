@@ -174,10 +174,9 @@ function TransactionsPage() {
                 return (
                   <>
                     {transactionObj[key].transactionType == "friend" ? (
-                      <a
+                      <div
                         className="transaction"
                         key={transactionObj[key].transactionId}
-                        href="/friends"
                       >
                         <a className="default-image-link">
                           <img
@@ -223,7 +222,7 @@ function TransactionsPage() {
                             </div>
                           )}
                         </div>
-                      </a>
+                      </div>
                     ) : (
                       <a
                         className="transaction"

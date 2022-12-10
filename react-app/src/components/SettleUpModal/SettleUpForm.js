@@ -40,7 +40,6 @@ function SettleUpForm({ onClose }) {
 
   // console.log(friendTotalBalanceState, 'HERERERE')
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -86,7 +85,6 @@ function SettleUpForm({ onClose }) {
           <div>paid</div>
           <button className='settle-up-recipient'>
             <RecipientModal />
-            {/* Recipient */}
           </button>
         </div>
 
