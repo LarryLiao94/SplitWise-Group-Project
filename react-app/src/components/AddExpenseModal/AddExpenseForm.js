@@ -168,7 +168,7 @@ function AddExpenseForm({ onClose }) {
               Select from friends
             </option>
             {filtered?.map((friend, index) => {
-              console.log(friend, "fREHIARS");
+              // console.log(friend, "fREHIARS");
               const idOfFriend = idFriends[index];
               return (
                 <option key={idOfFriend} value={friend}>
@@ -197,7 +197,7 @@ function AddExpenseForm({ onClose }) {
               className="add-expense-description"
               placeholder="Enter a description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => setDescription(e.target.value.trim())}
               required
             />
             <div className="add-expense-amount-div">

@@ -54,7 +54,8 @@ export default function CommentForm({ expense }) {
               className='add-comment-area'
               value={comment}
               placeholder='Add a comment'
-              onChange={(e) => setComment(e.target.value)}
+              pattern="^(?!\s*$).+"
+              onChange={(e) => setComment(e.target.value.trim())}
               required
             />
       

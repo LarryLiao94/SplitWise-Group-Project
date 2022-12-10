@@ -80,7 +80,7 @@ function EditCommentForm({ comment, onClose }) {
               className="add-expense-description"
               placeholder="Enter a description"
               value={comments}
-              onChange={(e) => setComment(e.target.value)}
+              onChange={(e) => setComment(e.target.value.trim())}
               required
             />
           </div>
