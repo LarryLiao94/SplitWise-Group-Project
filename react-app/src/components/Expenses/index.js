@@ -175,7 +175,7 @@ function ExpensesPage() {
                 {filtered?.map((friend, index) => {
                   const idOfFriend = idFriends[index];
                   return (
-                    <Link className="friends-div" to={`/friends/${idOfFriend}`}>
+                    <Link key={friend.id} className="friends-div" to={`/friends/${idOfFriend}`}>
                       <i className="fa-solid fa-user"></i>
                       <li className="friends" key={friend.id}>
                         {friend}
@@ -347,7 +347,7 @@ function ExpensesPage() {
                         </div>
 
                         <i
-                          class="fa-duotone fa-x"
+                          className="fa-duotone fa-x"
                           onClick={async (e) => {
                             e.preventDefault();
                             history.go("/dashboard");

@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 // import * as Modal from '../src/context/Modal.js'
 import { editExpenseThunk } from "../../store/expense";
+import { NavLink } from "react-router-dom";
 import { getExpenses } from "../../store/expense";
 
 //larry push
@@ -173,14 +174,14 @@ function EditExpenseForm({ expense, onClose }) {
 
       <div className="add-expense-main">
         <div className="add-expense-details-div">
-          <a className="default-image-link">
+           <div className="default-image-link">
             <img
               className="default-image"
               src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
               height="75"
               width="75"
             />
-          </a>
+          </div>
 
           <div className="add-expense-input-div">
             <input

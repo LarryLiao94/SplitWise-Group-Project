@@ -429,7 +429,10 @@
 .plates-download-text {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
-  text-align: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   width: 150px;
   margin: 5px 0;
 
@@ -443,8 +446,20 @@
   border-radius: 5px;
   height: 40px;
   width: 150px;
-  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* margin: 15px 0; */
+  text-align: center;
 }
+
+.plates-text {
+  text-decoration: none;
+  color: white;
+}
+
+/* .plate-text-secondary {
+} */
 
 .plates-download-button:hover {
   cursor: pointer;

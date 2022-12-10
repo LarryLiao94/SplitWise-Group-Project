@@ -49,9 +49,9 @@ function LandingPage(){
 
                         <li>
                             <button className='active signup'> 
-                            <a href='/sign-up' exact={true} className='active signup'>
+                             <NavLink to='/sign-up' exact={true} className='active signup'>
                                 Sign up
-                                </a>
+                                </NavLink>
                             </button>
                         </li>
                     </ul>
@@ -147,30 +147,30 @@ function LandingPage(){
 
                         <div className={toggleState === 1 ? "landing-content active-landing-content" : "landing-content"}>
                             <button className='active signup-green'> 
-                            <a href='/sign-up' exact={true} className='active signup-green'>
+                             <NavLink to='/sign-up' exact={true} className='active signup-green'>
                                 Sign up
-                            </a>
+                            </NavLink>
                             </button>
                         </div>
                         <div className={toggleState === 2 ? "landing-content active-landing-content" : "landing-content"}>
                             <button className='active signup-purple'> 
-                            <a href='/sign-up' exact={true} className='active signup-purple'>
+                             <NavLink to='/sign-up' exact={true} className='active signup-purple'>
                                 Sign up
-                            </a>
+                            </NavLink>
                             </button>
                         </div>
                         <div className={toggleState === 3 ? "landing-content active-landing-content" : "landing-content"}>
                             <button className='active signup-red'> 
-                            <a href='/sign-up' exact={true} className='active signup-red'>
+                             <NavLink to='/sign-up' exact={true} className='active signup-red'>
                                 Sign up
-                            </a>
+                            </NavLink>
                             </button>
                         </div>
                         <div className={toggleState === 4 ? "landing-content active-landing-content" : "landing-content"}>
                             <button className='active signup-gray'> 
-                            <a href='/sign-up' exact={true} className='active signup-gray'>
+                             <NavLink to='/sign-up' exact={true} className='active signup-gray'>
                                 Sign up
-                            </a>
+                            </NavLink>
                             </button>
                         </div>
                 </div>
@@ -328,8 +328,8 @@ function LandingPage(){
                     </ul>
                     <div className='footer-section'>
                         <li className='footer-account title'>Account</li>
-                        <a className='footer-login' href='/login'>Log in</a>
-                        <a className='footer-signup' href='/sign-up'>Sign up</a>
+                         <NavLink className='footer-login' to='/login'>Log in</NavLink>
+                         <NavLink className='footer-signup' to='/sign-up'>Sign up</NavLink>
                         <li>Reset password</li>
                     </div>
                     <ul className='footer-section'>
@@ -341,13 +341,13 @@ function LandingPage(){
                 <div className='download-button-div'>
 
                     <div className='download-button'>
-                        <a href='https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile' target="_blank">
+                         <a href='https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile' target="_blank">
                             <img className='appStore-img' src='https://a-v2.sndcdn.com/assets/images/google_play_badge@en_2x-ad41a4d7.png' to='https://play.google.com/store/apps/details?id=com.Splitwise.SplitwiseMobile'/>
                         </a>
                     </div>
 
                     <div className='download-button'>
-                        <a href='https://apps.apple.com/us/app/splitwise/id458023433' target="_blank">
+                         <a href='https://apps.apple.com/us/app/splitwise/id458023433' target="_blank">
                             <img className='appStore-img' src='https://a-v2.sndcdn.com/assets/images/appstore_badge@en_2x-5a6e21e0.png' 
                             to='https://apps.apple.com/us/app/splitwise/id458023433'
                             />

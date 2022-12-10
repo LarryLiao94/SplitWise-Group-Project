@@ -178,14 +178,14 @@ function TransactionsPage() {
                         className="transaction"
                         key={transactionObj[key].transactionId}
                       >
-                        <a className="default-image-link">
+                         <div className="default-image-link">
                           <img
                             className="transaction-default-image"
                             src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
                             height="40"
                             width="40"
                           />
-                        </a>
+                         </div>
                         <div className="transaction-info">
                           <div className="transaction-description">
                             {transactionObj[key].transactionType == "friend"
@@ -224,19 +224,19 @@ function TransactionsPage() {
                         </div>
                       </div>
                     ) : (
-                      <a
+                      <NavLink
                         className="transaction"
                         key={transactionObj[key].transactionId}
-                        href="/expenses"
+                        to="/expenses"
                       >
-                        <a className="default-image-link">
+                         <div className="default-image-link">
                           <img
                             className="transaction-default-image"
                             src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
                             height="40"
                             width="40"
                           />
-                        </a>
+                         </div>
                         <div className="transaction-info">
                           <div className="transaction-description">
                             {transactionObj[key].transactionType == "friend"
@@ -273,7 +273,7 @@ function TransactionsPage() {
                             </div>
                           )}
                         </div>
-                      </a>
+                       </NavLink>
                     )}
                   </>
                 );

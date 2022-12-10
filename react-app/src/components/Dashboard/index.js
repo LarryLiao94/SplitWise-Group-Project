@@ -213,8 +213,14 @@ function Dashboard() {
             Check out Plates, our free iOS app to quickly and easily split
             dinner bills with friends.
           </div>
-          <button className="plates-download-button">Download Plates</button>
-        </div>
+          <div className="plates-download-button">
+            <a className='plates-text' href='https://apps.apple.com/us/app/plates-by-splitwise/id669801762'>
+                <p className='plates-text-secondary'>
+                  Download Plates
+                </p>
+            </a>
+          </div>
+          </div>
       </div>
     </div>
     </>

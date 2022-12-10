@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import { login } from "../../store/session";
+import { NavLink } from "react-router-dom";
 import './Signup.css'
 
 const SignUpForm = () => {
@@ -97,9 +98,9 @@ const SignUpForm = () => {
 
   return (
     <form className='signup-form' onSubmit={onSignUp}>
-      <a className='signup-index' href='/'>
+       <NavLink className='signup-index' to='/'>
       <img height="200" width="200" className="signup-splitwise-logo" src="https://assets.splitwise.com/assets/core/logo-square-65a6124237868b1d2ce2f5db2ab0b7c777e2348b797626816400534116ae22d7.svg"></img>
-      </a>
+      </NavLink>
       <div>
       <h2 className='introduce-text'>
         INTRODUCE YOURSELF

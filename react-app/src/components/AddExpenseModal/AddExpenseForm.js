@@ -1,5 +1,6 @@
 import React, { useRef, useState, useMemo } from "react";
 // import * as sessionActions from "../../store/session";
+import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
 import ImageModal from "../ImageModal";
@@ -182,14 +183,14 @@ function AddExpenseForm({ onClose }) {
 
       <div className="add-expense-main">
         <div className="add-expense-details-div">
-          <a className="default-image-link">
+           <div className="default-image-link">
             <img
               className="default-image"
               src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
               height="75"
               width="75"
             />
-          </a>
+          </div>
 
           <div className="add-expense-input-div">
             <input

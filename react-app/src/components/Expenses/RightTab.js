@@ -13,6 +13,7 @@ function Tabs() {
 
   const balanceState = useSelector((state) => state.balances);
 
+
   return (
     <div className="tab-container">
       <div className="tabs-div">
@@ -47,7 +48,8 @@ function Tabs() {
                 you owe 
               </div>
               <div className='balance-total'>
-              ${balanceState.owed + balanceState.balance}
+                
+              ${balanceState.owe > 0 ? balanceState.owed + balanceState.balance : balanceState.balance}
               </div>
             </div>
             }

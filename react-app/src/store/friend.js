@@ -111,7 +111,7 @@ const friendsReducer = (state = initialState, action) => {
 
         case REMOVE_FRIEND:
             delete newState[action.friend.id]
-            return newState
+            // return newState
 
         default:
             return state;

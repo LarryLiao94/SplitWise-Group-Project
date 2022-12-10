@@ -60,9 +60,9 @@ const LoginForm = () => {
 
             <li>
                 <button className='active signup'> 
-                <a href='/sign-up' exact={true} className='active signup'>
+                 <NavLink to='/sign-up' exact={true} className='active signup'>
                     Sign up
-                    </a>
+                    </NavLink>
                 </button>
             </li>
         </ul>
