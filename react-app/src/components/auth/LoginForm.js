@@ -29,11 +29,11 @@ const LoginForm = () => {
   };
 
   const updateEmail = (e) => {
-    setEmail(e.target.value);
+    setEmail(e.target.value.trim());
   };
 
   const updatePassword = (e) => {
-    setPassword(e.target.value);
+    setPassword(e.target.value.trim());
   };
 
   if (user) {
