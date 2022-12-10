@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import CalendarModal from "../CalendarModal";
 import ImageModal from "../ImageModal";
 import RecipientModal from "../RecipientModal"
 import { getFriends } from "../../store/friend";
+import { addExpenseThunk } from "../../store/expense";
 import { getTotalBalanceThunk } from "../../store/friendTotal";
+import { useHistory } from "react-router-dom";
 import './SettleUp.css'
 import './index'
 
 function SettleUpForm({ onClose }) {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const [search, setSearch] = useState("");
   const [credential, setCredential] = useState('');
   const [amount, setAmount] = useState(0);
   const [image, setImage] = useState('')
@@ -18,39 +22,75 @@ function SettleUpForm({ onClose }) {
   const [errors, setErrors] = useState([]);
   const [ showModal, setShowModal ] = useState(true);
 
-  const friendState = useSelector((state) => state.friends);
+  const [recipient, setRecipient] = useState('');
 
+  // const friendState = useSelector((state) => state.friends);
+
+  // const oneFriends = Object.values(friendState);
+  // let twoFriends = oneFriends[0]?.friends;
+  // let allFriends;
+  // if(twoFriends){
+  //   allFriends = Object.values(twoFriends);
+  // }
+
+  // let idTwoFriends = oneFriends[0]?.friendId;
+  // let idFriends;
+  // if(idTwoFriends){
+  //   idFriends = Object.values(idTwoFriends)
+  // }
+
+  // const sessionUser = useSelector(state => state.session.user);
+  // const friendTotalBalanceState = useSelector(
+  //   (state) => state.friendTotal.friendTotal
+  // ); 
+  useEffect(() => {
+    const myFriends = async () => {
+      await dispatch(getFriends());
+    };
+    myFriends();
+  }, [dispatch]);
+
+  const friendState = useSelector((state) => state.friends);
   const oneFriends = Object.values(friendState);
   let twoFriends = oneFriends[0]?.friends;
   let allFriends;
-  if(twoFriends){
+  if (twoFriends) {
     allFriends = Object.values(twoFriends);
   }
 
   let idTwoFriends = oneFriends[0]?.friendId;
   let idFriends;
-  if(idTwoFriends){
-    idFriends = Object.values(idTwoFriends)
+  if (idTwoFriends) {
+    idFriends = Object.values(idTwoFriends);
   }
 
-  const sessionUser = useSelector(state => state.session.user);
-  const friendTotalBalanceState = useSelector(
-    (state) => state.friendTotal.friendTotal
-  );
+  const filtered = useMemo(() => {
+    return allFriends?.filter((friend) => {
+      return friend.toLowerCase().includes(search.toLowerCase());
+    });
+  }, [allFriends, search]);
 
   // console.log(friendTotalBalanceState, 'HERERERE')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors([]);
 
-    // return dispatch(sessionActions.login({ credential, amount, image, group })).catch(
-    //   async (res) => {
-    //     const data = await res.json();
-    //     if (data && data.errors) setErrors(data.errors);
-    //   }
-    // );
-  };
+    let payload = {
+      recipientName: credential,
+      description: `You paid ${credential}`,
+      balance: -(amount) * 2,
+    };
+
+    try {
+      dispatch(addExpenseThunk(payload));
+      history.go("/dashboard");
+    } catch (res) {
+      setErrors([]);
+      const data = await res.json();
+
+      if (data && data.errors) setErrors(data.errors);
+    }
+  }
 
   return (
     <form className='settle-up-form' onSubmit={handleSubmit}>
@@ -84,17 +124,51 @@ function SettleUpForm({ onClose }) {
           </button>
           <div>paid</div>
           <button className='settle-up-recipient'>
-            <RecipientModal />
+            {/* <RecipientModal /> */}
+            {
+            
+            <select
+            value={credential}
+            onChange={(e) => setCredential(e.target.value)}
+            className="add-expense-dropdown"
+            required
+          >
+            <option value="" disabled>
+              Select recipient
+            </option>
+            {filtered?.map((friend, index) => {
+              // console.log(friend, "fREHIARS");
+              const idOfFriend = idFriends[index];
+              return (
+                <option key={idOfFriend} value={friend}>
+                  {friend}
+                </option>
+              );
+            })}
+           </select>
+            }
           </button>
         </div>
+        <div className="add-expense-amount-div">
+              <p className="add-expense-dollar">$</p>
+              <input
+                className="add-expense-amount"
+                type="number"
+                min="1"
+                placeholder="0.00"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                required
+              />
+            </div>
 
        
-        <div className='settle-up-amount-div'>
+        {/* <div className='settle-up-amount-div'>
           <p className='settle-up-dollar'>
             $
           </p>
           <input className='settle-up-amount' placeholder='0.00'/>
-        </div>
+        </div> */}
     
 
         <div className='settle-up-buttons'>
@@ -113,6 +187,7 @@ function SettleUpForm({ onClose }) {
       </div>
     </form>
   )
+
 }
 
 export default SettleUpForm;
