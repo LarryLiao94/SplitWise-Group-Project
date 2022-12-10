@@ -9,7 +9,6 @@ import {
 export default function CommentForm({ expense }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { expenseId } = expense;
 
   const [comment, setComment] = useState("");
   const [errors, setErrors] = useState([]);
@@ -18,13 +17,14 @@ export default function CommentForm({ expense }) {
     e.preventDefault();
     setErrors([]);
     let payload = {
-      id: expenseId,
-      expenseId: expenseId,
+      id: expense,
+      expenseId: expense,
       comment,
     };
 
     try {
       dispatch(addCommentThunk(payload));
+      setComment("");
 
       //   dispatch(getAllreviews(expenseId));
       //   history.go(`/expenses`);
@@ -39,7 +39,7 @@ export default function CommentForm({ expense }) {
   return (
     <div id="review-form-container">
       <div id="form-container">
-        <form className='comment-form' onSubmit={handleSubmit}>
+        <form className="comment-form" onSubmit={handleSubmit}>
           {errors && (
             <ul>
               {errors.map((error, idx) => (
@@ -49,17 +49,17 @@ export default function CommentForm({ expense }) {
               ))}
             </ul>
           )}
-         
-            <textarea
-              className='add-comment-area'
-              value={comment}
-              placeholder='Add a comment'
-              pattern="^(?!\s*$).+"
-              onChange={(e) => setComment(e.target.value.trim())}
-              required
-            />
-      
-          <button className='comment-submit' type="submit">
+
+          <textarea
+            className="add-comment-area"
+            value={comment}
+            placeholder="Add a comment"
+            pattern="^(?!\s*$).+"
+            onChange={(e) => setComment(e.target.value.trim())}
+            required
+          />
+
+          <button className="comment-submit" type="submit">
             Post
           </button>
         </form>

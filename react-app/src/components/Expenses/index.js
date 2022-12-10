@@ -364,7 +364,7 @@ function ExpensesPage() {
                           />
                         </div>
                         <div>
-                          <CommentForm expense={expenseState[key]} />
+                          <CommentForm expense={expenseState[key].expenseId} />
                         </div>
                         {/* {
                         expenseState[key].type == "owner" && (

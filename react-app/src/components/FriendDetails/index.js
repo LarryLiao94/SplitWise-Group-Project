@@ -361,7 +361,7 @@ function FriendDetails() {
                             )}
                           </div>
                         </div>
-                        <div>
+                        <div key={friendInfoState[key][1].recipientId}>
                           <GetExpenseComments
                             expenseId={friendInfoState[key][1].transactionId}
                           />
