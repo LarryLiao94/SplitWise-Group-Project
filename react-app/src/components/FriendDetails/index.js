@@ -73,14 +73,14 @@ function FriendDetails() {
   const oneFriends = Object.values(friendState);
   let twoFriends = oneFriends[0]?.friends;
   let allFriends;
-  if(twoFriends){
+  if (twoFriends) {
     allFriends = Object.values(twoFriends);
   }
 
   let idTwoFriends = oneFriends[0]?.friendId;
   let idFriends;
-  if(idTwoFriends){
-    idFriends = Object.values(idTwoFriends)
+  if (idTwoFriends) {
+    idFriends = Object.values(idTwoFriends);
   }
 
   const filtered = useMemo(() => {
@@ -94,12 +94,12 @@ function FriendDetails() {
   const expenseState = useSelector((state) => state.expenses);
 
   const friendInfoState = useSelector((state) => state.friend);
-  
+
   const friendTotalBalanceState = useSelector(
     (state) => state.friendTotal.friendTotal
-    );
+  );
   //   console.log(friendTotalBalanceState, "hereERE");
-  
+
   // console.log(friendTotalBalanceState)
   // console.log(friendTotalBalanceState)
 
@@ -356,8 +356,9 @@ function FriendDetails() {
                               Added by {friendInfoState[key][1].ownerName} on{" "}
                               {friendInfoState[key][1].timestamp.slice(0, 11)}
                             </div>
-
-                            <EditExpenseModal expense={expenseState[key]} />
+                            {friendInfoState[key][1].type == "owner" && (
+                              <EditExpenseModal expense={expenseState[key]} />
+                            )}
                           </div>
                         </div>
                         <div>
@@ -371,19 +372,24 @@ function FriendDetails() {
                           />
                         </div>
                         <div className="delete-expense">
-                        {
-                        friendInfoState[key][1].type == "owner" && (
-                        <i
-                          className="fa-duotone fa-x"
-                          onClick={async (e) => {
-                            e.preventDefault();
-                            history.go("/dashboard");
-                            await dispatch(deleteExpenseThunk(key));
-                          }}
-                        ></i>
-                        )
-                      }
-                      </div>
+                          {friendInfoState[key][1].type == "owner" && (
+                            <i
+                              className="fa-duotone fa-x"
+                              onClick={async (e) => {
+                                e.preventDefault();
+
+                                history.go(
+                                  `/friends/${friendInfoState[key][1].recipientId}`
+                                );
+                                await dispatch(
+                                  deleteExpenseThunk(
+                                    friendInfoState[key][1].transactionId
+                                  )
+                                );
+                              }}
+                            ></i>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
