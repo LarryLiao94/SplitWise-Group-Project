@@ -370,15 +370,20 @@ function FriendDetails() {
                             expense={friendInfoState[key][1].transactionId}
                           />
                         </div>
-                        <button
+                        <div className="delete-expense">
+                        {
+                        friendInfoState[key][1].type == "owner" && (
+                        <i
+                          className="fa-duotone fa-x"
                           onClick={async (e) => {
                             e.preventDefault();
                             history.go("/dashboard");
                             await dispatch(deleteExpenseThunk(key));
                           }}
-                        >
-                          delete
-                        </button>
+                        ></i>
+                        )
+                      }
+                      </div>
                       </div>
                     </div>
                   </div>
