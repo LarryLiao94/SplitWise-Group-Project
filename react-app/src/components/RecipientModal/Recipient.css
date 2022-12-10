@@ -1,0 +1,23 @@
+.recipient-selection {
+  border: 1px solid red;
+  margin-left: 300px;
+}
+
+.dash-add-recipient-modal {
+  outline: none;
+  border: none;
+}
+
+.dash-add-recipient-modal select {
+  border: none;
+  outline: none;
+  direction: ltr;
+  appearance: none;
+  text-align: center;
+  background-color: #EFEFEF;
+  color: #5cc5a7;
+}
+
+.dash-add-recipient-modal option {
+  
+}
