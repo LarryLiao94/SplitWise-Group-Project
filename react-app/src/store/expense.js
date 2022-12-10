@@ -66,7 +66,7 @@ export const editExpenseThunk = (expense) => async (dispatch) => {
 };
 
 export const deleteExpenseThunk = (id) => async (dispatch) => {
-  const res = await csrfFetch(`api/expense/${id}`, {
+  const res = await csrfFetch(`/api/expense/${id}`, {
     method: "DELETE",
   });
   if (res.ok) {
@@ -93,7 +93,6 @@ const expensesReducer = (state = initialState, action) => {
 
     case DELETE_EXPENSE:
       delete newState[action.expense.id];
-      return newState;
 
     default:
       return state;

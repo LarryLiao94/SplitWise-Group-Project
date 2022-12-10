@@ -37,8 +37,7 @@ function ExpensesPage() {
 
   const expensesObj = useSelector((state) => state.expenses);
   const expenses = Object.values(expensesObj);
-  const owner = useSelector(
-    (state) => state.session.user);
+  const owner = useSelector((state) => state.session.user);
   const isOwner = owner.id === expenses?.user_id;
   // console.log(expensesObj);
   // console.log(expenses);
@@ -162,7 +161,7 @@ function ExpensesPage() {
                 <Link className="dash-add-link" to="/groups/new">
                   <i className="fa-sharp fa-solid fa-plus"></i>
                   add
-                </Link> 
+                </Link>
               </div>
 
               <div className="dash-friends">
@@ -178,7 +177,11 @@ function ExpensesPage() {
                 {filtered?.map((friend, index) => {
                   const idOfFriend = idFriends[index];
                   return (
-                    <Link key={friend.id} className="friends-div" to={`/friends/${idOfFriend}`}>
+                    <Link
+                      key={friend.id}
+                      className="friends-div"
+                      to={`/friends/${idOfFriend}`}
+                    >
                       <i className="fa-solid fa-user"></i>
                       <li className="friends" key={friend.id}>
                         {friend}
@@ -216,7 +219,7 @@ function ExpensesPage() {
                 <div className="dash-total-balance">{balanceState.balance}</div>
               </div>
 
-            
+
             </div> */}
           </div>
           <div className="dash-expense-main-body">
@@ -259,7 +262,6 @@ function ExpensesPage() {
                                   </div>
 
                                   <div className="expense-you-paid-balance">
-                                    
                                     ${Math.abs(expenseState[key].balance)}
                                   </div>
                                 </div>
@@ -270,51 +272,43 @@ function ExpensesPage() {
                                   </div>
 
                                   <div className="expense-you-paid-balance">
-
                                     ${Math.abs(expenseState[key].balance)}
-                                    {console.log(expenseState[key],'here')}
+                                    {console.log(expenseState[key], "here")}
                                   </div>
                                 </div>
                               )}
                             </div>
-                            
-                            {
-                              !expenseState[key].title.startsWith("You paid")
 
-                              ?
+                            {!expenseState[key].title.startsWith("You paid") ? (
+                              <div className="expense-needs-to-pay">
+                                {expenseState[key].type == "owner" ? (
+                                  <div className="expense-transaction-div">
+                                    <div className="expense-transaction-text">
+                                      You lent {expenseState[key].ownerName}
+                                    </div>
 
-                            <div className="expense-needs-to-pay">
-                              {expenseState[key].type == "owner" ? (
-                                <div className="expense-transaction-div">
-                                  <div className="expense-transaction-text">
-                                    You lent {expenseState[key].ownerName}
+                                    <div className="expense-you-lent-balance">
+                                      ${Math.abs(expenseState[key].balance / 2)}
+                                    </div>
                                   </div>
+                                ) : (
+                                  <div className="expense-transaction-div">
+                                    <div className="expense-transaction-text">
+                                      {expenseState[key].ownerName} lent you
+                                    </div>
 
-                                  <div className="expense-you-lent-balance">
-                                    ${Math.abs(expenseState[key].balance / 2)}
+                                    <div className="expense-owner-lent-balance">
+                                      ${Math.abs(expenseState[key].balance / 2)}
+                                    </div>
                                   </div>
-                                </div>
-                              ) : (
-                                <div className="expense-transaction-div">
-                                  <div className="expense-transaction-text">
-                                    {expenseState[key].ownerName} lent you
-                                  </div>
-
-                                  <div className="expense-owner-lent-balance">
-                                   
-                                    ${Math.abs(expenseState[key].balance / 2)}
-                                  </div>
-                                </div>
-                              )}
-
-                            </div> 
-                            :
-                            <div>
-                            </div>
-                          }
+                                )}
+                              </div>
+                            ) : (
+                              <div></div>
+                            )}
                           </div>
-                          </div>
-                          </button>
+                        </div>
+                      </button>
                     </div>
 
                     <div className="expense-content-tabs">
@@ -327,43 +321,42 @@ function ExpensesPage() {
                       >
                         <div className="expense-dropdown-header">
                           <div className="expense-dropdown-header-left">
-                          <img
-                            className="expense-dropdown-image"
-                            src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
-                          />
+                            <img
+                              className="expense-dropdown-image"
+                              src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
+                            />
 
-                          <div className="expense-dropdown-header-info">
-                            <div className="expense-dropdown-title">
-                              {expenseState[key].title}
+                            <div className="expense-dropdown-header-info">
+                              <div className="expense-dropdown-title">
+                                {expenseState[key].title}
+                              </div>
+
+                              <div className="expense-dropdown-balance">
+                                ${expenseState[key].balance}
+                              </div>
+
+                              <div className="expense-dropdown-secondary-text">
+                                Added by {expenseState[key].ownerName} on{" "}
+                                {expenseState[key].timestamp.slice(0, 11)}
+                              </div>
+                              {expenseState[key].type == "owner" && (
+                                <EditExpenseModal expense={expenseState[key]} />
+                              )}
                             </div>
-
-                            <div className="expense-dropdown-balance">
-                              ${expenseState[key].balance}
-                            </div>
-
-                            <div className="expense-dropdown-secondary-text">
-                              Added by {expenseState[key].ownerName} on{" "}
-                              {expenseState[key].timestamp.slice(0, 11)}
-                            </div>
-
-                            <EditExpenseModal expense={expenseState[key]} />
-                        </div>
-                        </div>
-                        <div className="delete-expense">
-                        {
-                        expenseState[key].type == "owner" && (
-                        <i
-                          className="fa-duotone fa-x"
-                          onClick={async (e) => {
-                            e.preventDefault();
-                            history.go("/dashboard");
-                            await dispatch(deleteExpenseThunk(key));
-                          }}
-                        ></i>
-                        )
-                      }
-                      </div>
                           </div>
+                          <div className="delete-expense">
+                            {expenseState[key].type == "owner" && (
+                              <i
+                                className="fa-duotone fa-x"
+                                onClick={async (e) => {
+                                  e.preventDefault();
+                                  history.go("/dashboard");
+                                  await dispatch(deleteExpenseThunk(key));
+                                }}
+                              ></i>
+                            )}
+                          </div>
+                        </div>
 
                         <div>
                           <GetExpenseComments

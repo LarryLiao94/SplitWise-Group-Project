@@ -75,6 +75,31 @@ def create_new_expense():
     return "Bad Data"
 
 
+# @expense_routes.route('/', methods=['POST'])
+# @login_required
+# def pay_expense():
+#     form = ExpenseForm()
+#     form["csrf_token"].data = request.cookies["csrf_token"]
+#     if form.validate_on_submit():
+#         fullName = form.recipientName.data.split(" ")
+#         firstName = fullName[0]
+#         lastName = fullName[1]
+#         recipient = User.query.filter(User.firstName == firstName and User.lastName == lastName)
+#         new_expense = Expense(
+#             user_id = current_user.id,
+#             transaction_user_id = current_user.id,
+#             recipientId = recipient[0].id,
+#             title = form.description.data,
+#             description = f'Paid {fullName}',
+#             timestamp = datetime.now(),
+#             balance = (-form.balance.data)
+#         )
+#         db.session.add(new_expense)
+#         db.session.commit()
+#         return new_expense.to_dict()
+#     return "Bad Data"
+
+
 
 
 @expense_routes.route('/<int:expenseId>/comments')
