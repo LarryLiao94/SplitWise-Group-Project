@@ -66,7 +66,7 @@ export const getFriends = () => async (dispatch) => {
         friendId.forEach((friend) =>  
             newData['friendId'][friend] = friend)
 
-        console.log(newData)
+        // console.log(newData)
         
         dispatch(getAllFriends(newData))
     }
