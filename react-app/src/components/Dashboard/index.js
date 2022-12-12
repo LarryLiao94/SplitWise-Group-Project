@@ -91,7 +91,7 @@ function Dashboard() {
       await dispatch(getFriends());
     };
     myFriends();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     const allBalance = async () => {
@@ -190,7 +190,7 @@ function Dashboard() {
                 <Link className="friends-div" to={`/friends/${idOfFriend}`}>
                     <i className="fa-solid fa-user"></i>
                     <li className="friends" key={friend.id}>
-                      {friend}
+                      {friend ? friend : `new friend`}
                      </li>
                 </Link>
                );
@@ -276,14 +276,16 @@ function Dashboard() {
               <div>
                   {
                     owesYouExpenseNames.map((name) => {
-                      return (
-                        <div className='dash-friend-name'>
-                          {name}
-                          <div className='you-are-owed-friend-total'>
-                            owes you ${owedFriendObject[name]}
-                          </div>
-                          </div>
-                      )
+                      if(owedFriendObject[name] != 0){
+                        return (
+                          <div className='dash-friend-name'>
+                            {name}
+                            <div className='you-are-owed-friend-total'>
+                              owes you ${owedFriendObject[name]}
+                            </div>
+                            </div>
+                        )
+                      }
                     })
                   }
                 </div>

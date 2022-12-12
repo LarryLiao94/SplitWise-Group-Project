@@ -32,9 +32,8 @@ function AddFriendForm({ onClose }) {
         }
         
         try {
-          dispatch(addFriendThunk(payload))
-          history.go('/dashboard')
-          // onClose()
+          onClose(await dispatch(addFriendThunk(payload)))
+          // history.go('/dashboard')
         } catch (res) {
             setErrors([]);
             const data = await res.json();

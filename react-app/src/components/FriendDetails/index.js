@@ -16,11 +16,13 @@ import FriendTabs from "./FriendRightTab";
 import { getTotalBalanceThunk } from "../../store/friendTotal";
 import GetExpenseComments from "../Comment/Comments";
 import CommentForm from "../Comment";
+import {createBrowserHistory } from "history";
 
 function FriendDetails() {
   const dispatch = useDispatch();
   const [toggleState, setToggleState] = useState(1);
   const [search, setSearch] = useState("");
+  const [friend, setFriend] = useState('')
   const [refresh, setRefresh ] = useState(false)
 
   const toggleTab = (index) => {
@@ -29,7 +31,7 @@ function FriendDetails() {
 
   const { id } = useParams();
 
-  // console.log(typeof id)
+  console.log( id)
 
  
 
@@ -57,9 +59,6 @@ function FriendDetails() {
     idFriends = Object.values(idTwoFriends);
   }
 
-  let friendNameTitle = allFriends[idFriends.indexOf(Number(id))]
-  console.log(allFriends[idFriends.indexOf(Number(id))], 'OIAJWFOIEAWJFAOIAWEJFOEAWIJ')
-
   const filtered = useMemo(() => {
     return allFriends?.filter((friend) => {
       return friend.toLowerCase().includes(search.toLowerCase());
@@ -78,7 +77,7 @@ function FriendDetails() {
   // console.log(friendTotalBalanceState)
   // console.log(friendTotalBalanceState)
 
-  const history = useHistory();
+  const history = createBrowserHistory();
   //   const onClick = async (e) => {
   //     e.preventDefault();
   //     await dispatch(deleteExpenseThunk(id));
@@ -116,6 +115,10 @@ function FriendDetails() {
     };
     totalBalance();
   }, [dispatch, id]);
+
+  useEffect(() => {
+    dispatch(getFriendIdThunk(Number(id)));
+  }, [])
 
   return (
     <>
@@ -218,7 +221,7 @@ function FriendDetails() {
         <div className="dash-main column">
           <div className="dash-main-header">
             <div className="dash-main-header-upper">
-              <div className="dashboard-title">{friendNameTitle}</div>
+              <div className="dashboard-title">{allFriends ? allFriends[idFriends?.indexOf(Number(id))] : `Expenses`}</div>
               <div className="dash-buttons">
                 <AddExpenseModal />
 
