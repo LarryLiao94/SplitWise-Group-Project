@@ -1,3 +1,53 @@
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+
+
+  
+ <p align="center">
+
+
+<br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="https://i.pinimg.com/736x/a7/63/5b/a7635b1254e8428b4cdc6f48cee9a459--bill-obrien-dinners.jpg>
+  </a>
+
+Splitwise Clone
+
+A clone of the ever popular website and app, Splitwise. Users can easily split expenses made on trips, social events and more! 
+    <br />
+    <br />
+    <a href="https://splitwise-group-project.onrender.com/"> Live Link </a>
+    |
+     <a href="https://github.com/LarryLiao94/SplitWise-Group-Project/wiki/Features">Features</a>
+    |
+    <a href="https://github.com/LarryLiao94/SplitWise-Group-Project/wiki/Splitwise-Database-Schema">Database Schema</a>
+  </p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">Preview</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+  </ol>
+</details>
+
+## Preview
+
+![Screen Shot 2022-12-12 at 17 22 22 PM](https://user-images.githubusercontent.com/96208179/207167877-1e0c6160-0b1d-4108-af2b-349d849468ed.png)
+
+
+
 # Flask React Project
 
 This is the starter for the Flask React project.
