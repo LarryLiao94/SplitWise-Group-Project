@@ -60,14 +60,14 @@ function Tabs() {
         >
           <h2 className='upcoming-expenses-text'>UPCOMING EXPENSES</h2>
           <div className='upcoming-expenses-text-secondary'>
-            You have not added any recurring expenses yet
+           Feature coming soon
           </div>
         </div>
 
         <div
           className={toggleState === 3 ? "content  active-content" : "content"}
         >
-          <h2 className='trends-this-month-text'>TRENDS THIS MONTH</h2>
+          <h2 className='trends-this-month-text'>TRENDS THIS MONTH - Feature coming soon</h2>
           <div className='trends'>
             <div className='you-paid-for'>
               <strong className='trend-text'>

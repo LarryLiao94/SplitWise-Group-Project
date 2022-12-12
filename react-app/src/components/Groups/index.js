@@ -29,7 +29,7 @@ const Groups = () => {
           className='group-name-input'
           type="text"
           name="name"
-          placeholder="1600 Pennsylvania Ave"
+          placeholder="Feature coming soon"
           onChange={updateGroupName}
           value={groupName}
           />
