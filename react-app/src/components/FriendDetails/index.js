@@ -57,6 +57,9 @@ function FriendDetails() {
     idFriends = Object.values(idTwoFriends);
   }
 
+  let friendNameTitle = allFriends[idFriends.indexOf(Number(id))]
+  console.log(allFriends[idFriends.indexOf(Number(id))], 'OIAJWFOIEAWJFAOIAWEJFOEAWIJ')
+
   const filtered = useMemo(() => {
     return allFriends?.filter((friend) => {
       return friend.toLowerCase().includes(search.toLowerCase());
@@ -215,7 +218,7 @@ function FriendDetails() {
         <div className="dash-main column">
           <div className="dash-main-header">
             <div className="dash-main-header-upper">
-              <div className="dashboard-title">All expenses</div>
+              <div className="dashboard-title">{friendNameTitle}</div>
               <div className="dash-buttons">
                 <AddExpenseModal />
 

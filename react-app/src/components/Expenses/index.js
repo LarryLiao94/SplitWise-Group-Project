@@ -97,7 +97,7 @@ function ExpensesPage() {
       await dispatch(getBalanceThunk());
     };
     allBalance();
-  }, [dispatch]);
+  }, [dispatch, expenseState]);
 
   return (
     <>

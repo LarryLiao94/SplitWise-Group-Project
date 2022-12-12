@@ -29,6 +29,15 @@ def seed_friends():
     friend9 = Friend(
         user_id=3, friendEE=5, transaction_user_id=3, description='friend 3 added friend 5'
     )
+    friend10 = Friend(
+        user_id=1, friendEE=8, transaction_user_id=1, description='friend 1 added friend 8'
+    )
+    friend11 = Friend(
+        user_id=1, friendEE=9, transaction_user_id=1, description='friend 1 added friend 9'
+    )
+    friend12 = Friend(
+        user_id=2, friendEE=6, transaction_user_id=2, description='friend 2 added friend 6'
+    )
     # transaction1 = Transaction(userId=1,description='added friend 2', transactionableType=friend1)
     # transaction2 = Transaction(userId=1,description='added friend 3', transactionableType='friend')
     # transaction3 = Transaction(userId=1,description='added friend 4', transactionableType='friend')
@@ -48,6 +57,9 @@ def seed_friends():
     db.session.add(friend7)
     db.session.add(friend8)
     db.session.add(friend9)
+    db.session.add(friend10)
+    db.session.add(friend11)
+    db.session.add(friend12)
     # db.session.add(transaction1)
     # db.session.add(transaction2)
     # db.session.add(transaction3)
