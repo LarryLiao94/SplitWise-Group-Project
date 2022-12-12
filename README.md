@@ -1,3 +1,53 @@
+[![LinkedIn][linkedin-shield]][linkedin-url]
+
+
+
+  
+ <p align="center">
+
+
+<br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="https://plates.splitwise.com/images/splitwise-logo-bordered.png>
+  </a>
+
+Splitwise Clone
+
+A clone of the world's largest music and audio platform. Users can discover and experience an expansive selection of music, upload their own creations and share it with the world, all for free. It has become more than just a space to unleash your creativity but also connect with fellow artists and peers through a mutual platform from anywhere across the globe. 
+    <br />
+    <br />
+    <a href="https://soundcloud-clonejl.herokuapp.com/"> Live Link </a>
+    |
+     <a href="https://github.com/LarryLiao94/SplitWise-Group-Project/wiki/Features">Features</a>
+    |
+    <a href="https://github.com/LarryLiao94/SplitWise-Group-Project/wiki/Splitwise-Database-Schema">Database Schema</a>
+  </p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">Preview</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+  </ol>
+</details>
+
+## Preview
+
+![Screen Shot 2022-12-12 at 17 22 22 PM](https://user-images.githubusercontent.com/96208179/207167877-1e0c6160-0b1d-4108-af2b-349d849468ed.png)
+
+
+
 # Flask React Project
 
 This is the starter for the Flask React project.
