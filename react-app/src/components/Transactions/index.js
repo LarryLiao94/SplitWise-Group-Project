@@ -19,7 +19,7 @@ function TransactionsPage() {
   }, []);
 
   const transactionObj = useSelector((state) => state.transactions);
-  console.log(transactionObj, "HERE");
+  // console.log(transactionObj, "HERE");
   const transactions = Object.values(transactionObj);
 
   useEffect(() => {

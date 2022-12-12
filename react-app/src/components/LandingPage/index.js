@@ -324,7 +324,12 @@ function LandingPage(){
                 <div className='footer-div'>
                     <ul className='footer-section'>
                         <li className='footer-splitwise title'>Splitwise</li>
-                        <li>About</li>
+                        <div className='about-links'>
+                            About:
+                            <a className='github-link' href='https://github.com/LarryLiao94'>Larry Liao</a>
+                            <a className='github-link' href='https://github.com/jeremiahlu'>Jeremiah Lu</a>
+                            <a className='github-link'  href='https://github.com/Micodlr'>Michael de los Reyes</a>
+                        </div>
                     </ul>
                     <div className='footer-section'>
                         <li className='footer-account title'>Account</li>
