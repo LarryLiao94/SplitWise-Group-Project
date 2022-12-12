@@ -189,7 +189,7 @@ function Dashboard() {
               return (
                 <Link className="friends-div" to={`/friends/${idOfFriend}`}>
                     <i className="fa-solid fa-user"></i>
-                    <li className="friends" key={index}>
+                    <li className="friends" key={idOfFriend}>
                       {friend ? friend : `new friend`}
                      </li>
                 </Link>
