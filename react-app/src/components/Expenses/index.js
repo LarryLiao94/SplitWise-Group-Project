@@ -25,7 +25,6 @@ function ExpensesPage() {
     setToggleState(index);
   };
 
-
   // const expensesObj = useSelector((state) => state.expenses);
   // const expenses = Object.values(expensesObj);
   // const owner = useSelector((state) => state.session.user);
@@ -40,8 +39,6 @@ function ExpensesPage() {
     ))}
   </div> */
   }
-
- 
 
   const loggedSession = useSelector((state) => state.session.user);
 
@@ -89,15 +86,18 @@ function ExpensesPage() {
   }, []);
 
   useEffect(() => {
-    dispatch(getExpenses());
-  }, []);
+    const myExpenses = async () => {
+      await dispatch(getExpenses());
+    };
+    myExpenses();
+  }, [dispatch]);
 
   useEffect(() => {
     const allBalance = async () => {
       await dispatch(getBalanceThunk());
     };
     allBalance();
-  }, [dispatch, expenseState]);
+  }, [dispatch]);
 
   return (
     <>
@@ -246,7 +246,7 @@ function ExpensesPage() {
                         >
                           <div className="expense-left">
                             <div className="expense-date">
-                              {expenseState[key].timestamp.slice(0, 11)}
+                              {expenseState[key]?.timestamp?.slice(0, 11)}
                             </div>
                             <img
                               className="expense-image"
@@ -277,32 +277,36 @@ function ExpensesPage() {
 
                                   <div className="expense-you-paid-balance">
                                     ${Math.abs(expenseState[key].balance)}
-                                    {console.log(expenseState[key], "here")}
+                                    {/* {console.log(expenseState[key], "here")} */}
                                   </div>
                                 </div>
                               )}
                             </div>
 
-                            {!expenseState[key].title.startsWith("You paid") ? (
+                            {!expenseState[key]?.title?.startsWith(
+                              "You paid"
+                            ) ? (
                               <div className="expense-needs-to-pay">
                                 {expenseState[key].type == "owner" ? (
                                   <div className="expense-transaction-div">
                                     <div className="expense-transaction-text">
-                                      You lent {expenseState[key].ownerName}
+                                      You lent {expenseState[key]?.ownerName}
                                     </div>
 
                                     <div className="expense-you-lent-balance">
-                                      ${Math.abs(expenseState[key].balance / 2)}
+                                      $
+                                      {Math.abs(expenseState[key]?.balance / 2)}
                                     </div>
                                   </div>
                                 ) : (
                                   <div className="expense-transaction-div">
                                     <div className="expense-transaction-text">
-                                      {expenseState[key].ownerName} lent you
+                                      {expenseState[key]?.ownerName} lent you
                                     </div>
 
                                     <div className="expense-owner-lent-balance">
-                                      ${Math.abs(expenseState[key].balance / 2)}
+                                      $
+                                      {Math.abs(expenseState[key]?.balance / 2)}
                                     </div>
                                   </div>
                                 )}
@@ -332,16 +336,16 @@ function ExpensesPage() {
 
                             <div className="expense-dropdown-header-info">
                               <div className="expense-dropdown-title">
-                                {expenseState[key].title}
+                                {expenseState[key]?.title}
                               </div>
 
                               <div className="expense-dropdown-balance">
-                                ${expenseState[key].balance}
+                                ${expenseState[key]?.balance}
                               </div>
 
                               <div className="expense-dropdown-secondary-text">
-                                Added by {expenseState[key].ownerName} on{" "}
-                                {expenseState[key].timestamp.slice(0, 11)}
+                                Added by {expenseState[key]?.ownerName} on{" "}
+                                {expenseState[key]?.timestamp?.slice(0, 11)}
                               </div>
                               {expenseState[key].type == "owner" && (
                                 <EditExpenseModal expense={expenseState[key]} />
@@ -364,11 +368,11 @@ function ExpensesPage() {
 
                         <div>
                           <GetExpenseComments
-                            expenseId={expenseState[key].expenseId}
+                            expenseId={expenseState[key]?.expenseId}
                           />
                         </div>
                         <div>
-                          <CommentForm expense={expenseState[key].expenseId} />
+                          <CommentForm expense={expenseState[key]?.expenseId} />
                         </div>
                         {/* {
                         expenseState[key].type == "owner" && (

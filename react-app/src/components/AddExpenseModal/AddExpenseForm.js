@@ -10,6 +10,8 @@ import "./AddExpense.css";
 import "./index";
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { getExpenses } from "../../store/expense";
+import { getBalanceThunk } from "../../store/balance";
 // import Friends from '../Friends'
 // import * as Modal from '../src/context/Modal.js'
 
@@ -43,7 +45,6 @@ function AddExpenseForm({ onClose }) {
 
   const friendState = useSelector((state) => state.friends);
   const oneFriends = Object.values(friendState);
-
 
   let twoFriends = oneFriends[0]?.friends;
   let allFriends;
@@ -97,7 +98,7 @@ function AddExpenseForm({ onClose }) {
     try {
       dispatch(addExpenseThunk(payload));
       // history.go("/dashboard");
-      onClose()
+      onClose();
     } catch (res) {
       setErrors([]);
       const data = await res.json();
@@ -129,14 +130,26 @@ function AddExpenseForm({ onClose }) {
     //     if (data && data.errors) setErrors(data.errors);
     // });
   };
+  // useEffect(() => {
+  //   const myExpenses = async () => {
+  //     await dispatch(getExpenses());
+  //   };
+  //   myExpenses();
+  // }, [dispatch]);
 
-  useEffect(() => {
-    const myFriends = async () => {
-      await dispatch(getFriends());
-    };
-    myFriends();
-  }, [dispatch, expenseState]);
+  // useEffect(() => {
+  //   const myFriends = async () => {
+  //     await dispatch(getFriends());
+  //   };
+  //   myFriends();
+  // }, [dispatch, expenseState]);
 
+  // useEffect(() => {
+  //   const allBalance = async () => {
+  //     await dispatch(getBalanceThunk());
+  //   };
+  //   allBalance();
+  // }, [dispatch]);
 
   return (
     <form className="add-expense-form" onSubmit={handleSubmit}>
@@ -196,7 +209,7 @@ function AddExpenseForm({ onClose }) {
 
       <div className="add-expense-main">
         <div className="add-expense-details-div">
-           <div className="default-image-link">
+          <div className="default-image-link">
             <img
               className="default-image"
               src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
@@ -210,7 +223,8 @@ function AddExpenseForm({ onClose }) {
               className="add-expense-description"
               placeholder="Enter a description"
               value={description}
-              onChange={(e) => setDescription(e.target.value.trim())}
+              onChange={(e) => setDescription(e.target.value)}
+              pattern="^(?!\s*$).+"
               required
             />
             <div className="add-expense-amount-div">
