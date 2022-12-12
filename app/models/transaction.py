@@ -86,5 +86,17 @@ class Expense(Transaction):
   }
   comments = db.relationship("Comment",back_populates='expenses')
 
+  def to_dict(self):
+   return {
+       'id': self.id,
+       'userId': self.user_id,
+       'recipientId': self.recipientId,
+       'title': self.title,
+       'timestamp': self.timestamp,
+       'balance': self.balance,
+       'isSettled': self.isSettled,
+       "expenseId": self.id,
+  }
+
   # comments = db.relationship("Comment", back_populates="comments")
   # users = db.relationship("User", back_populates="expenses")

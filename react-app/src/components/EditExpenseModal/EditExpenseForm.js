@@ -24,12 +24,14 @@ function EditExpenseForm({ expense, onClose }) {
   const [image, setImage] = useState("");
   const [group, setGroup] = useState("");
   const [errors, setErrors] = useState([]);
+
   // const [ searchDropDown, setSearchDropdown ] = useState('');
   // const [recipientId, setRecipientId] = useState(0)
 
   // const [searchInput, setSearchInput] = useState('')
   const friendState = useSelector((state) => state.friends);
   const allFriends = Object.values(friendState);
+  const expenseState = useSelector((state) => state.expenses);
 
   // const handleSearch = (e) => {
   //   e.preventDefault();
@@ -95,7 +97,7 @@ function EditExpenseForm({ expense, onClose }) {
     try {
       dispatch(editExpenseThunk(payload));
       // history.go("/dashboard");
-      onClose()
+      onClose();
     } catch (res) {
       setErrors([]);
       const data = await res.json();
@@ -175,7 +177,7 @@ function EditExpenseForm({ expense, onClose }) {
 
       <div className="add-expense-main">
         <div className="add-expense-details-div">
-           <div className="default-image-link">
+          <div className="default-image-link">
             <img
               className="default-image"
               src="https://s3.amazonaws.com/splitwise/uploads/category/icon/square_v2/uncategorized/general@2x.png"
