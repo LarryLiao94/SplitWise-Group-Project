@@ -330,11 +330,11 @@ function LandingPage(){
                         <li className='footer-account title'>Account</li>
                          <NavLink className='footer-login' to='/login'>Log in</NavLink>
                          <NavLink className='footer-signup' to='/sign-up'>Sign up</NavLink>
-                        <li>Reset password</li>
+                        {/* <li>Reset password</li> */}
                     </div>
                     <ul className='footer-section'>
                         <li className='footer-more title'>More</li>
-                        <li>Contact Us</li>
+                        <li>Contact Us - Coming soon</li>
                     </ul>
                 </div>
 
