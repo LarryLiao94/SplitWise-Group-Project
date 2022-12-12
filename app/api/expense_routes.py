@@ -36,6 +36,9 @@ def edit_expense(expenseId):
     form = ExpenseForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
+        ownerName = current_user.firstName
+        fullName = form.recipientName.data.split(" ")
+        recipientName = fullName[0]
         expense = Expense.query.get_or_404(expenseId)
         # transaction = Transaction.query.get(expenseId)
         # print(expense)
@@ -45,7 +48,11 @@ def edit_expense(expenseId):
             expense.timestamp = datetime.now()
             expense.balance = form.balance.data
             db.session.commit()
-            return expense.to_dict()
+            new_expense = expense.to_dict()
+            new_expense['type'] = "owner"
+            new_expense["ownerName"] = ownerName
+            new_expense["recipientName"] = recipientName
+            return new_expense
         return "Unauthorized"
     return "Bad Data"
 
@@ -71,7 +78,10 @@ def create_new_expense():
         )
         db.session.add(new_expense)
         db.session.commit()
-        return new_expense.to_dict()
+        expense = new_expense.to_dict()
+        expense["ownerName"] = current_user.firstName
+        expense["recipientName"] = firstName
+        return expense
     return "Bad Data"
 
 
