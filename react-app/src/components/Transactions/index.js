@@ -19,7 +19,7 @@ function TransactionsPage() {
   }, []);
 
   const transactionObj = useSelector((state) => state.transactions);
-  console.log(transactionObj, "HERE");
+  
   const transactions = Object.values(transactionObj);
 
   useEffect(() => {
@@ -60,7 +60,8 @@ function TransactionsPage() {
 
   const balanceState = useSelector((state) => state.balances);
   // const allBalances = balanceState.balance;
-  // console.log(allBalances, "HERE")
+  
+  
 
   const expenseState = useSelector((state) => state.expenses);
 
