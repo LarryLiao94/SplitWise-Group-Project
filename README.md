@@ -14,10 +14,10 @@
 
 Splitwise Clone
 
-A clone of the world's largest music and audio platform. Users can discover and experience an expansive selection of music, upload their own creations and share it with the world, all for free. It has become more than just a space to unleash your creativity but also connect with fellow artists and peers through a mutual platform from anywhere across the globe. 
+A clone of the ever popular website and app, Splitwise. Users can easily split expenses made on trips, social events and more! 
     <br />
     <br />
-    <a href="https://soundcloud-clonejl.herokuapp.com/"> Live Link </a>
+    <a href="https://splitwise-group-project.onrender.com/"> Live Link </a>
     |
      <a href="https://github.com/LarryLiao94/SplitWise-Group-Project/wiki/Features">Features</a>
     |
