@@ -1,0 +1,68 @@
+.account-settings-main {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px 50px;
+}
+
+.account-settings-title {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 10px 50px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.account-settings-main {
+  display: flex;
+}
+
+.as-add-image {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  /* border: 1px solid red; */
+  /* margin: 0 15px 15px 15px; */
+  height: 50px;
+  padding-top: 0;
+  padding-bottom: 10px;
+}
+
+.as-add-image-text {
+  color: #333333;
+  /* padding: 15px 0 0 13px; */
+  margin-top: 10px;
+}
+
+.as-choose-file {
+  border: none;
+  margin: 5px 0;
+  padding: 0;
+  background-color: rgb(255, 255, 255);
+}
+
+.as-file-input {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+}
+
+
+.as-user-info-list {
+  list-style: none;
+}
+
+.as-user-info-label {
+  margin: 15px 0 5px 0;
+  font-size: 12px;
+}
+
+.as-user-info {
+  font-weight: bold;
+}
+
+.as-dash-link {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  margin-right: 10px;
+}
+

@@ -15,7 +15,8 @@ import ExpensesPage from "./components/Expenses";
 import TransactionsPage from "./components/Transactions";
 import { authenticate } from "./store/session";
 import FriendDetails from "./components/FriendDetails";
-import RemoveFriendForm from "./components/FriendDetails/RemoveFriend"
+import RemoveFriendForm from "./components/FriendDetails/RemoveFriend";
+import AccountSettings from "./components/Account";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -67,9 +68,9 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        {/* <ProtectedRoute path="/friends" exact={true}>
-          <Friends />
-        </ProtectedRoute> */}
+        <ProtectedRoute path="/account/settings" exact={true}>
+          <AccountSettings />
+        </ProtectedRoute>
         <ProtectedRoute path="/friends/:id" exact={true}>
           <FriendDetails />
         </ProtectedRoute>

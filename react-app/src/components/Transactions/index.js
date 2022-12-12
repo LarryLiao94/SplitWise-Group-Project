@@ -64,6 +64,13 @@ function TransactionsPage() {
 
   const expenseState = useSelector((state) => state.expenses);
 
+  useEffect(() => {
+    const myFriends = async () => {
+      await dispatch(getFriends());
+    };
+    myFriends();
+  }, []);
+
   return (
     <>
       <div className="dash-navbar">

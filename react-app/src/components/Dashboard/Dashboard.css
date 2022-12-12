@@ -465,3 +465,25 @@
   cursor: pointer;
 }
 
+
+.dash-friend-name {
+  /* border: 1px solid red; */
+  font-size: 18px;
+  list-style: none;
+  margin: 15px;
+}
+.dash-main-right-title {
+  padding-left: 50px;
+}
+
+.you-owe-friend-total {
+  color: #FF652F;
+  font-size: 14px;
+  font-weight: none;
+}
+
+.you-are-owed-friend-total {
+  color: #1CC29F;
+  font-size: 14px;
+  font-weight: none;
+}
