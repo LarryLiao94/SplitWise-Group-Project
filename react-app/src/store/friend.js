@@ -104,9 +104,9 @@ const friendsReducer = (state = initialState, action) => {
         case ADD_FRIEND:
             // newState.friends = action.payload
             // return newState;
-            console.log(newState, '000000000000000000')
+            // console.log(newState, '000000000000000000')
             newState = {...state, ...action.payload };
-            console.log(newState, '00000000000000000000') 
+            // console.log(newState, '00000000000000000000') 
 
             return newState
 

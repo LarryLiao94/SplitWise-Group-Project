@@ -32,7 +32,7 @@ function Recipient({ onClose }) {
 
   const handleSelection = (e) => {
     e.preventDefault();
-    console.log('HERE')
+    // console.log('HERE')
     // setRecipient(e.target.value)
     // onClose()
   }
@@ -77,7 +77,7 @@ function Recipient({ onClose }) {
     {
 
     allFriends?.map((friend) => {
-      console.log(friend.id, 'HEREDA')
+      // console.log(friend.id, 'HEREDA')
       return (
         <option className='recipient-selection' key={friend.id} value={friend} onClick={handleSelection}>
           {friend}
