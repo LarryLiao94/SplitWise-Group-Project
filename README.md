@@ -9,7 +9,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://s3.amazonaws.com/itunes-images/app-assets/458023433/80793600/458023433-80793600-circularArtwork-300.jpg>
+    <img src="[https://s3.amazonaws.com/itunes-images/app-assets/458023433/80793600/458023433-80793600-circularArtwork-300.jpg](https://play-lh.googleusercontent.com/xextMuNptM547SMenMUaywqIWmvqekf-9urJfXF2N45r-lYH0an-bjgFO9IYzqgSkOTU=w240-h480-rw)>
   </a>
 
 Splitwise Clone
