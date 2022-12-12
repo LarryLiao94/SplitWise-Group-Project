@@ -29,7 +29,7 @@ function LandingPage(){
     const loggedSession = useSelector((state) => (state.session.user));
 
     return(
-        <>
+        
         <body className='body'>
             <div className='header'>
                 <div className='logo'>
@@ -358,7 +358,7 @@ function LandingPage(){
                 
             </footer>
         </body>
-        </>
+        
     )
 }
 
