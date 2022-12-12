@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 // import { allFriends } from '../Dashboard'
 import './AddFriend.css'
 import './index'
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 function AddFriendForm({ onClose }) {
     const dispatch = useDispatch();
     const history = useHistory()
+    const { id } = useParams();
     const [email, setEmail] = useState('')
     const [friendEE, setFriendee] = useState('');
     const [description, setDescription] = useState('');
@@ -32,8 +33,9 @@ function AddFriendForm({ onClose }) {
         }
         
         try {
-          onClose(await dispatch(addFriendThunk(payload)))
-          // history.go('/dashboard')
+          const newFriend = await dispatch(addFriendThunk(payload))
+          // console.log(newFriend, 'HERE')
+          history.go(`/friends/${newFriend.id}`)
         } catch (res) {
             setErrors([]);
             const data = await res.json();

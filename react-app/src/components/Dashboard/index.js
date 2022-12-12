@@ -176,11 +176,11 @@ function Dashboard() {
 
             <div className="dash-friends">
               <div className="dash-friends-title">FRIENDS</div>
-              <Link className="dash-add-link">
+              <div className="dash-add-link">
                 <i className="fa-sharp fa-solid fa-plus"></i>
 
                 <AddFriendModal />
-              </Link>
+              </div>
             </div>
 
             <div className="dash-friends-list-container">
@@ -189,7 +189,7 @@ function Dashboard() {
               return (
                 <Link className="friends-div" to={`/friends/${idOfFriend}`}>
                     <i className="fa-solid fa-user"></i>
-                    <li className="friends" key={friend.id}>
+                    <li className="friends" key={index}>
                       {friend ? friend : `new friend`}
                      </li>
                 </Link>
