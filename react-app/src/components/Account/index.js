@@ -6,7 +6,6 @@ import { removeFriendThunk } from "../../store/friend";
 import ImageModal from "../ImageModal";
 
 
-
 const AccountSettings = () => {
   const loggedSession = useSelector((state) => state.session.user);
 

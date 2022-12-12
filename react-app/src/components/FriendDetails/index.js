@@ -32,6 +32,7 @@ function FriendDetails() {
   const { id } = useParams();
 
 
+
  
 
   const expenseState = useSelector((state) => state.expenses);

@@ -17,6 +17,7 @@ import { authenticate } from "./store/session";
 import FriendDetails from "./components/FriendDetails";
 import RemoveFriendForm from "./components/FriendDetails/RemoveFriend";
 import AccountSettings from "./components/Account";
+// import About from '/components/About';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -74,6 +75,9 @@ function App() {
         <ProtectedRoute path="/friends/:id" exact={true}>
           <FriendDetails />
         </ProtectedRoute>
+        {/* <ProtectedRoute path="/about" exact={true}>
+          <About />
+        </ProtectedRoute> */}
         {/* <ProtectedRoute path="/friends/2/edit" >
           <RemoveFriendForm />
         </ProtectedRoute> */}

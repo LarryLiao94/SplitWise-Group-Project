@@ -19,7 +19,8 @@ function TransactionsPage() {
   }, []);
 
   const transactionObj = useSelector((state) => state.transactions);
-  
+
+
   const transactions = Object.values(transactionObj);
 
   useEffect(() => {
