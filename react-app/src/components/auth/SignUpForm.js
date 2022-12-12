@@ -77,10 +77,12 @@ const SignUpForm = () => {
   };
 
   const updatePhoneNumber = (e) => {
-    setPhoneNumber(e.target.value.trim());
+    setPhoneNumber(e.target.value.trim())
+    
   };
 
   const updateEmail = (e) => {
+
     setEmail(e.target.value.trim());
   };
 
@@ -115,6 +117,7 @@ const SignUpForm = () => {
           name="userName"
           onChange={updateUsername}
           // onInput={revealSecondary()}
+          required
           value={username}
           />
         </div>
@@ -144,6 +147,7 @@ const SignUpForm = () => {
           onChange={updateLastName}
           // onInput={revealSecondary()}
           value={lastName}
+          required
           />
         </div>
 
@@ -158,6 +162,7 @@ const SignUpForm = () => {
           onChange={updatePhoneNumber}
           // onInput={revealSecondary()}
           value={phoneNumber}
+          required
           />
         </div>
 
@@ -174,6 +179,7 @@ const SignUpForm = () => {
           name="email"
           onChange={updateEmail}
           value={email}
+          required
           />
       </div>
 
@@ -189,6 +195,7 @@ const SignUpForm = () => {
           name="password"
           onChange={updatePassword}
           value={password}
+          required
           />
       </div>
 
