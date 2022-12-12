@@ -31,7 +31,6 @@ function FriendDetails() {
 
   const { id } = useParams();
 
-  console.log( id)
 
  
 
@@ -72,10 +71,7 @@ function FriendDetails() {
   const friendTotalBalanceState = useSelector(
     (state) => state.friendTotal.friendTotal
   );
-  //   console.log(friendTotalBalanceState, "hereERE");
 
-  // console.log(friendTotalBalanceState)
-  // console.log(friendTotalBalanceState)
 
   const history = createBrowserHistory();
   //   const onClick = async (e) => {
@@ -396,7 +392,6 @@ function FriendDetails() {
                                 // history.go(
                                 //   `/friends/${friendInfoState[key][1].recipientId}`
                                 // );
-                                // console.log('hERE',friendInfoState[key][1] )
                                 await dispatch(
                                   deleteExpenseThunk(
                                     friendInfoState[key][1]?.transactionId
