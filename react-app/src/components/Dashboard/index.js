@@ -221,12 +221,21 @@ function Dashboard() {
             </div>
 
             <div className="dash-main-header-balances">
-
-              <div className="dash-total-balance-div">total balance 
-                <div className='dash-total-balance'>
+              {
+                balanceState.balance > 0 
+                ?
+                <div className="dash-total-balance-div">total balance 
+                <div className='dash-total-balance-positive'>
                   {balanceState.balance}
                 </div>
               </div>
+              :
+                <div className="dash-total-balance-div">total balance 
+                <div className='dash-total-balance'>
+                  {balanceState.balance}
+                </div>
+                </div>
+              }
 
               <div className="dash-you-owe-div">you owe
                 <div className='dash-you-owe'>

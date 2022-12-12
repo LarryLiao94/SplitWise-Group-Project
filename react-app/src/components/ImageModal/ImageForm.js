@@ -49,7 +49,7 @@ function Image({ onClose }) {
       </div>
 
       <div className='add-image-description-div'>
-        <input className='add-image-description' type='text' value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Add notes" />
+        <input className='add-image-description' type='text' value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Feature coming soon" />
       </div>
       
       <div className='add-image-submit-div'>
