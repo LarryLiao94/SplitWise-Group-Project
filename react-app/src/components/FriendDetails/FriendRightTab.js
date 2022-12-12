@@ -67,6 +67,14 @@ function FriendTabs() {
         >
           <h2 className="your-total-balance-text">YOUR TOTAL BALANCE</h2>
           {
+            friendTotalBalanceState > 0 
+            ?
+            <div className="your-total-balance">
+            {/* <div className="tab-you-owe-text">you owe</div> */}
+            <div className="balance-total-positive">${friendTotalBalanceState}</div>
+            {/* <div className="balance-total-positive">$0</div> */}
+          </div>
+            :
             <div className="your-total-balance">
               <div className="tab-you-owe-text">you owe</div>
               <div className="balance-total">${friendTotalBalanceState}</div>

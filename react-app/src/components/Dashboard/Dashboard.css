@@ -363,6 +363,12 @@
   justify-content: center;
 }
 
+.dash-total-balance-positive {
+  color: #1CC29F;
+  display: flex;
+  justify-content: center;
+}
+
 .dash-you-owe {
   color: #FF652F;
   display: flex;

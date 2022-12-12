@@ -176,3 +176,7 @@
   color: #0088CC;
   margin: 10px 20px;
 }
+
+.errors {
+  color: red;
+}

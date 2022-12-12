@@ -498,6 +498,11 @@
   font-size: 28px;
 }
 
+.balance-total-positive {
+  color: #1cc29f;
+  font-size: 28px;
+}
+
 .upcoming-expenses-text-secondary {
   font-size: 14px;
   width: 155px;

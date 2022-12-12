@@ -207,6 +207,9 @@ function Calendar({ onClose }) {
                       <select className='repeat options'
                       value={repeats}
                       onChange={(e) => setRepeats(e.target.value)}>
+                         <option value='soon'>
+                          Feature coming soon
+                        </option>
                         <option value='once'>
                           Just this once
                         </option>
@@ -230,6 +233,9 @@ function Calendar({ onClose }) {
                       <select className='reminder options'
                       value={reminder}
                       onChange={(e) => setReminder(e.target.value)}>
+                        <option value='soon'>
+                          Feature coming soon
+                        </option>
                         <option value='no-reminder'>
                           No reminder
                         </option>

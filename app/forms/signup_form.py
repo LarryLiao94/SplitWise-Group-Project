@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, ValidationError, Length, EqualTo
 from app.models import User
 
 
@@ -19,12 +19,17 @@ def username_exists(form, field):
     if user:
         raise ValidationError('Username is already in use.')
 
+def valid_number(form, field): 
+    phoneNumber = field.data
+    if len(str(phoneNumber)) < 7:
+        raise ValidationError('Please enter a valid phone number')
+
 
 class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), username_exists])
     firstName = StringField('firstName', validators=[DataRequired()])
     lastName = StringField('lastName', validators=[DataRequired()])
-    phoneNumber = IntegerField('phoneNumber', validators=[DataRequired()])
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    password = StringField('password', validators=[DataRequired()])
+    phoneNumber = IntegerField('phoneNumber', validators=[DataRequired(), valid_number])
+    email = StringField('email', validators=[DataRequired(), user_exists, Email()])
+    password = StringField('password', validators=[DataRequired(), Length(min = 6, max=20, message="Password must be between 6-20 characters long")])

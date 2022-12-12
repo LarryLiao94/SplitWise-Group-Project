@@ -7,17 +7,17 @@
 
 .month-year {
   display: table;
-  width: 225px;
+  width: 250px;
   margin: 5px 15px 5px 5px;
 }
 
 .dow {
-  width: 225px;
+  width: 250px;
   display: table;
 }
 
 .calendarForm {
-  width: 225px;
+  width: 250px;
   height: 325px;
   border: 1px solid #aeaeae;
   box-shadow: #333333;
@@ -46,7 +46,7 @@ th {
 .table-body {
   display: table;
   /* vertical-align: middle; */
-  width: 225px;
+  width: 250px;
   height: 150px;
   /* border: 1px solid red; */
 }
@@ -62,6 +62,7 @@ table {
   font-size: 14px;
   overflow: hidden;
 }
+
 
 tfoot {
   display: table;
@@ -93,6 +94,7 @@ tfoot {
   background-color: rgb(236, 236, 236);
   margin-left: 5px;
   padding: 2px 5px; 
+  overflow-x: hidden;
 }
 
 .day:hover{
