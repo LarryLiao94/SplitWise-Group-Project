@@ -34,11 +34,12 @@ function AddFriendForm({ onClose }) {
         try {
           dispatch(addFriendThunk(payload))
           history.go('/dashboard')
+          // onClose()
         } catch (res) {
             setErrors([]);
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors);
-            console.log(data.errors, 'here')
+            // console.log(data.errors, 'here')
         };
 
         // try {
@@ -58,7 +59,11 @@ function AddFriendForm({ onClose }) {
 
       return (
         <form className='add-friend-form' onSubmit={handleSubmit}>
-      
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
           <div className='add-friends-header'>
 
             <img height='25' width='25' className='add-friend-img' src='https://assets.splitwise.com/assets/core/logo-square-65a6124237868b1d2ce2f5db2ab0b7c777e2348b797626816400534116ae22d7.svg' />
@@ -79,21 +84,26 @@ function AddFriendForm({ onClose }) {
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value.trim())}
+              pattern="^(?!\s*$).+"
               placeholder='Enter names or email addresses'
               required
             />
           </div>
           <div className='add-friend-description-div'>
-            <input className='add-friend-description' type='text' value={description} onChange={(e) => setDescription(e.target.value.trim())} placeholder="Please include a message" />
+            <input 
+              className='add-friend-description'
+              type='text'
+              value={description}
+              onChange={(e) => setDescription(e.target.value.trim())}
+              required
+              pattern="^(?!\s*$).+"
+              placeholder="Please include a message" 
+            />
           </div>
           <div className='add-friend-submit-div'>
             <button onClick={handleSubmit}className='add-friend-submit-button' type="submit">Send invites and add friends</button>
           </div>
-          <ul>
-            {errors.map((error, idx) => (
-              <li key={idx}>{error}</li>
-            ))}
-          </ul>
+         
         </form>
       );
 }

@@ -16,25 +16,7 @@ function Dashboard() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [toggleState, setToggleState] = useState(1);
-  const [ search, setSearch ] = useState('')
-
-  useEffect(() => {
-    const myFriends = async () => {
-      await dispatch(getFriends());
-    };
-    myFriends();
-  }, []);
-
-  useEffect(() => {
-    const allBalance = async () => {
-      await dispatch(getBalanceThunk());
-    };
-    allBalance();
-  }, []);
-
-  useEffect(() => {
-    dispatch(getExpenses());
-  }, []);
+  const [ search, setSearch ] = useState('');
 
   const expensesObj = useSelector((state) => state.expenses);
   const expenses = Object.values(expensesObj);
@@ -61,7 +43,7 @@ function Dashboard() {
 
   const expenseState = useSelector((state) => state.expenses);
 
-  console.log(Object.values(expenseState))
+  // console.log(Object.values(expenseState))
   
   const history = useHistory();
 
@@ -83,7 +65,7 @@ function Dashboard() {
   }
 
   let testValues = Object.values(expenseState);
-  console.log(testValues,'TEAIJFOIWEJFOAIWEJF')
+  // console.log(testValues,'TEAIJFOIWEJFOAIWEJF')
 
   for(let i = 0; i < testValues.length; i++){
     let expense = testValues[i];
@@ -94,15 +76,33 @@ function Dashboard() {
       oweFriendObject[expense.ownerName] += expense.balance / 2
     }
   }
-
-  console.log(owedFriendObject)
-  console.log(oweFriendObject)
+  
+  // console.log(owedFriendObject)
+  // console.log(oweFriendObject)
 
    const filtered = useMemo(() => {
     return allFriends?.filter(friend => {
       return friend.toLowerCase().includes(search.toLowerCase())
     })
   }, [allFriends, search])
+
+  useEffect(() => {
+    const myFriends = async () => {
+      await dispatch(getFriends());
+    };
+    myFriends();
+  }, []);
+
+  useEffect(() => {
+    const allBalance = async () => {
+      await dispatch(getBalanceThunk());
+    };
+    allBalance();
+  }, [dispatch, friendState]);
+
+  useEffect(() => {
+    dispatch(getExpenses());
+  }, []);
 
   return (
     <>
@@ -245,36 +245,40 @@ function Dashboard() {
           <div className="dash-main-body">
             <div className="dash-owe">
               <div className="dash-main-left">YOU OWE
-                <ul>
+                <div>
                   {
                     owedExpenseNames.map((name) => {
                       return (
-                        name == loggedSession.firstName ? null : <li className='dash-friend-name'>
+                        name == loggedSession.firstName ? null : <div className='dash-friend-name'>
                           {name}
                           <div className='you-owe-friend-total'>
-                            you owe {oweFriendObject[name]}
+                            you owe ${oweFriendObject[name]}
                           </div>
-                          </li>
+                          </div>
                       )
                     })
                   }
-                </ul>
+                </div>
               </div>
-              <div className="dash-main-right">YOU ARE OWED</div>
-              <ul>
+              <div className="dash-main-right">
+                <div className='dash-main-right-title'>
+                  YOU ARE OWED
+                </div>
+              <div>
                   {
                     owesYouExpenseNames.map((name) => {
                       return (
-                        <li className='dash-friend-name'>
+                        <div className='dash-friend-name'>
                           {name}
-                          <div className='you-owe-friend-total'>
-                            owes you {owedFriendObject[name]}
+                          <div className='you-are-owed-friend-total'>
+                            owes you ${owedFriendObject[name]}
                           </div>
-                          </li>
+                          </div>
                       )
                     })
                   }
-                </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>

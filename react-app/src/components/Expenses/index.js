@@ -290,7 +290,7 @@ function ExpensesPage() {
                                 {expenseState[key].type == "owner" ? (
                                   <div className="expense-transaction-div">
                                     <div className="expense-transaction-text">
-                                      You lent {expenseState[key]?.ownerName}
+                                      You lent {expenseState[key]?.recipientName}
                                     </div>
 
                                     <div className="expense-you-lent-balance">

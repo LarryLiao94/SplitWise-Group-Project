@@ -79,6 +79,7 @@ def create_new_expense():
         db.session.add(new_expense)
         db.session.commit()
         expense = new_expense.to_dict()
+        expense['type'] = "owner"
         expense["ownerName"] = current_user.firstName
         expense["recipientName"] = firstName
         return expense

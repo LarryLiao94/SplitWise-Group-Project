@@ -102,8 +102,10 @@ const friendsReducer = (state = initialState, action) => {
     
     switch(action.type){
         case ADD_FRIEND:
-            newState.friends = action.payload
-            return newState;
+            // newState.friends = action.payload
+            // return newState;
+            newState = {...state, ...action.payload };
+            return newState
 
         case GET_FRIENDS:
             newState.friends = action.friends
