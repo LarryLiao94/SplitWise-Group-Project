@@ -13,6 +13,18 @@ def seed_users():
         username='xavier', firstName='Xavier', lastName='LastXavier', phoneNumber='4444444444', email='xavier@aa.io', password='password', balance=0)
     khad = User(
         username='khad', firstName='Khad', lastName='LastKhad', phoneNumber='5555555555', email='khad@aa.io', password='password', balance=0)
+    brian = User(
+        username='brian', firstName='Brian', lastName='LastBrian', phoneNumber='6666666666', email='brian@aa.io', password='password', balance=0)
+    dingus = User(
+        username='dingus', firstName='Dingus', lastName='LastDingus', phoneNumber='7777777777', email='dingus@aa.io', password='password', balance=0)
+    paolo = User(
+        username='paolo', firstName='Paolo', lastName='LastPaolo', phoneNumber='8888888888', email='paolo@aa.io', password='password', balance=0)
+    felicia = User(
+        username='felicia', firstName='Felica', lastName='LastFelica', phoneNumber='9999999999', email='felicia@aa.io', password='password', balance=0)
+    meg = User(
+        username='meg', firstName='Meg', lastName='LastMeg', phoneNumber='1011011100', email='meg@aa.io', password='password', balance=0)
+    tate = User(
+        username='tate', firstName='Tate', lastName='LastTate', phoneNumber='2022022200', email='tate@aa.io', password='password', balance=0)
     
     
     db.session.add(demo)
@@ -20,6 +32,12 @@ def seed_users():
     db.session.add(bobbie)
     db.session.add(xavier)
     db.session.add(khad)
+    db.session.add(brian)
+    db.session.add(dingus)
+    db.session.add(paolo)
+    db.session.add(felicia)
+    db.session.add(meg)
+    db.session.add(tate)
     db.session.commit()
 
 

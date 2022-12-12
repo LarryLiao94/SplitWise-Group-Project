@@ -5,24 +5,37 @@ from app.models import Expense, Transaction
 # Adds a demo user, you can add other users here if you want
 def seed_expenses():
     test1 = Expense(
-        transaction_user_id=1, user_id=1, recipientId=2, title='test1', timestamp=datetime.now(), description='Your balance has been paid',balance=100, isSettled=False)
+        transaction_user_id=1, user_id=1, recipientId=2, title='Gucci', timestamp=datetime.now(), description='Your balance has been paid',balance=1000, isSettled=False)
     test2 = Expense(
-        transaction_user_id=2, user_id=2, recipientId=3, title='test2', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+        transaction_user_id=2, user_id=2, recipientId=3, title='Shoes', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
     test3 = Expense(
-        transaction_user_id=2, user_id=2, recipientId=1, title='test3', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+        transaction_user_id=2, user_id=2, recipientId=1, title='massage', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
     test4 = Expense(
-        transaction_user_id=2, user_id=2, recipientId=1, title='test4', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+        transaction_user_id=2, user_id=2, recipientId=1, title='please', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
     test5 = Expense(
-        transaction_user_id=2, user_id=2, recipientId=3, title='test5', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+        transaction_user_id=2, user_id=2, recipientId=3, title='Starbucks', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
     test6 = Expense(
-        transaction_user_id=3, user_id=3, recipientId=1, title='test6', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+        transaction_user_id=3, user_id=3, recipientId=1, title='Coffee', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
     test7 = Expense(
-        transaction_user_id=1, user_id=1, recipientId=3, title='test7', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
+        transaction_user_id=1, user_id=1, recipientId=3, title='Travel', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
     test8 = Expense(
         transaction_user_id=2, user_id=2, recipientId=3, title='test8', timestamp=datetime.now(), description='Your balance has not been paid',balance=1000, isSettled=False)
-
-    # transaction1 = Transaction(userId=2,description='Your balance has been paid', transactionableType='expense')
-    # transaction2 = Transaction(userId=3,description='Your balance has not been paid', transactionableType='expense')
+    test9 = Expense(
+        transaction_user_id=1, user_id=1, recipientId=4, title='Gucci', timestamp=datetime.now(), description='Your balance has been paid',balance=425, isSettled=False)
+    test10 = Expense(
+        transaction_user_id=1, user_id=1, recipientId=5, title='Knicks Game', timestamp=datetime.now(), description='Your balance has not been paid',balance=1240, isSettled=False)
+    test11 = Expense(
+        transaction_user_id=1, user_id=1, recipientId=8, title='massage', timestamp=datetime.now(), description='Your balance has not been paid',balance=200, isSettled=False)
+    test12 = Expense(
+        transaction_user_id=8, user_id=6, recipientId=1, title='Stonks', timestamp=datetime.now(), description='Your balance has not been paid',balance=420, isSettled=False)
+    test13 = Expense(
+        transaction_user_id=4, user_id=7, recipientId=1, title='Stonks', timestamp=datetime.now(), description='Your balance has not been paid',balance=420, isSettled=False)
+    test14 = Expense(
+        transaction_user_id=8, user_id=8, recipientId=1, title='Fud', timestamp=datetime.now(), description='Your balance has not been paid',balance=420, isSettled=False)
+    test15 = Expense(
+        transaction_user_id=1, user_id=7, recipientId=1, title='Stonks', timestamp=datetime.now(), description='Your balance has not been paid',balance=420, isSettled=False)
+    test16 = Expense(
+        transaction_user_id=1, user_id=6, recipientId=1, title='Fud', timestamp=datetime.now(), description='Your balance has not been paid',balance=420, isSettled=False)
 
     db.session.add(test1)
     db.session.add(test2)
@@ -32,6 +45,14 @@ def seed_expenses():
     db.session.add(test6)
     db.session.add(test7)
     db.session.add(test8)
+    db.session.add(test9)
+    db.session.add(test10)
+    db.session.add(test11)
+    db.session.add(test12)
+    db.session.add(test13)
+    db.session.add(test14)
+    db.session.add(test15)
+    db.session.add(test16)
     # db.session.add(transaction1)
     # db.session.add(transaction2)
     # db.session.add_all()
