@@ -4,9 +4,8 @@
 
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://i.pinimg.com/736x/a7/63/5b/a7635b1254e8428b4cdc6f48cee9a459--bill-obrien-dinners.jpg>
-  </a>
+ 
+  <img src="https://www.splitwise.com/assets/core/logo-faceted.svg">
 
 Splitwise Clone
 
