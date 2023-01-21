@@ -13,7 +13,7 @@ Splitwise Clone
 A clone of the ever popular website and app, Splitwise. Users can easily split expenses made on trips, social events and more! 
     <br />
     <br />
-    <a href="https://splitwise-group-project.onrender.com/"> Live Link </a>
+    <a href="https://splitwise-group-project.onrender.com"> Live Link </a>
     |
      <a href="https://github.com/LarryLiao94/SplitWise-Group-Project/wiki/Features">Features</a>
     |
