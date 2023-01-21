@@ -41,6 +41,8 @@ A clone of the ever popular website and app, Splitwise. Users can easily split e
 ## Preview
 
 ![Screen Shot 2022-12-12 at 17 22 22 PM](https://user-images.githubusercontent.com/96208179/207167877-1e0c6160-0b1d-4108-af2b-349d849468ed.png)
+![Screen Shot 2023-01-21 at 14 22 43 PM](https://user-images.githubusercontent.com/96208179/213883670-a7bfa811-efe1-4e36-8758-b44e82c24385.png)
+![Screen Shot 2023-01-21 at 14 23 04 PM](https://user-images.githubusercontent.com/96208179/213883679-477d5b27-676e-41c0-be51-bde2d2be543d.png)
 
 ### Built With
 
