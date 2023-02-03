@@ -13,7 +13,6 @@
 .account-settings-main {
   display: flex;
 }
-
 .as-add-image {
   display: flex;
   flex-direction: column;
@@ -45,7 +44,6 @@
   width: 100%;
 }
 
-
 .as-user-info-list {
   list-style: none;
 }
@@ -65,4 +63,3 @@
   font-size: 14px;
   margin-right: 10px;
 }
-
